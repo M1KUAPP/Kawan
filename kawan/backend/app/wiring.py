@@ -1,7 +1,8 @@
 """The single place Lane C swaps stubs for real implementations (ADR-0001).
-KAWAN_AI_BACKEND selects 'stub' (deterministic demo levers + offline tests, default)
-or 'chutes' (real TEE inference). Everything downstream imports ADAPTERS / LLM /
-TOKENS from here, so the hand-off is one file."""
+KAWAN_AI_BACKEND selects 'stub' (deterministic demo levers + offline tests, default),
+'chutes' (real TEE inference), or 'secondary' (chat via the secondary provider while
+evidence stays Chutes-backed). Everything downstream imports ADAPTERS / LLM / TOKENS
+from here, so the hand-off is one file."""
 
 from app.auth import AuthTokenProvider
 from app.config import settings
@@ -29,6 +30,9 @@ def _build() -> tuple[dict[str, EvidenceAdapter], LLMClient]:
         "screenshot": ScreenshotAdapter(chutes),
         "file": FileAdapter(chutes),
     }
+    if settings.ai_backend == "secondary":  # chat via the secondary provider; evidence stays Chutes-backed
+        from app.llm.secondary import SecondaryStructured
+        return adapters, ChutesLLMClient(SecondaryStructured(), db_persona_resolver)
     return adapters, ChutesLLMClient(chutes, db_persona_resolver)
 
 

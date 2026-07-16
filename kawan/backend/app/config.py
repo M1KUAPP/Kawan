@@ -18,8 +18,9 @@ class Settings(BaseSettings):
     frontend_post_login_redirect: str = "http://localhost:5173/"
     # APScheduler cron jobs (cadence) and the demo run in the team's local time (MYT).
     app_tz: str = "Asia/Kuala_Lumpur"
-    # AI backend: 'stub' (deterministic, offline — default + tests) or 'chutes'
-    # (real TEE inference). The demo/prod env sets KAWAN_AI_BACKEND=chutes.
+    # AI backend: 'stub' (deterministic, offline — default + tests), 'chutes' (real TEE
+    # inference), or 'secondary' (chat via the secondary provider; evidence stays
+    # Chutes-backed). The demo/prod env sets KAWAN_AI_BACKEND accordingly.
     ai_backend: str = "stub"
 
     # Chutes / SIWC — fill in from the team vault, never commit real values
