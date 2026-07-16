@@ -195,6 +195,42 @@ export function StageMode({
             <span className="stage-thinking-dot" />
           </div>
         )}
+
+        {/* Starter chips — chat phase empty state. Rendered inside .stage-character-area (not as
+            a sibling of .stage-dialogue-box) so it is structurally contained above the dialogue
+            box and clipped by the area's overflow, regardless of viewport height or message length. */}
+        {showStarterChips && !openerLoading && (
+          <div className="stage-starter-chips">
+            {starterChips.map((chip) => (
+              <button
+                key={chip.label}
+                type="button"
+                className="stage-starter-chip"
+                onClick={() => setInputText(chip.action.text)}
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* 2.3: Intake VN glassmorphism options — rendered OVER the L2D stage during intake */}
+        {phase === 'intake' && !openerLoading && !sending && intakeOptions && !showTypeOwn && (
+          <fieldset className="stage-intake-menu" aria-label={`Question ${intakeStep + 1} of 4`}>
+            <legend className="sr-only">Intake options</legend>
+            {intakeOptions.map((opt) => (
+              <button
+                key={opt.text}
+                type="button"
+                className={`stage-intake-btn${opt.isOpenEnded ? ' stage-intake-btn--secondary' : ''}`}
+                onClick={() => handleOptionTap(opt.text, opt.isOpenEnded)}
+                disabled={sending}
+              >
+                {opt.text}
+              </button>
+            ))}
+          </fieldset>
+        )}
       </div>
 
       {/* DEV-only: extended harness with persona, emotion, text, and original spike */}
@@ -261,40 +297,6 @@ export function StageMode({
       )}
 
       {/* Slot progress is shown in the top-right ContextIsland (ITEM 1) — not duplicated here */}
-
-      {/* Starter chips — chat phase empty state */}
-      {showStarterChips && !openerLoading && (
-        <div className="stage-starter-chips">
-          {starterChips.map((chip) => (
-            <button
-              key={chip.label}
-              type="button"
-              className="stage-starter-chip"
-              onClick={() => setInputText(chip.action.text)}
-            >
-              {chip.label}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* 2.3: Intake VN glassmorphism options — rendered OVER the L2D stage during intake */}
-      {phase === 'intake' && !openerLoading && !sending && intakeOptions && !showTypeOwn && (
-        <fieldset className="stage-intake-menu" aria-label={`Question ${intakeStep + 1} of 4`}>
-          <legend className="sr-only">Intake options</legend>
-          {intakeOptions.map((opt) => (
-            <button
-              key={opt.text}
-              type="button"
-              className={`stage-intake-btn${opt.isOpenEnded ? ' stage-intake-btn--secondary' : ''}`}
-              onClick={() => handleOptionTap(opt.text, opt.isOpenEnded)}
-              disabled={sending}
-            >
-              {opt.text}
-            </button>
-          ))}
-        </fieldset>
-      )}
 
       {/* Fix A: INTAKE DEAD-END FIX — when commitment/options are unavailable, show the
           open-ended input directly so intake can never dead-end. This is independent of

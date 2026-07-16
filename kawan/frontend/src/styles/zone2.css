@@ -242,6 +242,9 @@
 .stage-character-area {
   flex: 1;
   position: relative;
+  /* Clips overlay children (starter chips, intake menu) to this box, so they are
+     structurally incapable of crossing the divider into .stage-dialogue-box. */
+  overflow: hidden;
   /* Warm radial vignette — character pops in both themes (design-system.md §1) */
   background: radial-gradient(ellipse 70% 80% at 50% 35%, #241810 0%, #161009 60%, #0e0b06 100%);
   /* Subtle full-width accent line marking the boundary between the stage and the dialogue zone. */
@@ -2059,18 +2062,6 @@ fieldset.stage-voice-controls {
 }
 
 /* ── Starter chips (empty state only — pre-fill input, never auto-send) ── */
-.stage-starter-chips {
-  position: absolute;
-  bottom: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  width: min(420px, calc(100vw - var(--space-8)));
-  z-index: 6;
-}
-
 .stage-starter-chip {
   background: rgba(22, 16, 9, 0.72);
   border: 1.5px solid rgba(244, 236, 225, 0.13);
@@ -2206,16 +2197,21 @@ fieldset.stage-voice-controls {
 }
 
 /* ── Layout fix 2 & 5: Starter chips — no bullets, pill buttons, tidy stack ── */
-/* Replaces the old <ul>/<li> approach — rendered as <div> rows of <button> pills */
+/* Replaces the old <ul>/<li> approach — rendered as <div> rows of <button> pills.
+   Centered within .stage-character-area (same anchor pattern as .stage-thinking /
+   .stage-intake-menu) so it never depends on the height of .stage-dialogue-box. */
 .stage-starter-chips {
   position: absolute;
-  bottom: 180px;
+  top: 38%;
+  bottom: auto;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   width: min(420px, calc(100vw - var(--space-8)));
+  max-height: calc(100% - var(--space-6));
+  overflow-y: auto;
   z-index: 6;
   list-style: none;
   padding: 0;
