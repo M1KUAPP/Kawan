@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timedelta
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, Request, UploadFile, status
@@ -19,6 +20,8 @@ from app.pipeline import record_contact
 from app.schemas import CheckinStatusOut, CommitmentCreate, CommitmentListOut, CommitmentOut, CommitmentPatch, ContextTurnIn, DebriefIn, GitHubLinkIn, MessageOut, SoftContextOut, WorkspaceTurnIn
 from app.util import as_utc, now_utc, to_jsonable
 from app.wiring import LLM
+
+logger = logging.getLogger("kawan.commitments")
 
 # Graceful error shape the frontend renders as a retry bubble (Layout fix 4).
 _INFERENCE_ERROR_BODY = {"say": "Kawan couldn't reply just now — try again.", "response_type": "error"}
@@ -174,7 +177,8 @@ async def context_turn(body: ContextTurnIn, c: Commitment = Depends(_owned), db:
     current = {k: getattr(sc, k) for k in _SOFT_SLOTS}
     try:
         result = await LLM.intake_turn(c, current, body.say)
-    except ChutesError:
+    except ChutesError as exc:
+        logger.warning("inference failed [context_turn] commitment=%s: %s", c.id, exc)
         return JSONResponse(status_code=503, content={**_INFERENCE_ERROR_BODY, "intake_complete": False,
                                                       "slots": {k: None for k in _SOFT_SLOTS}, "emotion": "neutral"})
     # The ONLY DB write reachable from any LLM output (spec §8.2): the soft_context UPSERT.
@@ -230,8 +234,9 @@ async def workspace_turn(body: WorkspaceTurnIn, c: Commitment = Depends(_owned),
         result = await LLM.workspace_turn(c, soft, body.say,
                                           recent_turns=pipeline.clamp_turns(body.recent_turns),
                                           progress=progress)
-    except ChutesError:
-        return {**_INFERENCE_ERROR_BODY, "proposal": None, "emotion": "neutral"}
+    except ChutesError as exc:
+        logger.warning("inference failed [workspace_turn] commitment=%s: %s", c.id, exc)
+        return JSONResponse(status_code=503, content={**_INFERENCE_ERROR_BODY, "proposal": None, "emotion": "neutral"})
     if result.get("response_type") == "proposal" and result.get("proposal"):
         pr = result["proposal"]
         prop = Proposal(commitment_id=c.id, field=pr["field"],
@@ -253,7 +258,8 @@ async def plan(c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_s
     soft = {k: getattr(sc, k) for k in _SOFT_SLOTS} if sc else {}
     try:
         result = await LLM.plan(c, soft)  # pre-fills GUI only — never writes hard fields (TR-11)
-    except ChutesError:
+    except ChutesError as exc:
+        logger.warning("inference failed [plan] commitment=%s: %s", c.id, exc)
         return JSONResponse(status_code=503, content={**_INFERENCE_ERROR_BODY, "roadmap": [], "front_load_reason": None})
     p = await db.get(Plan, c.id)
     if p is None:
@@ -296,7 +302,8 @@ async def check(c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_
     await record_contact(db, c)
     try:
         ck = await pipeline.run_checkin(db, c, "on_demand")
-    except ChutesError:
+    except ChutesError as exc:
+        logger.warning("inference failed [check] commitment=%s: %s", c.id, exc)
         return JSONResponse(status_code=503, content={**_INFERENCE_ERROR_BODY,
                                                       "message": "Kawan couldn't reply just now — try again.",
                                                       "escalation": c.escalation, "delivered_via": "timeline",
