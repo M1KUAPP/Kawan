@@ -51,9 +51,7 @@ async def test_workspace_turn_chutes_error_returns_503(client, monkeypatch):
     monkeypatch.setattr(wiring.LLM, 'workspace_turn', _raise)
 
     r = await client.post(f'/api/commitments/{cid}/workspace/turn', json={'say': 'help'})
-    # workspace_turn returns a plain dict on ChutesError (not a JSONResponse), so status is 200
-    # but the body has response_type='error' and proposal=None.
-    assert r.status_code == 200
+    assert r.status_code == 503
     body = r.json()
     assert 'say' in body
     assert body['proposal'] is None
