@@ -21,3 +21,7 @@ docs/design-system.md
 docs/kawan-spec.md
 docs/task-list.md
 docs/superpowers/
+
+# Generated LinkedIn carousel intermediates (rebuild with docs/linkedin/build/build.py)
+docs/linkedin/build/carousel.html
+docs/linkedin/build/preview/
