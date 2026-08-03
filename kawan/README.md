@@ -13,8 +13,8 @@
 
   <!-- Tech badges -->
 
-![1st Place — Corporate Track](https://img.shields.io/badge/%F0%9F%8F%86_1st_Place-Corporate_Track-D9643A?style=for-the-badge&labelColor=3A2A1E)
-![Chutes Hack Malaysia 2026](https://img.shields.io/badge/Chutes_Hack-Malaysia_2026-2E7D5B?style=for-the-badge&labelColor=3A2A1E)
+![1st Place — Corporate Track](https://img.shields.io/badge/%F0%9F%8F%86_1st_Place-Corporate_Track-D9643A?labelColor=3A2A1E&style=for-the-badge)
+![Chutes Hack Malaysia 2026](https://img.shields.io/badge/Chutes_Hack-Malaysia_2026-2E7D5B?labelColor=3A2A1E&style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
