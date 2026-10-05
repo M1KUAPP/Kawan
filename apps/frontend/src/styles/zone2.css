@@ -22,7 +22,7 @@
   height: 52px;
   flex-shrink: 0;
   /* Own stacking context above the stage so the notification + account popovers (which open
-     downward into the stage) render in front of it instead of behind the stage. */
+      downward into the stage) render in front of it instead of behind the stage. */
   position: relative;
   z-index: 50;
   background: rgba(22, 16, 9, 0.82);
@@ -78,7 +78,7 @@
 
 /* Segmented pill toggle — clean, premium */
 /* Rendered in-flow: inside the dialogue box above the dialogue line (stage), and atop the
-   messages view. Centered, above the content, never overlapping it. */
+    messages view. Centered, above the content, never overlapping it. */
 .workspace-mode-toggle {
   display: flex;
   gap: 2px;
@@ -200,7 +200,7 @@
 }
 
 /* When the placeholder is rendered as a load-failure overlay inside the character area
-   (Live2DStageView renders it on top of the always-present canvas), it must cover the canvas. */
+    (Live2DStageView renders it on top of the always-present canvas), it must cover the canvas. */
 .stage-character-area .char-stage-placeholder {
   position: absolute;
   inset: 0;
@@ -243,7 +243,7 @@
   flex: 1;
   position: relative;
   /* Clips overlay children (starter chips, intake menu) to this box, so they are
-     structurally incapable of crossing the divider into .stage-dialogue-box. */
+      structurally incapable of crossing the divider into .stage-dialogue-box. */
   overflow: hidden;
   /* Warm radial vignette — character pops in both themes (design-system.md §1) */
   background: radial-gradient(ellipse 70% 80% at 50% 35%, #241810 0%, #161009 60%, #0e0b06 100%);
@@ -1097,7 +1097,7 @@
 }
 
 /* Body: single-column flex; index island overlays via fixed positioning so it
-   does not consume centering space — step content stays full-width and centered. */
+    does not consume centering space — step content stays full-width and centered. */
 .nc-body {
   flex: 1;
   overflow: hidden;
@@ -1112,7 +1112,7 @@
 }
 
 /* Right-rail column — hidden on narrow; fixed overlay on wide so it does not
-   shift the centering of nc-section-inner */
+    shift the centering of nc-section-inner */
 .nc-island-col {
   display: none;
 }
@@ -2136,7 +2136,7 @@ fieldset.stage-voice-controls {
 
 /* ── Layout fix 1: centered max-width thread column (kill the dark void) ── */
 /* The thread grows from the bottom — flex-col with justify-end so sparse content
-   anchors near the input, not the top of a large dark void. */
+    anchors near the input, not the top of a large dark void. */
 .messages-thread {
   flex: 1;
   min-height: 0;
@@ -2144,7 +2144,7 @@ fieldset.stage-voice-controls {
   display: flex;
   flex-direction: column;
   /* 'safe' keeps the thread scrollable from the top when it overflows, instead of clipping
-     the earliest messages above a bottom-anchored column. */
+      the earliest messages above a bottom-anchored column. */
   justify-content: safe flex-end;
 }
 
@@ -2198,8 +2198,8 @@ fieldset.stage-voice-controls {
 
 /* ── Layout fix 2 & 5: Starter chips — no bullets, pill buttons, tidy stack ── */
 /* Replaces the old <ul>/<li> approach — rendered as <div> rows of <button> pills.
-   Centered within .stage-character-area (same anchor pattern as .stage-thinking /
-   .stage-intake-menu) so it never depends on the height of .stage-dialogue-box. */
+    Centered within .stage-character-area (same anchor pattern as .stage-thinking /
+    .stage-intake-menu) so it never depends on the height of .stage-dialogue-box. */
 .stage-starter-chips {
   position: absolute;
   top: 38%;
@@ -2322,7 +2322,7 @@ fieldset.messages-intake-menu {
   border: none;
   padding: 0;
   /* Keep horizontal auto-centering: a plain `margin: 0` here (higher specificity than
-     .messages-intake-menu) was left-aligning the VN options off the centered thread column. */
+      .messages-intake-menu) was left-aligning the VN options off the centered thread column. */
   margin: 0 auto;
 }
 
@@ -2375,7 +2375,7 @@ fieldset.messages-intake-menu {
 }
 .stage-intake-btn--secondary {
   /* The dashed "answer in my own words" option sits on the always-dark stage; keep its text and
-     border legible without a hover (item 4). */
+      border legible without a hover (item 4). */
   color: rgba(244, 236, 225, 0.88);
   border-style: dashed;
   border-color: rgba(244, 236, 225, 0.38);
@@ -2570,7 +2570,7 @@ fieldset.messages-intake-menu {
   backdrop-filter: var(--blur-backdrop);
   align-items: center;
   /* Center on the thread column (matches the chat input row + intake menu) instead of spanning
-     edge-to-edge, which split the input far-left from the send button far-right (item 1). */
+      edge-to-edge, which split the input far-left from the send button far-right (item 1). */
   max-width: 720px;
   width: 100%;
   margin: 0 auto;
@@ -2617,7 +2617,7 @@ fieldset.messages-intake-menu {
 }
 
 /* When the intake controls nest in the composer band, drop their own band so the toggle and the
-   VN buttons read as a single bar (matches the chat composer). */
+    VN buttons read as a single bar (matches the chat composer). */
 .messages-input-bar .messages-intake-menu,
 .messages-input-bar .messages-intake-own-bar {
   border-top: none;
@@ -2710,8 +2710,8 @@ fieldset.messages-intake-menu {
 
 /* ── Phase 3: Workspace side drawers ── */
 /* Islands live in two edge-anchored drawers so the single-mounted stage stays uninterrupted.
-   Collapsed, only a labeled tab pokes in; hovering the edge peeks the panel out and clicking the
-   tab pins it. The backdrop blurs + dims everything beneath the open drawer(s). */
+    Collapsed, only a labeled tab pokes in; hovering the edge peeks the panel out and clicking the
+    tab pins it. The backdrop blurs + dims everything beneath the open drawer(s). */
 .ws-drawer-backdrop {
   position: fixed;
   inset: 0;
@@ -2738,7 +2738,7 @@ fieldset.messages-intake-menu {
   display: flex;
   align-items: center;
   /* The aside box is the thin edge strip; clicks pass through to the stage, and only the tab and
-     panel (which re-enable pointer events) drive hover/open. */
+      panel (which re-enable pointer events) drive hover/open. */
   pointer-events: none;
 }
 .ws-drawer--left {
@@ -2903,13 +2903,13 @@ fieldset.messages-intake-menu {
 }
 
 /* The demo step bar floats (fixed, z-index) over the topbar's empty center — no extra row,
-   so the workspace is not pushed down. */
+    so the workspace is not pushed down. */
 
 /* ── Shared island base ── */
 .ws-island {
   width: 100%;
   /* Never let the flex column squeeze an island to fit — that clipped expanded content and
-     killed the column's scroll. Keep natural height so the column overflows and scrolls. */
+      killed the column's scroll. Keep natural height so the column overflows and scrolls. */
   flex-shrink: 0;
   background: rgba(22, 16, 9, 0.82);
   border: 1px solid rgba(244, 236, 225, 0.13);
@@ -2970,7 +2970,7 @@ div.ws-island-header:hover {
   border-top: 1px solid rgba(244, 236, 225, 0.07);
 }
 /* Collapsed: stay mounted but hidden so in-progress evidence state survives (needs to beat the
-   .ws-island-body display:flex above). */
+    .ws-island-body display:flex above). */
 .ws-island-body[hidden] {
   display: none;
 }
@@ -3706,7 +3706,7 @@ div.ws-island-header:hover {
 }
 
 /* Narrow screens: hide the bottom island to avoid overlap. The side drawers stay (off-canvas,
-   opened by tapping their tab) so the islands remain reachable on mobile. */
+    opened by tapping their tab) so the islands remain reachable on mobile. */
 @media (max-width: 480px) {
   .workspace-island-bottom {
     display: none;
@@ -4209,7 +4209,7 @@ div.ws-island-header:hover {
   border-color: var(--line-strong);
 }
 /* Must beat [data-theme=light] .context-dot (same specificity, declared after) so filled dots
-   actually light up during intake in light theme. */
+    actually light up during intake in light theme. */
 [data-theme="light"] .context-dot--filled {
   background: var(--accent);
   border-color: var(--accent);

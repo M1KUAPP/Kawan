@@ -34,14 +34,14 @@ from the final 1080×1350 raster.
 
 ## Carousel pages
 
-1. Hero — 1st Place, Corporate Track
-2. The problem — "I'll ship it Friday."
-3. The fix — one commitment, under 60 seconds
-4. The guardrail — the AI can't move your goalposts
-5. The companion — three Live2D characters, or bring your own
-6. The verdict — it fetches the evidence itself
-7. The brain — built on Chutes, five touchpoints
-8. Close — repo, live app, demo
+1.  Hero — 1st Place, Corporate Track
+2.  The problem — "I'll ship it Friday."
+3.  The fix — one commitment, under 60 seconds
+4.  The guardrail — the AI can't move your goalposts
+5.  The companion — three Live2D characters, or bring your own
+6.  The verdict — it fetches the evidence itself
+7.  The brain — built on Chutes, five touchpoints
+8.  Close — repo, live app, demo
 
 Format is 4:5 portrait because LinkedIn document posts letterbox 16:9 badly on
 mobile — the pitch deck's own slides could not be used as-is.

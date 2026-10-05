@@ -15,11 +15,11 @@ def _future() -> str:
 
 async def _seed_active(db, **kw) -> Commitment:
     u = User(id=new_id(), username="u", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     c = Commitment(user_id=u.id, action="ship", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1), status="active", **kw)
+                    deadline=now_utc() + timedelta(days=1), status="active", **kw)
     db.add(c)
     await db.commit()
     return c
@@ -57,13 +57,13 @@ async def test_workspace_route_passes_progress_and_transcript(client, monkeypatc
 
     monkeypatch.setattr(wiring.LLM, "workspace_turn", fake_ws)
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     await client.post(f"/api/commitments/{cid}/start")
     await client.post(f"/api/commitments/{cid}/check")  # a check-in (+ evidence) for the snapshot
     r = await client.post(f"/api/commitments/{cid}/workspace/turn",
                           json={"say": "where do I start?",
                                 "recent_turns": [{"role": "user", "content": "earlier"},
-                                                 {"role": "assistant", "content": "reply"}]})
+                                                  {"role": "assistant", "content": "reply"}]})
     assert r.status_code == 200
     assert captured["progress"]["status"] == "active"
     assert captured["progress"]["recent_checkins"]  # the check-in is visible to the workspace call

@@ -92,8 +92,8 @@ def _extract_json(content: str) -> dict:
 
 class ChutesClient:
     def __init__(self, token_provider: TokenProvider, *, base_url: str,
-                 http: httpx.AsyncClient | None = None, timeout: float = 90.0,
-                 max_5xx_retries: int = 2, retry_backoff: float = 0.5) -> None:
+                  http: httpx.AsyncClient | None = None, timeout: float = 90.0,
+                  max_5xx_retries: int = 2, retry_backoff: float = 0.5) -> None:
         self._tokens = token_provider
         self._base_url = base_url.rstrip("/")
         self._http = http  # injected in tests (MockTransport); None → one client per call
@@ -110,7 +110,7 @@ class ChutesClient:
         )
 
     async def structured(self, *, user_id: str, model: str, messages: list[dict],
-                         schema: dict, schema_name: str, max_tokens: int = 2048) -> dict:
+                          schema: dict, schema_name: str, max_tokens: int = 2048) -> dict:
         # These TEE chutes (sglang) are reasoning models; strict json_schema decoding
         # triggers an xgrammar whitespace explosion that never closes the object and
         # burns the whole token budget (slow → ReadTimeout / truncated → unparseable).

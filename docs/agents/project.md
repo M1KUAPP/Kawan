@@ -10,7 +10,7 @@ Platform reference for Chutes API work lives in `docs/references/` (chutes-llms.
 
 Before writing code against this repo's pinned libraries — **PixiJS v6 + pixi-live2d-display, React 18, FastAPI, SQLAlchemy 2 async, APScheduler 3.x** — verify current, version-correct APIs via the Context7 MCP tools rather than memory. Training-data drift on these (especially PixiJS, which is v8+ upstream while we pin v6) is the main source of subtle breakage.
 
-## Agent skills
+## Agent workflow
 
 ### Issue tracker
 
@@ -26,4 +26,4 @@ All five triage labels exist on the repo.
 
 ### Domain docs
 
-Single-context: `CONTEXT.md` + `docs/adr/` at the repo root (created lazily by `/grill-with-docs`). See `docs/agents/domain.md`.
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root (created lazily). See `docs/agents/domain.md`.

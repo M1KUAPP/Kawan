@@ -108,7 +108,7 @@ async def _handle_update(update: dict) -> None:
         user = await _consume_link_token(db, token) if token else None
         if user is None:
             await send_message(str(chat_id),
-                               "That link is invalid or expired. In Kawan: Settings → Connect Telegram for a fresh one.")
+                                "That link is invalid or expired. In Kawan: Settings → Connect Telegram for a fresh one.")
             return
         user.telegram_chat_id = str(chat_id)
         await db.commit()

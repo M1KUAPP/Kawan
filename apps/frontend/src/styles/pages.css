@@ -751,7 +751,7 @@
 }
 
 /* empty-state-card: horizontally centered within normal top-aligned page flow.
-   No vertical centering (justify-content: center) - matches /home, /commitments, /faq layout. */
+    No vertical centering (justify-content: center) - matches /home, /commitments, /faq layout. */
 
 .empty-state-icon-wrap {
   display: flex;

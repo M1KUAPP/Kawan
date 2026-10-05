@@ -58,14 +58,14 @@ class FileAdapter:
     async def judge(self, commitment: "Commitment", bundle: EvidenceBundle, llm) -> Verdict:
         if not bundle.items:
             return Verdict("unclear", 0.4, ["no file content received"],
-                           "No file was supplied to judge.",
-                           "Upload a document showing your work and I'll review it.")
+                            "No file was supplied to judge.",
+                            "Upload a document showing your work and I'll review it.")
         item = bundle.items[0]
         text = item.get("text", "").strip()
         if not text:
             return Verdict("unclear", 0.4, ["file contained no extractable text"],
-                           "Could not extract text from the file.",
-                           "Try a different format or paste the content as text.")
+                            "Could not extract text from the file.",
+                            "Try a different format or paste the content as text.")
         messages = [
             {"role": "system", "content": JUDGE_SYSTEM},
             {"role": "user", "content":
@@ -80,4 +80,4 @@ class FileAdapter:
             schema=VERDICT_SCHEMA, schema_name="verdict", max_tokens=1024,
         )
         return Verdict(r["verdict"], r["confidence"], r["observations"], r["reasoning"],
-                       r.get("follow_up_request"))
+                        r.get("follow_up_request"))
