@@ -273,70 +273,78 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
 ### Prerequisites
 
-- **Python 3.12+** and [`uv`](https://docs.astral.sh/uv/)
-- **[Bun](https://bun.sh/)** (the frontend lockfile is `bun.lock`; npm/pnpm also work)
-- A POSIX shell (the asset scripts are bash)
+- [Python](https://www.python.org/) 3.12+ — runs the FastAPI backend.
+- [uv](https://docs.astral.sh/uv/) — installs and runs the backend.
+- [Bun](https://bun.sh/) — installs and runs the frontend; the frontend lockfile is `bun.lock`, and npm or pnpm also work.
+- [Bash](https://www.gnu.org/software/bash/) — runs the asset scripts, which are bash.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Installation
 
-Run each block from the repository root.
+1. **Configure the environment.** Run each block from the repository root.
 
-**1. Configure the environment**
+   ```sh
+   cp kawan/.env.example kawan/.env  # in the kawan/ folder; sensible dev defaults are pre-filled
+   ```
 
-```bash
-cp kawan/.env.example kawan/.env  # in the kawan/ folder; sensible dev defaults are pre-filled
-```
+   The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
 
-The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
+   All settings use the `KAWAN_` prefix and load from `kawan/.env`. See [`.env.example`](kawan/.env.example) for the fully annotated list. The most important knobs:
 
-**2. Fetch the Live2D companion models** (gitignored; one-time after clone)
+   | Variable                                    | What it does                                                                      |
+   | ------------------------------------------- | --------------------------------------------------------------------------------- |
+   | `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
+   | `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
+   | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
+   | `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
+   | `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
+   | `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
+   | `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
+   | `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
+   | `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
 
-```bash
-./kawan/scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
-```
+   To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
 
-**3. Run the backend** (FastAPI on `:8000`)
+2. **Fetch the Live2D companion models.** Gitignored; one-time after clone.
 
-```bash
-cd kawan/backend
-uv sync
-uv run uvicorn app.main:app --reload
-```
+   ```sh
+   ./kawan/scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+   ```
 
-**4. Run the frontend** (Vite on `:5173`, proxies `/api` and `/ws` to the backend)
+3. **Run the backend.** FastAPI on `:8000`.
 
-```bash
-cd kawan/frontend
-bun install
-bun dev
-```
+   ```sh
+   cd kawan/backend
+   uv sync
+   uv run uvicorn app.main:app --reload
+   ```
 
-Open **http://localhost:5173** and choose **Continue as guest** to start.
+4. **Run the frontend.** Vite on `:5173`, proxies `/api` and `/ws` to the backend.
 
-> **Optional — voices:** run `./kawan/scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
+   ```sh
+   cd kawan/frontend
+   bun install
+   bun dev
+   ```
 
-**Configuration.** All settings use the `KAWAN_` prefix and load from `kawan/.env`. See [`.env.example`](kawan/.env.example) for the fully annotated list. The most important knobs:
+   Open **http://localhost:5173** and choose **Continue as guest** to start.
 
-| Variable                                    | What it does                                                                      |
-| ------------------------------------------- | --------------------------------------------------------------------------------- |
-| `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
-| `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
-| `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
-| `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
-| `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
-| `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
-| `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
-| `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
-| `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
+   > **Optional — voices:** run `./kawan/scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
 
-To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
+5. **Deployment.**
 
-**Deployment.**
+   - **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
+   - **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-- **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
-- **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
+6. **Run the checks.** Lint the repository, then run the backend tests.
+
+   ```sh
+   bun install
+   bun run lint
+   cd kawan/backend
+   uv run pytest
+   ```
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
