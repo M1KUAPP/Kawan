@@ -1,19 +1,25 @@
 {
+  "packageManager": "bun@1.4.2",
   "scripts": {
-    "format": "biome check --write . && prettier --write '**/*.md'",
-    "lint": "biome check . && prettier --check '**/*.md'",
-    "prepare": "husky"
+    "build": "bun run --cwd kawan/frontend build",
+    "check": "bun run lint && bun run test && bun run --cwd kawan/frontend lint && bun run build",
+    "format": "biome check --write . && prettier --write .",
+    "graph": "graphify update .",
+    "lint": "biome check . && prettier --check .",
+    "lint:fix": "biome check --write . && prettier --write .",
+    "prepare": "husky",
+    "test": "cd kawan/backend && uv run pytest"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css}": "biome check --write --no-errors-on-unmatched",
-    "*.md": "prettier --write"
+    "*.{md,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.0",
-    "@commitlint/cli": "^21.0.2",
-    "@commitlint/config-conventional": "^21.0.2",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.5",
-    "prettier": "^3.8.3"
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.9"
   }
 }
