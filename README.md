@@ -380,10 +380,11 @@ See [LICENSE](LICENSE) for more information.
 
 ## Acknowledgments
 
-- [Chutes](https://chutes.ai) — Trusted Execution Environment inference and Sign in with Chutes
-- [Live2D Cubism](https://www.live2d.com/) & [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display) — the animated companions
-- [#LiveroiD](https://booth.pm/en/items/2685284) — the Cik Maid companion model, モデル制作：八城惺架 (@yashiro_seika)
-- [Piper](https://github.com/rhasspy/piper) — neural text-to-speech voices
+- [Chutes](https://chutes.ai) — Trusted Execution Environment inference and Sign in with Chutes.
+- [Live2D Cubism](https://www.live2d.com/) — the animated companions, with [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display).
+- [#LiveroiD](https://booth.pm/en/items/2685284) — the Cik Maid companion model, モデル制作：八城惺架 (@yashiro_seika).
+- [Piper](https://github.com/rhasspy/piper) — neural text-to-speech voices.
+- [archify](https://github.com/tt-a1i/archify) — architecture diagrams.
 - [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) — the hackathon by Nyala Labs, Chutes and Infinity8, where Kawan entered the Corporate Track; its entry is on [Devpost](https://devpost.com/software/kawan).
 - [Shields.io](https://shields.io)
 - [contrib.rocks](https://contrib.rocks)
