@@ -14,15 +14,15 @@ Before writing code against this repo's pinned libraries — **PixiJS v6 + pixi-
 
 ### Issue tracker
 
-Issues live in the `M1KUAPP/Kawan` GitHub repo via the `gh` CLI. Tracking is optional per teammate — `docs/task-list.md` stays the canonical task assignment; `lane:A`–`lane:D` and the five phase-gate milestones exist if you choose to file issues. See `docs/agents/issue-tracker.md`.
+Issues live in the `M1KUAPP/Kawan` GitHub repo via the `gh` CLI. Tracking is optional per teammate — `docs/task-list.md` stays the canonical task assignment; the five phase-gate milestones exist if you choose to file issues. See `docs/agents/issue-tracker.md`.
 
-Issues are a convenience for work that benefits from a ticket. The `lane:A`–`lane:D` (work area) and `spike` labels and the five phase-gate milestones are orthogonal to the triage labels in `triage-labels.md`.
+Issues are a convenience for work that benefits from a ticket. The `spike` and `priority:*` labels and the five phase-gate milestones are orthogonal to the triage labels in `triage-labels.md`.
 
 ### Triage labels
 
 Five canonical triage roles map to identically-named labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
 
-`wontfix` already exists on the repo. The other four don't yet — create them with `gh label create <name>` when `triage` first needs them.
+All five triage labels exist on the repo.
 
 ### Domain docs
 
