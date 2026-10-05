@@ -45,33 +45,33 @@ OPENAI_API_KEY=cpk_...
 
 ## Quick recipes for agents
 
-1. **Inference call (OpenAI SDK, Python):**
-   ```python
-   from openai import OpenAI
-   client = OpenAI(base_url="https://llm.chutes.ai/v1", api_key="cpk_...")
-   client.chat.completions.create(
-       model="deepseek-ai/DeepSeek-V3-0324",
-       messages=[{"role": "user", "content": "hi"}],
-   )
-   ```
-2. **Inference call (curl):**
-   ```bash
-   curl https://llm.chutes.ai/v1/chat/completions \
-     -H "Authorization: Bearer $CHUTES_API_KEY" \
-     -H "Content-Type: application/json" \
-     -d '{"model":"deepseek-ai/DeepSeek-V3-0324","messages":[{"role":"user","content":"hi"}]}'
-   ```
-3. **List live models** — canonical source of truth for availability, pricing, TEE flags, and feature support:
-   `GET https://llm.chutes.ai/v1/models` with `Authorization: Bearer cpk_...`
-4. **Current user / balance / quotas:** `GET https://api.chutes.ai/users/me`
-5. **TEE-only selection:** filter `/v1/models` for `confidential_compute === true` (do **not** rely on the `-TEE` name suffix).
-6. **Routing cheat sheet** — pass any of these as the `model` field:
-   - `default` → configured failover order
-   - `default:latency` → lowest TTFT right now
-   - `default:throughput` → highest TPS right now
-   - `modelA,modelB,modelC` → inline failover across the listed ids
-   - `modelA,modelB,modelC:latency` → inline list, latency-picked
-   - `modelA,modelB,modelC:throughput` → inline list, throughput-picked
+1.  **Inference call (OpenAI SDK, Python):**
+    ```python
+    from openai import OpenAI
+    client = OpenAI(base_url="https://llm.chutes.ai/v1", api_key="cpk_...")
+    client.chat.completions.create(
+        model="deepseek-ai/DeepSeek-V3-0324",
+        messages=[{"role": "user", "content": "hi"}],
+    )
+    ```
+2.  **Inference call (curl):**
+    ```bash
+    curl https://llm.chutes.ai/v1/chat/completions \
+      -H "Authorization: Bearer $CHUTES_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{"model":"deepseek-ai/DeepSeek-V3-0324","messages":[{"role":"user","content":"hi"}]}'
+    ```
+3.  **List live models** — canonical source of truth for availability, pricing, TEE flags, and feature support:
+    `GET https://llm.chutes.ai/v1/models` with `Authorization: Bearer cpk_...`
+4.  **Current user / balance / quotas:** `GET https://api.chutes.ai/users/me`
+5.  **TEE-only selection:** filter `/v1/models` for `confidential_compute === true` (do **not** rely on the `-TEE` name suffix).
+6.  **Routing cheat sheet** — pass any of these as the `model` field:
+    - `default` → configured failover order
+    - `default:latency` → lowest TTFT right now
+    - `default:throughput` → highest TPS right now
+    - `modelA,modelB,modelC` → inline failover across the listed ids
+    - `modelA,modelB,modelC:latency` → inline list, latency-picked
+    - `modelA,modelB,modelC:throughput` → inline list, throughput-picked
 
 ## Agent Instructions
 

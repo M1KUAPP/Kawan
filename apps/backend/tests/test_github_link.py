@@ -50,7 +50,7 @@ def _repo_handler(request: httpx.Request) -> httpx.Response:
         ])
     if path == f"/repos/owner/repo/commits/{_SHA}":
         return httpx.Response(200, json={"sha": _SHA, "stats": {"total": 20},
-                                         "commit": {"message": "feat: add portfolio page"}})
+                                          "commit": {"message": "feat: add portfolio page"}})
     return httpx.Response(404)
 
 
@@ -170,7 +170,7 @@ async def test_existing_cadence_fetch_unaffected():
             ])
         if request.url.path == f"/repos/o/r/commits/{_SHA}":
             return httpx.Response(200, json={"sha": _SHA, "stats": {"total": 10},
-                                             "commit": {"message": "cadence commit"}})
+                                              "commit": {"message": "cadence commit"}})
         return httpx.Response(404)
 
     http = httpx.AsyncClient(transport=httpx.MockTransport(handler))

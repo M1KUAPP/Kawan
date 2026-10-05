@@ -31,7 +31,7 @@ async def test_judge_upload_threads_image_into_bundle(db, monkeypatch):
     u = User(id="u1", username="u", access_token="", refresh_token="", token_expiry=now_utc())
     db.add(u)
     c = Commitment(user_id="u1", action="ship", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1), status="active")
+                    deadline=now_utc() + timedelta(days=1), status="active")
     db.add(c)
     await db.commit()
 
@@ -52,8 +52,8 @@ async def test_checkin_snapshot_includes_user_id(db, monkeypatch):
     u = User(id="u2", username="u", access_token="", refresh_token="", token_expiry=now_utc())
     db.add(u)
     c = Commitment(user_id="u2", action="ship", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1), status="active",
-                   evidence_type="github")
+                    deadline=now_utc() + timedelta(days=1), status="active",
+                    evidence_type="github")
     db.add(c)
     await db.commit()
 

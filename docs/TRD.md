@@ -34,11 +34,11 @@ Kawan is a voiced, animated Live2D accountability companion: the user composes *
 │ Evidence adapters: GitHubAdapter · ScreenshotAdapter (one Protocol)         │
 │ Voice: wyoming-piper TTS + wyoming-faster-whisper STT (Docker)              │
 │ SQLAlchemy 2 async → Supabase Postgres (asyncpg) · SQLite (aiosqlite) tests │
-└──────┬──────────────────────────┬───────────────────────────────────────────┘
-       ▼                          ▼
- Chutes inference            GitHub REST (public, no auth)
- llm.chutes.ai/v1            api.github.com — 60 req/h/IP
- Bearer = user's SIWC token
+└───────┬─────────────────────────┬───────────────────────────────────────────┘
+        ▼                         ▼
+  Chutes inference           GitHub REST (public, no auth)
+  llm.chutes.ai/v1           api.github.com — 60 req/h/IP
+  Bearer = user's SIWC token
 ```
 
 - **TR-01** The system MUST consist of exactly two deployable app processes: the web frontend and one FastAPI backend process, plus the two voice Docker containers (spec §7.1–7.2). No message broker, no sidecar agent runtime, no separate worker.

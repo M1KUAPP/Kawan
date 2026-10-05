@@ -12,7 +12,7 @@ from app.util import new_id, now_utc
 
 async def _user(db) -> User:
     u = User(id=new_id(), username="u", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     return u
@@ -20,7 +20,7 @@ async def _user(db) -> User:
 
 async def _commit(db, u, *, hours=1, status="verifying", **kw) -> Commitment:
     c = Commitment(user_id=u.id, action="a", deliverable="d",
-                   deadline=now_utc() + timedelta(hours=hours), status=status, **kw)
+                    deadline=now_utc() + timedelta(hours=hours), status=status, **kw)
     db.add(c)
     await db.commit()
     return c
@@ -94,8 +94,8 @@ async def test_deleting_a_commitment_keeps_the_badge_clears_its_link(client, db)
     (CodeRabbit): the badge survives, the provenance link is nulled."""
     from app.auth import GUEST_USER_ID
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d",
-                                   "deadline": (now_utc() + timedelta(days=1)).isoformat()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d",
+                                    "deadline": (now_utc() + timedelta(days=1)).isoformat()})).json()["id"]
     db.add(Achievement(user_id=GUEST_USER_ID, code="first_win", commitment_id=cid))
     await db.commit()
     assert (await client.delete(f"/api/commitments/{cid}")).status_code == 204

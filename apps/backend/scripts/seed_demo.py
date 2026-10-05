@@ -25,7 +25,7 @@ Demo story staged (§12.5 beat map):
   C3 — "Refactor the auth module"       status=completed   (3rd win → 'Finisher' title)
   C4 — "Write the API integration docs" status=active      (in-flight, deadline +2 h)
   C5 — "Submit the Chutes Hack entry"   status=active      (stake ON, deadline +4 h)
-         → stake contact set → the §12.5 "stake ON" beat
+          → stake contact set → the §12.5 "stake ON" beat
 
 Each completed commitment has:
   - A SuccessPattern(outcome='completed') row (what drives titles / productivity meter).
@@ -140,7 +140,7 @@ def _future(hours: int = 0, minutes: int = 0) -> object:
 
 
 def _completed_commitment(user_id: str, action: str, deliverable: str,
-                           days_ago_start: int, days_ago_end: int) -> Commitment:
+                            days_ago_start: int, days_ago_end: int) -> Commitment:
     """Return a Commitment in 'completed' status with past dates."""
     return Commitment(
         id=new_id(),

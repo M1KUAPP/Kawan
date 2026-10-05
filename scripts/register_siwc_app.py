@@ -91,7 +91,7 @@ if "--apply" not in sys.argv:
 new_uris = sorted(set(existing) | {REDIRECT})
 with httpx.Client(timeout=30) as client:
     r = client.patch(f"{API}/idp/apps/{app_id}", headers=HEADERS,
-                     json={"redirect_uris": new_uris, "scopes": WANT_SCOPES})
+                      json={"redirect_uris": new_uris, "scopes": WANT_SCOPES})
     print("\nPATCH", r.status_code, r.text[:300])
     r.raise_for_status()
 print("Done. redirect_uris now:", new_uris)
