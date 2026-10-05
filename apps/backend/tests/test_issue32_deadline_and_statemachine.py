@@ -45,11 +45,11 @@ async def test_patch_future_deadline_accepted(client):
 
 async def _seed(db, status="verifying", **kw) -> Commitment:
     u = User(id=new_id(), username="t", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     c = Commitment(user_id=u.id, action="a", deliverable="d",
-                   deadline=now_utc() + timedelta(hours=1), status=status, **kw)
+                    deadline=now_utc() + timedelta(hours=1), status=status, **kw)
     db.add(c)
     await db.commit()
     return c

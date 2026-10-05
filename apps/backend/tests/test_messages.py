@@ -59,7 +59,7 @@ async def test_message_model_insert_and_read(db, user_and_commitment):
 
     m1 = Message(commitment_id=c.id, role="user", content="Hello")
     m2 = Message(commitment_id=c.id, role="assistant", content="Hi there",
-                 emotion="pleased", response_type="coaching")
+                  emotion="pleased", response_type="coaching")
     db.add(m1)
     db.add(m2)
     await db.commit()

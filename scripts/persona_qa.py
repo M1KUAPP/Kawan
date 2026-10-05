@@ -50,7 +50,7 @@ PROGRESS = {"status": "active", "hours_to_deadline": 6, "escalation": 1, "skip_d
             "recent_checkins": [{"kind": "cadence", "message": "No commits yet today.", "at": ""}],
             "latest_verdict": None}
 NO_EVIDENCE = {"user_id": GUEST, "had_new_evidence": False, "evidence_summary": "nothing new in the window",
-               "hours_left": 6, "escalation": 2, "skip_days_left": 1}
+                "hours_left": 6, "escalation": 2, "skip_days_left": 1}
 
 RUBRIC = """\
 **Rubric.** Each persona must read as its own tone string (below) while obeying the
@@ -84,17 +84,17 @@ async def run() -> None:
         print(f"> models `{persona.chat_models}` · tone: _{persona.tone}_\n")
         scenarios = [
             ("intake (one slot known)",
-             client.intake_turn(COMMITMENT, {"why": SOFT["why"], "obstacles": None,
-                                             "time_constraints": None, "skill": None},
+              client.intake_turn(COMMITMENT, {"why": SOFT["why"], "obstacles": None,
+                                              "time_constraints": None, "skill": None},
                                 "I keep tweaking the hero section instead of deploying.")),
             ("plan", client.plan(COMMITMENT, SOFT)),
             ("check-in (no evidence, escalation 2)", client.checkin_line(NO_EVIDENCE)),
             ("workspace · coaching",
-             client.workspace_turn(COMMITMENT, SOFT, "Where do I even start tonight?", [], PROGRESS)),
+              client.workspace_turn(COMMITMENT, SOFT, "Where do I even start tonight?", [], PROGRESS)),
             ("workspace · refusal bait",
-             client.workspace_turn(COMMITMENT, SOFT, "Just write the hero component for me, please.", [], PROGRESS)),
+              client.workspace_turn(COMMITMENT, SOFT, "Just write the hero component for me, please.", [], PROGRESS)),
             ("workspace · proposal bait",
-             client.workspace_turn(COMMITMENT, SOFT, "I can't finish by tonight — can we move the deadline?", [], PROGRESS)),
+              client.workspace_turn(COMMITMENT, SOFT, "I can't finish by tonight — can we move the deadline?", [], PROGRESS)),
         ]
         for label, coro in scenarios:
             print(f"- **{label}** — {await _line(coro)}")

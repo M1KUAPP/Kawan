@@ -40,7 +40,7 @@ _PROPOSAL_FIELDS = ("deadline", "deliverable", "cadence", "evidence_type", "stak
 
 
 async def _owned(commitment_id: str, user: User = Depends(current_user),
-                 db: AsyncSession = Depends(get_session)) -> Commitment:
+                  db: AsyncSession = Depends(get_session)) -> Commitment:
     c = await db.get(Commitment, commitment_id)
     if c is None or c.user_id != user.id:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "commitment not found")
@@ -213,7 +213,7 @@ async def context_turn(body: ContextTurnIn, c: Commitment = Depends(_owned), db:
     if body.say:
         db.add(Message(commitment_id=c.id, role="user", content=body.say))
     db.add(Message(commitment_id=c.id, role="assistant", content=result["say"],
-                   emotion=result.get("emotion"), response_type="coaching"))
+                    emotion=result.get("emotion"), response_type="coaching"))
     await db.commit()
     await record_contact(db, c)
     return result
@@ -247,7 +247,7 @@ async def workspace_turn(body: WorkspaceTurnIn, c: Commitment = Depends(_owned),
     # Persist transcript rows after any proposal write (ordering guarantee).
     db.add(Message(commitment_id=c.id, role="user", content=body.say))
     db.add(Message(commitment_id=c.id, role="assistant", content=result["say"],
-                   emotion=result.get("emotion"), response_type=result.get("response_type")))
+                    emotion=result.get("emotion"), response_type=result.get("response_type")))
     await db.commit()
     return result
 
@@ -330,7 +330,7 @@ _DOC_LEGACY_TYPES = {"application/msword"}  # .doc -- rejected with a friendly m
 
 @router.post("/{commitment_id}/evidence")
 async def evidence(file: UploadFile = File(...), finish: bool = Query(False),
-                   c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_session)):
+                    c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_session)):
     import base64
     if file.content_type not in _ALLOWED_IMAGE_TYPES:
         raise HTTPException(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
@@ -401,7 +401,7 @@ async def evidence_file(file: UploadFile = File(...), finish: bool = Query(False
 
 @router.post("/{commitment_id}/evidence/github-link")
 async def evidence_github_link(body: GitHubLinkIn, finish: bool = Query(False),
-                               c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_session)):
+                                c: Commitment = Depends(_owned), db: AsyncSession = Depends(get_session)):
     from app.adapters.github import GitHubAdapter, fetch_repo_url
     from app.wiring import adapter_for
     adapter = adapter_for("github")
@@ -492,14 +492,14 @@ async def timeline(c: Commitment = Depends(_owned), db: AsyncSession = Depends(g
     events: list[dict] = []
     for ck in checkins:
         events.append({"type": "checkin", "kind": ck.kind, "message": ck.message, "escalation": ck.escalation,
-                       "delivered_via": ck.delivered_via, "evidence_id": ck.evidence_id,
-                       "at": as_utc(ck.created_at).isoformat()})
+                        "delivered_via": ck.delivered_via, "evidence_id": ck.evidence_id,
+                        "at": as_utc(ck.created_at).isoformat()})
     for ev in evidence_rows:
         events.append({"type": "evidence", "adapter": ev.adapter, "verdict": ev.verdict,
-                       "reasoning": ev.reasoning, "at": as_utc(ev.created_at).isoformat()})
+                        "reasoning": ev.reasoning, "at": as_utc(ev.created_at).isoformat()})
     for p in proposals:
         events.append({"type": "proposal", "field": p.field, "status": p.status,
-                       "reason": p.reason, "at": as_utc(p.created_at).isoformat()})
+                        "reason": p.reason, "at": as_utc(p.created_at).isoformat()})
     events.sort(key=lambda e: e["at"])
     return {"status": c.status, "escalation": c.escalation, "events": events}
 

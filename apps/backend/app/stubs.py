@@ -25,9 +25,9 @@ class StubGitHubAdapter:
     async def judge(self, commitment: Commitment, bundle: EvidenceBundle, llm) -> Verdict:
         if not bundle.items:
             return Verdict("unclear", 0.5, ["no new commits in window"],
-                           "Nothing fetched since the last check.", "Push something and I'll look again.")
+                            "Nothing fetched since the last check.", "Push something and I'll look again.")
         return Verdict("pass", 0.9, [f"commit '{bundle.items[0]['message']}' relates to the deliverable"],
-                       "New non-trivial commit found in window.")
+                        "New non-trivial commit found in window.")
 
 
 class StubFileAdapter:
@@ -42,7 +42,7 @@ class StubFileAdapter:
         if not bundle.items:
             return Verdict("unclear", 0.4, ["no file received"], "No file supplied.", None)
         return Verdict("pass", 0.85, ["document content relates to the deliverable"],
-                       "File content matches the commitment.")
+                        "File content matches the commitment.")
 
 
 class StubScreenshotAdapter:
@@ -55,7 +55,7 @@ class StubScreenshotAdapter:
 
     async def judge(self, commitment: Commitment, bundle: EvidenceBundle, llm) -> Verdict:
         return Verdict("pass", 0.85, ["the screenshot shows the deployed site with the URL bar visible"],
-                       "Visible work product matches the deliverable.")
+                        "Visible work product matches the deliverable.")
 
 
 class StubLLMClient:
@@ -102,5 +102,5 @@ class StubLLMClient:
         return {"say": "Nothing new today. What's the 20-minute version tonight?", "emotion": "concerned", "escalate": True}
 
     async def workspace_turn(self, commitment: Commitment, soft_context: dict, user_says: str,
-                             recent_turns: list[dict] | None = None, progress: dict | None = None) -> dict:
+                              recent_turns: list[dict] | None = None, progress: dict | None = None) -> dict:
         return {"response_type": "coaching", "say": "Timebox it, ship it ugly. Deal?", "proposal": None, "emotion": "neutral"}

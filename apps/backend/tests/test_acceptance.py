@@ -22,11 +22,11 @@ def _future() -> str:
 
 async def _seed_active(db, status="active", **kw) -> Commitment:
     u = User(id=new_id(), username="u", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     c = Commitment(user_id=u.id, action="ship", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1), status=status, **kw)
+                    deadline=now_utc() + timedelta(days=1), status=status, **kw)
     db.add(c)
     await db.commit()
     return c
@@ -36,7 +36,7 @@ async def _seed_active(db, status="active", **kw) -> Commitment:
 
 async def test_token_provider_decrypts_user_token(db):
     u = User(id=new_id(), username="u", access_token=crypto.encrypt("tok-123"),
-             refresh_token=crypto.encrypt("r"), token_expiry=now_utc() + timedelta(hours=1))
+              refresh_token=crypto.encrypt("r"), token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.commit()
     assert await AuthTokenProvider().get_access_token(u.id) == "tok-123"
@@ -52,7 +52,7 @@ async def test_guest_token_is_team_cpk(db, monkeypatch):
 
 async def test_check_now_runs_pipeline_and_delivers(client):
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     await client.post(f"/api/commitments/{cid}/start")
     r = await client.post(f"/api/commitments/{cid}/check")  # no cron involved
     assert r.status_code == 200
@@ -96,8 +96,8 @@ async def test_miss_path_sends_stake_email(db, monkeypatch):
     monkeypatch.setitem(wiring.ADAPTERS, "github", _FailAdapter())
     email_mod.outbox.clear()
     c = await _seed_active(db, evidence_type="github", skip_days_total=0,
-                           stake_enabled=True, stake_contact_name="Brother",
-                           stake_contact_email="brother@example.com")
+                            stake_enabled=True, stake_contact_name="Brother",
+                            stake_contact_email="brother@example.com")
     await pipeline.run_final_verify(db, c)
     assert c.status == "missed"
     assert any(m["to"] == "brother@example.com" for m in email_mod.outbox)  # templated stake email landed
@@ -127,8 +127,8 @@ async def test_cadence_late_with_witness_emails_witness(db, monkeypatch):
     email_mod.outbox.clear()
 
     c = await _seed_active(db, evidence_type="github", skip_days_total=0,
-                           stake_enabled=True, stake_contact_name="Witness",
-                           stake_contact_email="witness@example.com")
+                            stake_enabled=True, stake_contact_name="Witness",
+                            stake_contact_email="witness@example.com")
     await pipeline.run_checkin(db, c, "cadence")
 
     assert any(m["to"] == "witness@example.com" for m in email_mod.outbox)
@@ -157,8 +157,8 @@ async def test_cadence_not_late_does_not_email_witness(db, monkeypatch):
     email_mod.outbox.clear()
 
     c = await _seed_active(db, evidence_type="github", skip_days_total=0,
-                           stake_enabled=True, stake_contact_name="Witness",
-                           stake_contact_email="witness@example.com")
+                            stake_enabled=True, stake_contact_name="Witness",
+                            stake_contact_email="witness@example.com")
     await pipeline.run_checkin(db, c, "cadence")
 
     assert not any(m["to"] == "witness@example.com" for m in email_mod.outbox)
@@ -168,9 +168,9 @@ async def test_cadence_not_late_does_not_email_witness(db, monkeypatch):
 
 async def test_proposal_apply_user_session_audited(client, db):
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     p = Proposal(commitment_id=cid, field="deliverable", proposed_value="portfolio v2 (descoped)",
-                 reason="scope honesty beats a fake Friday")
+                  reason="scope honesty beats a fake Friday")
     db.add(p)
     await db.commit()
 
@@ -200,7 +200,7 @@ async def test_proposal_apply_rejects_non_whitelisted_field(client, db):
     """A proposal naming a non-hard-field (e.g. status) must not reach setattr — that
     would be a state-machine bypass (TR-37)."""
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     p = Proposal(commitment_id=cid, field="status", proposed_value="completed", reason="sneaky")
     db.add(p)
     await db.commit()
@@ -213,10 +213,10 @@ async def test_proposal_apply_rejects_non_whitelisted_field(client, db):
 
 async def test_abandon_with_stake_follows_missed_path(client):
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     await client.patch(f"/api/commitments/{cid}",
-                       json={"stake_enabled": True, "stake_contact_name": "Bro",
-                             "stake_contact_email": "bro@example.com"})
+                        json={"stake_enabled": True, "stake_contact_name": "Bro",
+                              "stake_contact_email": "bro@example.com"})
     await client.post(f"/api/commitments/{cid}/start")
     email_mod.outbox.clear()
     r = await client.post(f"/api/commitments/{cid}/abandon")
@@ -227,7 +227,7 @@ async def test_abandon_with_stake_follows_missed_path(client):
 
 async def test_abandon_without_stake_just_misses(client):
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     await client.post(f"/api/commitments/{cid}/start")
     email_mod.outbox.clear()
     r = await client.post(f"/api/commitments/{cid}/abandon")
@@ -253,7 +253,7 @@ async def test_debrief_endpoint_happy_path(client, db):
     """The debrief endpoint via the authenticated guest client: 200 { ok: true }."""
     # Create and complete a commitment via the guest client.
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     # Seed a SuccessPattern row directly (skip the pipeline; the route only reads it).
     db.add(SuccessPattern(user_id="guest", commitment_id=cid, outcome="completed",
                           features={"deadline_hour": 18, "cadence": "daily_evening",
@@ -272,7 +272,7 @@ async def test_debrief_endpoint_happy_path(client, db):
 async def test_debrief_409_when_not_completed(client):
     """Debrief on a draft/active commitment (no terminal row) → 409 Conflict."""
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     r = await client.post(f"/api/commitments/{cid}/debrief", json={"note": "too early"})
     assert r.status_code == 409
 
@@ -285,7 +285,7 @@ async def test_finish_now_active_commitment_pass_completes(client, db):
     This is the MAJOR-1 QA fix: active/lapsed → verifying before judging, then
     apply_final_verdict runs as in the normal deadline path."""
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     await client.post(f"/api/commitments/{cid}/start")
 
     # Confirm it's active before finishing.
@@ -324,7 +324,7 @@ async def test_finish_now_fail_stays_active(client, db):
     _wiring.ADAPTERS["file"] = _FailFileAdapter()
     try:
         cid = (await client.post("/api/commitments",
-                                 json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                                  json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
         await client.post(f"/api/commitments/{cid}/start")
         r = await client.post(
             f"/api/commitments/{cid}/evidence/file?finish=true",
@@ -346,7 +346,7 @@ async def test_finish_now_fail_stays_active(client, db):
 async def test_debrief_no_audit_log_row(client, db):
     """Debrief must not write an AuditLog row (no AI actor, no hard-field mutation)."""
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     db.add(SuccessPattern(user_id="guest", commitment_id=cid, outcome="missed",
                           features={"deadline_hour": 9, "cadence": "daily_morning",
                                     "duration_days": 3, "used_skip": True}))

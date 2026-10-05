@@ -43,10 +43,10 @@ def _gh_handler(request: httpx.Request) -> httpx.Response:
         ])
     if path == f"/repos/o/r/commits/{_BIG}":
         return httpx.Response(200, json={"sha": _BIG, "stats": {"total": 50},
-                                         "commit": {"message": "feat: real feature"}})
+                                          "commit": {"message": "feat: real feature"}})
     if path == f"/repos/o/r/commits/{_SMALL}":
         return httpx.Response(200, json={"sha": _SMALL, "stats": {"total": 1},
-                                         "commit": {"message": "fix typo"}})
+                                          "commit": {"message": "fix typo"}})
     return httpx.Response(404)
 
 

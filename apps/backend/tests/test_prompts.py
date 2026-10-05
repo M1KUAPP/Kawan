@@ -31,5 +31,5 @@ def test_workspace_prompt_carries_scope_boundary():
 
 def test_intake_prompt_includes_current_slots():
     text = intake_system(get_persona("kawan"), {"why": "job hunt", "obstacles": None,
-                                                 "time_constraints": None, "skill": None})
+                                                  "time_constraints": None, "skill": None})
     assert "job hunt" in text
