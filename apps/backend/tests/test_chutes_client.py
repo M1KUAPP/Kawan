@@ -164,10 +164,6 @@ async def test_structured_wraps_malformed_response_in_chutes_error():
         await http.aclose()
 
 
-# ---------------------------------------------------------------------------
-# _extract_json unit tests (no HTTP — exercise the helper directly)
-# ---------------------------------------------------------------------------
-
 def test_extract_json_clean_passthrough():
     """Regression: clean JSON string passes through unchanged."""
     assert _extract_json('{"ok": true}') == {"ok": True}
@@ -202,10 +198,6 @@ def test_extract_json_raises_on_genuinely_unparseable():
     with pytest.raises(ValueError, match="no valid JSON object found"):
         _extract_json("this is not json at all, I give up")
 
-
-# ---------------------------------------------------------------------------
-# ChutesClient integration: unparseable content → diagnostic ChutesError
-# ---------------------------------------------------------------------------
 
 async def test_structured_raises_diagnostic_on_unparseable_content():
     """Unparseable content → ChutesError containing finish_reason and a raw snippet."""

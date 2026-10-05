@@ -16,11 +16,6 @@ from app.models import Commitment, Message, SoftContext, User
 from app.util import new_id, now_utc
 
 
-# ---------------------------------------------------------------------------
-# Fixtures
-# ---------------------------------------------------------------------------
-
-
 @pytest_asyncio.fixture
 async def user_and_commitment(db):
     u = User(
@@ -45,11 +40,6 @@ async def user_and_commitment(db):
     db.add(c)
     await db.commit()
     return u, c
-
-
-# ---------------------------------------------------------------------------
-# Task 1.1: Model + cascade delete
-# ---------------------------------------------------------------------------
 
 
 @pytest.mark.asyncio
@@ -115,11 +105,6 @@ async def test_delete_commitment_cascades_messages(db, user_and_commitment):
         await db.scalars(select(Message).where(Message.commitment_id == cid))
     ).all()
     assert len(rows_after) == 0
-
-
-# ---------------------------------------------------------------------------
-# Task 1.2: Persistence endpoints via the HTTP client
-# ---------------------------------------------------------------------------
 
 
 @pytest.mark.asyncio

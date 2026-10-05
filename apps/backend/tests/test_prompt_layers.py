@@ -26,11 +26,6 @@ from app.prompts import (
 )
 
 
-# ---------------------------------------------------------------------------
-# language_lock()
-# ---------------------------------------------------------------------------
-
-
 def test_language_lock_returns_english_sentence():
     text = language_lock()
     assert "Respond in English." in text
@@ -40,11 +35,6 @@ def test_language_lock_accepts_lang_arg():
     """The function accepts a lang arg (future-proofing); English is the only real value now."""
     text = language_lock(lang="en")
     assert "Respond in English." in text
-
-
-# ---------------------------------------------------------------------------
-# HARD_RULES constant
-# ---------------------------------------------------------------------------
 
 
 def test_hard_rules_is_non_empty_string():
@@ -71,11 +61,6 @@ def test_hard_rules_no_pii():
     assert "@" not in text  # no email addresses embedded
 
 
-# ---------------------------------------------------------------------------
-# KNOWLEDGE_PRIMER constant
-# ---------------------------------------------------------------------------
-
-
 def test_knowledge_primer_is_non_empty_string():
     assert isinstance(KNOWLEDGE_PRIMER, str)
     assert len(KNOWLEDGE_PRIMER) >= 150  # at least ~150 words minimum
@@ -99,11 +84,6 @@ def test_knowledge_primer_no_pii():
     text = KNOWLEDGE_PRIMER.lower()
     assert "@" not in text
     assert "password" not in text
-
-
-# ---------------------------------------------------------------------------
-# workspace_system() — five-layer assembly
-# ---------------------------------------------------------------------------
 
 
 def test_workspace_system_contains_language_lock(monkeypatch):
@@ -150,11 +130,6 @@ def test_workspace_system_contains_scope_boundary():
     assert "refusal" in text or "never" in text
 
 
-# ---------------------------------------------------------------------------
-# intake_system() — word/markdown rule added (opener exempt)
-# ---------------------------------------------------------------------------
-
-
 def test_intake_system_contains_word_limit_rule():
     p = get_persona("kawan")
     text = intake_system(p, {"why": None, "obstacles": None, "time_constraints": None, "skill": None})
@@ -178,10 +153,6 @@ def test_intake_system_still_includes_slots():
     text = intake_system(p, {"why": "job hunt", "obstacles": None, "time_constraints": None, "skill": None})
     assert "job hunt" in text
 
-
-# ---------------------------------------------------------------------------
-# JSON schemas are UNCHANGED (contract must hold)
-# ---------------------------------------------------------------------------
 
 _ALL_SCHEMAS = [INTAKE_SCHEMA, PLAN_SCHEMA, CHECKIN_SCHEMA, WORKSPACE_SCHEMA, VERDICT_SCHEMA]
 
