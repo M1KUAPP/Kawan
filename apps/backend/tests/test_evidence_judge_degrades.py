@@ -113,9 +113,6 @@ async def test_safe_judge_passthrough_on_success(monkeypatch):
     assert v.verdict == "pass"
 
 
-# ── Secondary (text) judge for file / GitHub evidence ─────────────────────────
-
-
 class _FailAdapter:
     async def judge(self, commitment, bundle, llm):
         raise ChutesError("primary judge down")

@@ -1,4 +1,4 @@
-"""Demo seed / reset script (spec §6.4, §12.5, TR-67, B7).
+"""Demo seed / reset script (spec §6.4, §12.5, TR-67).
 
 Provisions a clean, demo-flattering dataset on a DEDICATED demo account
 (id='demo_showcase') and can RESET it idempotently.  The shared guest user
@@ -64,10 +64,6 @@ from app.models import (  # noqa: E402
 )
 from app.util import new_id, now_utc  # noqa: E402
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
-
 DEMO_USER_ID = "demo_showcase"
 DEMO_USERNAME = "Demo (showcase)"
 
@@ -75,11 +71,6 @@ DEMO_USERNAME = "Demo (showcase)"
 # 'guest' is the shared public account; real SIWC ids start with idp-provider
 # prefixes and are never the literal string 'demo_showcase'.
 _PROTECTED_IDS = {"guest"}
-
-
-# ---------------------------------------------------------------------------
-# Guard
-# ---------------------------------------------------------------------------
 
 
 def _assert_safe_to_wipe(user_id: str) -> None:
@@ -94,11 +85,6 @@ def _assert_safe_to_wipe(user_id: str) -> None:
             f"SAFETY ABORT: refusing to wipe user_id={user_id!r} — "
             f"the demo seed script only targets DEMO_USER_ID={DEMO_USER_ID!r}."
         )
-
-
-# ---------------------------------------------------------------------------
-# Wipe
-# ---------------------------------------------------------------------------
 
 
 async def _wipe_demo_user(db) -> None:
@@ -124,11 +110,6 @@ async def _wipe_demo_user(db) -> None:
     await db.execute(delete(PushSubscription).where(PushSubscription.user_id == DEMO_USER_ID))
     await db.execute(delete(User).where(User.id == DEMO_USER_ID))
     await db.commit()
-
-
-# ---------------------------------------------------------------------------
-# Seed helpers
-# ---------------------------------------------------------------------------
 
 
 def _past(days: int = 0, hours: int = 0, minutes: int = 0) -> object:
@@ -158,17 +139,9 @@ def _completed_commitment(user_id: str, action: str, deliverable: str,
     )
 
 
-# ---------------------------------------------------------------------------
-# Seed
-# ---------------------------------------------------------------------------
-
-
 async def _seed(db) -> None:
     now = now_utc()
 
-    # ------------------------------------------------------------------
-    # User row
-    # ------------------------------------------------------------------
     user = User(
         id=DEMO_USER_ID,
         username=DEMO_USERNAME,
@@ -181,9 +154,6 @@ async def _seed(db) -> None:
     db.add(user)
     await db.flush()  # get the PK into the session before FK children
 
-    # ------------------------------------------------------------------
-    # C1 — completed 12 days ago: "Build the portfolio site"
-    # ------------------------------------------------------------------
     c1 = _completed_commitment(DEMO_USER_ID, "build", "the portfolio site",
                                 days_ago_start=14, days_ago_end=12)
     db.add(c1)
@@ -222,9 +192,6 @@ async def _seed(db) -> None:
         created_at=_past(days=12),
     ))
 
-    # ------------------------------------------------------------------
-    # C2 — completed 9 days ago: "Ship the landing page redesign"
-    # ------------------------------------------------------------------
     c2 = _completed_commitment(DEMO_USER_ID, "ship", "the landing page redesign",
                                 days_ago_start=11, days_ago_end=9)
     db.add(c2)
@@ -263,10 +230,6 @@ async def _seed(db) -> None:
         created_at=_past(days=9),
     ))
 
-    # ------------------------------------------------------------------
-    # C3 — completed 5 days ago: "Refactor the auth module"
-    # (3rd win → 'Finisher' title per spec §11.4)
-    # ------------------------------------------------------------------
     c3 = _completed_commitment(DEMO_USER_ID, "refactor", "the auth module",
                                 days_ago_start=7, days_ago_end=5)
     db.add(c3)
@@ -305,10 +268,6 @@ async def _seed(db) -> None:
         created_at=_past(days=5),
     ))
 
-    # ------------------------------------------------------------------
-    # C4 — active, in-flight: "Write the API integration docs"
-    # deadline +2 h — the §12.5 live beat
-    # ------------------------------------------------------------------
     c4 = Commitment(
         id=new_id(),
         user_id=DEMO_USER_ID,
@@ -346,10 +305,6 @@ async def _seed(db) -> None:
         created_at=_past(days=1),
     ))
 
-    # ------------------------------------------------------------------
-    # C5 — active, stake ON: "Submit the Chutes Hack entry"
-    # deadline +4 h — the §12.5 "stake ON, contact set" beat
-    # ------------------------------------------------------------------
     c5 = Commitment(
         id=new_id(),
         user_id=DEMO_USER_ID,
@@ -393,11 +348,6 @@ async def _seed(db) -> None:
     await db.commit()
 
 
-# ---------------------------------------------------------------------------
-# Status reporter
-# ---------------------------------------------------------------------------
-
-
 async def _print_status(db) -> None:
     result = await db.execute(select(User).where(User.id == DEMO_USER_ID))
     user = result.scalar_one_or_none()
@@ -435,11 +385,6 @@ async def _print_status(db) -> None:
     else:
         title = "(no title yet)"
     print(f"[status] Current title from {wins} verified wins: {title!r}")
-
-
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
 
 
 async def main(reset: bool, status: bool) -> None:

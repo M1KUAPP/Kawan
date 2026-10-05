@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "biome check .",
-    "preview": "vite preview"
+    "build": "tsc -b && vite build"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",

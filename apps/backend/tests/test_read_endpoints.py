@@ -27,9 +27,6 @@ async def _create(client) -> str:
     return r.json()["id"]
 
 
-# ── GET /api/commitments/{id} ───────────────────────────────────────────────
-
-
 async def test_get_commitment_by_id_returns_commitment(client):
     cid = await _create(client)
     r = await client.get(f"/api/commitments/{cid}")
@@ -65,9 +62,6 @@ async def test_get_commitment_by_id_not_owned(client, db):
 
     r = await client.get(f"/api/commitments/{other_c.id}")
     assert r.status_code == 404
-
-
-# ── GET /api/commitments/{id}/soft-context ──────────────────────────────────
 
 
 async def test_soft_context_no_row_returns_all_nulls(client):
@@ -123,9 +117,6 @@ async def test_soft_context_not_owned(client, db):
 
     r = await client.get(f"/api/commitments/{other_c.id}/soft-context")
     assert r.status_code == 404
-
-
-# ── GET /api/commitments/{id}/checkin-status ────────────────────────────────
 
 
 async def test_checkin_status_shape(client):

@@ -33,8 +33,6 @@ async def _create_and_start(client) -> str:
     return r.json()["id"]
 
 
-# ── Happy path ───────────────────────────────────────────────────────────────────────
-
 async def test_workspace_turn_happy_path(client):
     cid = await _create_and_start(client)
     r = await client.post(f"/api/commitments/{cid}/workspace/turn", json={"say": "help me focus"})
@@ -45,8 +43,6 @@ async def test_workspace_turn_happy_path(client):
     assert body["proposal"] is None
     assert "proposal_id" not in body
 
-
-# ── Proposal persistence (monkeypatched LLM) ─────────────────────────────────────────
 
 async def test_workspace_turn_persists_proposal(client, db, monkeypatch):
     cid = await _create_and_start(client)
@@ -72,14 +68,10 @@ async def test_workspace_turn_persists_proposal(client, db, monkeypatch):
     assert prop.id == body["proposal_id"]
 
 
-# ── 404 unknown id ────────────────────────────────────────────────────────────────────
-
 async def test_workspace_turn_404_unknown(client):
     r = await client.post("/api/commitments/does-not-exist/workspace/turn", json={"say": "hi"})
     assert r.status_code == 404
 
-
-# ── 404 foreign commitment ────────────────────────────────────────────────────────────
 
 async def test_workspace_turn_404_foreign(client, db):
     """Seed a commitment under a different user; the guest client must get 404."""
@@ -95,8 +87,6 @@ async def test_workspace_turn_404_foreign(client, db):
     r = await client.post(f"/api/commitments/{c.id}/workspace/turn", json={"say": "hi"})
     assert r.status_code == 404
 
-
-# ── 401 unauthenticated ───────────────────────────────────────────────────────────────
 
 async def test_workspace_turn_401_unauthenticated():
     from app.main import app

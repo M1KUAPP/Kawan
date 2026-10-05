@@ -32,8 +32,6 @@ async def _seed_active(db, status="active", **kw) -> Commitment:
     return c
 
 
-# --- B2: user token → inference billed to user (the Lane-C token seam) ------------
-
 async def test_token_provider_decrypts_user_token(db):
     u = User(id=new_id(), username="u", access_token=crypto.encrypt("tok-123"),
               refresh_token=crypto.encrypt("r"), token_expiry=now_utc() + timedelta(hours=1))
@@ -48,8 +46,6 @@ async def test_guest_token_is_team_cpk(db, monkeypatch):
     assert await AuthTokenProvider().get_access_token("guest") == "cpk_demo_key"
 
 
-# --- B3: check now (cron-independent) + delivery ladder falls back to timeline -----
-
 async def test_check_now_runs_pipeline_and_delivers(client):
     cid = (await client.post("/api/commitments",
                               json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
@@ -60,8 +56,6 @@ async def test_check_now_runs_pipeline_and_delivers(client):
     assert body["message"]
     assert body["delivered_via"] == "timeline"  # no WS connected, no push subs → bottom of the ladder
 
-
-# --- B3: APScheduler jobs rebuilt from DB at boot ---------------------------------
 
 async def test_scheduler_rebuilds_jobs_from_db(db):
     c = await _seed_active(db)
@@ -78,8 +72,6 @@ async def test_winback_rebuilt_from_db_at_boot(db):
     await scheduler.rebuild_from_db()
     assert scheduler.scheduler.get_job(f"winback:{c.id}") is not None
 
-
-# --- B4: miss path fires the stake email ------------------------------------------
 
 class _FailAdapter:
     type = "github"
@@ -102,8 +94,6 @@ async def test_miss_path_sends_stake_email(db, monkeypatch):
     assert c.status == "missed"
     assert any(m["to"] == "brother@example.com" for m in email_mod.outbox)  # templated stake email landed
 
-
-# --- missed-retry witness email: cadence fires after grace window, no evidence ----
 
 class _SilentAdapter:
     type = "github"
@@ -164,8 +154,6 @@ async def test_cadence_not_late_does_not_email_witness(db, monkeypatch):
     assert not any(m["to"] == "witness@example.com" for m in email_mod.outbox)
 
 
-# --- B4: proposal-apply is the user's action, audited as actor='user' -------------
-
 async def test_proposal_apply_user_session_audited(client, db):
     cid = (await client.post("/api/commitments",
                               json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
@@ -209,8 +197,6 @@ async def test_proposal_apply_rejects_non_whitelisted_field(client, db):
     assert (await db.get(Commitment, cid)).status == "draft"  # untouched
 
 
-# --- TR-21: abandon-with-stake follows the missed path ----------------------------
-
 async def test_abandon_with_stake_follows_missed_path(client):
     cid = (await client.post("/api/commitments",
                               json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
@@ -234,8 +220,6 @@ async def test_abandon_without_stake_just_misses(client):
     assert r.status_code == 200 and r.json()["status"] == "missed"
     assert email_mod.outbox == []  # no stake → no email
 
-
-# ── X1: POST /api/commitments/{id}/debrief merges note into success_patterns ───
 
 class _PassAdapter:
     type = "github"
@@ -276,8 +260,6 @@ async def test_debrief_409_when_not_completed(client):
     r = await client.post(f"/api/commitments/{cid}/debrief", json={"note": "too early"})
     assert r.status_code == 409
 
-
-# ── Finish-Now: ?finish=true on an ACTIVE commitment must complete it on pass ────
 
 async def test_finish_now_active_commitment_pass_completes(client, db):
     """Finish-Now with ?finish=true on an active commitment: a pass verdict must

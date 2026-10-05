@@ -13,8 +13,6 @@ def _utc(*args):
     return datetime(*args, tzinfo=timezone.utc)
 
 
-# ── checkin_grace tests (pure helper) ───────────────────────────────────────
-
 def test_wide_window_gives_larger_grace():
     """A 20-hour remaining window gives 5h grace (25% of 20h, within 30min-6h bounds)."""
     from app.lateness import checkin_grace
@@ -62,8 +60,6 @@ def test_zero_remaining_gives_min_grace():
     assert checkin_grace(timedelta(minutes=-10)) == timedelta(minutes=30)
 
 
-# ── is_checkin_late tests (pure helper) ─────────────────────────────────────
-
 def test_is_late_flips_only_after_grace():
     """Not late immediately after tick; late only once grace period passes."""
     from app.lateness import is_checkin_late
@@ -98,8 +94,6 @@ def test_wide_window_has_larger_grace_than_narrow():
     assert is_checkin_late(now, tick, narrow_remaining)
 
 
-# ── assemble_progress includes due_at / is_late ──────────────────────────────
-
 async def test_assemble_progress_includes_checkin_status(db):
     """assemble_progress returns due_at and is_late keys."""
     from datetime import timedelta
@@ -123,8 +117,6 @@ async def test_assemble_progress_includes_checkin_status(db):
     assert "is_late" in progress
     assert isinstance(progress["is_late"], bool)
 
-
-# ── GRACE_HOURS final-deadline grace is unchanged ────────────────────────────
 
 def test_final_deadline_grace_hours_unchanged():
     """state.GRACE_HOURS must remain 6 (spec §5.3 decision)."""

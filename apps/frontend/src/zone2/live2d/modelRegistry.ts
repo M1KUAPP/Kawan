@@ -1,5 +1,5 @@
 // Model registry — maps each persona to its Live2D model config.
-// url: served path under /models/ (gitignored; run scripts/download_models.sh to populate).
+// url: served path under /models/ (tracked in Git LFS).
 // idleMotionGroup: the motion group key used for idle animations (model-specific).
 // scale: initial scale heuristic; resize() recomputes dynamically.
 // expressionMap: maps TR-34 emotions to this model's expression names (null = graceful no-op).
@@ -51,7 +51,7 @@ export const modelRegistry: Record<Persona, ModelConfig> = {
     }
   },
 
-  // cik_maid → LiveroiD Y01 (local — BOOTH download, gitignored).
+  // cik_maid → LiveroiD Y01 (BOOTH download, tracked in Git LFS).
   // Y01 expressions reference ../LiveroiD_A-Y02/ — both folders must be present.
   // Expressions: blush / browLink / cool / worried. Idle group guessed "Idle" (no motions in model3.json
   // — pixi-live2d-display falls back to auto-idle; empty string "" also acceptable here).

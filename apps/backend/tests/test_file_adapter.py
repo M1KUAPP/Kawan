@@ -38,8 +38,6 @@ _PASS_RESULT = {
 }
 
 
-# ── text extraction tests (no LLM spend) ────────────────────────────────────
-
 async def test_txt_file_yields_verdict():
     fake = _FakeChutes(_PASS_RESULT)
     adapter = FileAdapter(fake)
@@ -151,8 +149,6 @@ async def test_extract_text_docx_smoke():
     assert "hello docx" in text
 
 
-# ── unclear when no items ────────────────────────────────────────────────────
-
 async def test_judge_unclear_when_no_items():
     fake = _FakeChutes({})  # must NOT be called
     adapter = FileAdapter(fake)
@@ -161,8 +157,6 @@ async def test_judge_unclear_when_no_items():
     assert verdict.verdict == "unclear"
     assert fake.calls == []
 
-
-# ── route-level boundary tests (via HTTP client) ─────────────────────────────
 
 async def test_unsupported_type_returns_415(client):
     r = await client.post(
