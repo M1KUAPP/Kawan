@@ -1,5 +1,6 @@
 {
   "Exclude": [
     "^apps/frontend/public/models/.*\\.(moc3|png|physics3\\.json|model3\\.json|exp3\\.json|motion3\\.json|pose3\\.json|userdata3\\.json|cdi3\\.json)$"
-  ]
+  ],
+  "IgnoreDefaults": true
 }
