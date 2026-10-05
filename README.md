@@ -5,7 +5,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/M1KUAPP/Kawan">
-    <img src="kawan/frontend/public/embed/kawan-banner.png" alt="Banner">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/readme/banner-dark.png">
+      <img src="docs/readme/banner-light.png" alt="Kawan banner">
+    </picture>
   </a>
 
   <h3>Kawan</h3>
@@ -15,9 +18,9 @@
     <br />
     <a href="https://kawan-frontend.vercel.app"><strong>Live Demo »</strong></a>
     &middot;
-    <a href="https://youtu.be/B3u5ByG_-jk?si=akg3RFeiuUoWNiXA">Watch the Demo</a>
+    <a href="https://youtu.be/B3u5ByG_-jk">Demo Video</a>
     &middot;
-    <a href="https://devpost.com/software/kawan">Devpost</a>
+    <a href="https://github.com/M1KUAPP/Kawan/issues/new?labels=bug">Report a Bug</a>
     <br />
   </p>
 
@@ -84,9 +87,9 @@ You commit to a single deliverable with a deadline. Kawan checks in on a schedul
 
 The catch that makes it work: **Kawan can never change the terms of your deal.** Your goal, deadline, and how you're verified are yours alone. The AI reads them, reasons about them, and nudges you — but it is structurally incapable of editing them. That guarantee is enforced in the schema, not just the prompt (see [The trust boundary](#architecture)).
 
-It's wrapped in a warm, expressive interface: pick one of three **Live2D companions**, each with a distinct personality, voice, and model line-up, who reacts to your progress in real time.
+Built by **Team CHJL** with 💖. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf) and the [design direction](docs/design.md#1-concept).
 
-Built by **Team CHJL** with 💖 for Chutes Hack Malaysia 2026. Kawan won 1st Place in the Corporate Track. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf).
+Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) (Corporate Track), where it placed 1st.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -95,36 +98,36 @@ Built by **Team CHJL** with 💖 for Chutes Hack Malaysia 2026. Kawan won 1st Pl
 <table>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/landing.png" alt="Landing page" width="100%">
+      <img src="docs/readme/screenshots/landing.png" alt="Landing page" width="100%">
       <br />
       <strong>Landing</strong> · Kawan's pitch: one commitment, verified evidence, and no self-report.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
+      <img src="docs/readme/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
       <br />
-      <strong>Sign in</strong> · Sign in with Chutes, or continue as a guest without an account.
+      <strong>Sign In</strong> · Sign in with Chutes, or continue as a guest without an account.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
+      <img src="docs/readme/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
       <br />
-      <strong>Guided tour</strong> · An optional tour that teaches the commitment flow on real components.
+      <strong>Guided Tour</strong> · An optional tour that teaches the commitment flow on real components.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/home.png" alt="Home dashboard" width="100%">
+      <img src="docs/readme/screenshots/home.png" alt="Home dashboard" width="100%">
       <br />
       <strong>Home</strong> · The dashboard links your commitments, analytics, workspace and recent activity.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/commitments.png" alt="Commitments list" width="100%">
+      <img src="docs/readme/screenshots/commitments.png" alt="Commitments list" width="100%">
       <br />
       <strong>Commitments</strong> · Every commitment with its deliverable, status and deadline, active or finished.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/analytics.png" alt="Analytics & achievements" width="100%">
+      <img src="docs/readme/screenshots/analytics.png" alt="Analytics & achievements" width="100%">
       <br />
       <strong>Analytics</strong> · A productivity meter, identity titles and 15 achievements that reward how you won.
     </td>
@@ -139,11 +142,11 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
 
 1. **Compose — state the deal.** `I will [complete] [a deliverable] by [a deadline].` One goal, one deadline. No room to be vague.
 
-   ![Compose your commitment](kawan/docs/screenshots/flow-1-compose.png)
+   <img src="docs/readme/steps/1-compose.png" alt="Compose your commitment" width="100%">
 
 2. **Plan — set the terms.** Choose your evidence source (a GitHub repo to watch, or screenshot/file uploads), optionally name a **witness** who gets emailed if you miss, and a reminder email. _Only you can change these. Kawan reads them but never edits them._
 
-   ![Set your plan and stakes](kawan/docs/screenshots/flow-2-plan.png)
+   <img src="docs/readme/steps/2-plan.png" alt="Set your plan and stakes" width="100%">
 
 3. **Companion — pick who holds you to it.** Three personalities, same backbone:
 
@@ -153,49 +156,51 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
    |   **Adik**   | Gentle Cheerleader  | Encouraging and kind. Celebrates every step.                    |
    | **Cik Maid** | Playful Taskmaster  | Brisk, playful, expects results — with a wink.                  |
 
-   ![Choose your companion](kawan/docs/screenshots/flow-3-companion.png)
+   <img src="docs/readme/steps/3-companion.png" alt="Choose your companion" width="100%">
 
 4. **Check in — answer to your companion.** Your companion enters the workspace as a live, animated avatar. It gathers context (why, obstacles, time), then checks in on schedule and waits for evidence.
 
-   ![Live2D check-in in the workspace](kawan/docs/screenshots/flow-4-checkin.png)
+   <img src="docs/readme/steps/4-checkin.png" alt="Live2D check-in in the workspace" width="100%">
 
 5. **Workspace — context, plan & evidence in one place.** A focused room around the conversation: captured context, an advisory plan, recent activity, a live countdown to the next check-in, and the **Submit final evidence** action.
 
-   ![The commitment workspace](kawan/docs/screenshots/flow-5-workspace.png)
+   <img src="docs/readme/steps/5-workspace.png" alt="The commitment workspace" width="100%">
 
 6. **Track — overview, progress & terms.** Every commitment has a detail page: verified count, check-ins, latest verdict and reasoning, the immutable terms, and a full timeline.
 
-   ![Commitment detail page](kawan/docs/screenshots/flow-6-commitment-detail.png)
+   <img src="docs/readme/steps/6-commitment-detail.png" alt="Commitment detail page" width="100%">
 
 7. **Finish — verified, and only then.** When the evidence passes, the commitment is closed as done. No participation trophies — a win counts because it was shown.
 
-   ![You did it — verified completion](kawan/docs/screenshots/flow-7-completion.png)
+   <img src="docs/readme/steps/7-completion.png" alt="You did it — verified completion" width="100%">
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Features
 
-- 🎯 **One real commitment** — a single action + deliverable + deadline. Hard fields you set and only you can change.
-- 🔎 **Evidence over self-report** — verdicts come from a GitHub repo's commits, an uploaded file, or a screenshot judged by a vision model. There is no "mark as done" button you can lie to.
-- ⚖️ **Honest verdicts** — every check-in resolves to `pass` / `fail` / `unclear`. `unclear` never punishes; a flaky or slow model degrades to it instead of guessing.
-- 🎭 **Three Live2D companions** — Kawan, Adik, and Cik Maid, each a stateless preset of tone + animated model + voice + inference model. Switching the companion changes the messenger, never your commitment.
-- 🔐 **TEE inference via Chutes** — real check-in lines and evidence judgments run on Chutes' Trusted Execution Environment chutes, with per-persona model routing and an automatic secondary judge on failure. A deterministic offline **stub** backend runs the whole app with zero keys.
-- 🪜 **Reliable delivery** — notifications walk a ladder: live **WebSocket** → **Web Push** → persisted **in-app timeline**, so a check-in is never lost.
-- 📣 **Off-device reminders** — opt-in **email** (Resend), **Web Push** (VAPID), and a **Telegram** check-in channel.
-- 🤝 **Stakes & witnesses** — name someone who's emailed if you miss the deadline. That's the whole mechanism.
-- 📈 **Analytics & achievements** — a productivity meter, identity titles, and 15 behavioral achievements that reward _how_ you won (verified without a skip-day, finished early, came back after a miss…).
-- ⏰ **Scheduled & on-demand check-ins** — APScheduler drives the cadence; one code path serves both the cron tick and an instant "check now," and rebuilds its jobs from the DB after a restart.
-- 🪶 **Guided walkthrough** — an optional tour that teaches the commitment flow on real components, not a fake demo.
-- 🌗 **Polished UX** — light/dark themes, responsive shell, optional Piper neural TTS with a WebSpeech fallback.
+- **One real commitment.** A single action + deliverable + deadline. Hard fields you set and only you can change.
+- **Evidence over self-report.** Verdicts come from a GitHub repo's commits, an uploaded file, or a screenshot judged by a vision model. There is no "mark as done" button you can lie to.
+- **Honest verdicts.** Every check-in resolves to `pass` / `fail` / `unclear`. `unclear` never punishes; a flaky or slow model degrades to it instead of guessing.
+- **Three Live2D companions.** Kawan, Adik, and Cik Maid, each a stateless preset of tone + animated model + voice + inference model. Switching the companion changes the messenger, never your commitment.
+- **TEE inference via Chutes.** Real check-in lines and evidence judgments run on Chutes' Trusted Execution Environment chutes, with per-persona model routing and an automatic secondary judge on failure. A deterministic offline **stub** backend runs the whole app with zero keys.
+- **Reliable delivery.** Notifications walk a ladder: live **WebSocket** → **Web Push** → persisted **in-app timeline**, so a check-in is never lost.
+- **Off-device reminders.** Opt-in **email** (Resend), **Web Push** (VAPID), and a **Telegram** check-in channel.
+- **Stakes & witnesses.** Name someone who's emailed if you miss the deadline. That's the whole mechanism.
+- **Analytics & achievements.** A productivity meter, identity titles, and 15 behavioral achievements that reward _how_ you won (verified without a skip-day, finished early, came back after a miss…).
+- **Scheduled & on-demand check-ins.** APScheduler drives the cadence; one code path serves both the cron tick and an instant "check now," and rebuilds its jobs from the DB after a restart.
+- **Guided walkthrough.** An optional tour that teaches the commitment flow on real components, not a fake demo.
+- **Polished UX.** Light/dark themes, responsive shell, optional Piper neural TTS with a WebSpeech fallback.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Architecture
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="kawan/docs/readme/architecture-dark.svg">
-  <img src="kawan/docs/readme/architecture-light.svg" alt="Kawan's architecture. The React SPA calls the FastAPI backend over /api. An on-demand check from the API and APScheduler's cadence and deadline ticks run one check-in pipeline. The pipeline judges evidence and writes the check-in line on Chutes TEE models, falls back to a secondary judge on a timeout or error, writes verdicts and check-ins to SQLite or Postgres, and delivers each check-in over the WebSocket first, then Web Push and reminders. The API signs users in with Chutes over OAuth2 PKCE and writes the hard fields.">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/architecture-dark.svg">
+  <img src="docs/readme/architecture-light.svg" alt="Kawan's architecture. The React SPA calls the FastAPI backend over /api. An on-demand check from the API and APScheduler's cadence and deadline ticks run one check-in pipeline. The pipeline judges evidence and writes the check-in line on Chutes TEE models, falls back to a secondary judge on a timeout or error, writes verdicts and check-ins to SQLite or Postgres, and delivers each check-in over the WebSocket first, then Web Push and reminders. The API signs users in with Chutes over OAuth2 PKCE and writes the hard fields.">
 </picture>
+
+The diagram is drawn with [archify](https://github.com/tt-a1i/archify) from [`architecture.json`](docs/readme/architecture.json).
 
 Kawan is a **single-process FastAPI backend** plus a **React SPA**. The frontend is organized in three zones: public pages (Zone 0), the SaaS shell (Zone 1 — home, commitments, analytics, settings), and the full-screen AI workspace (Zone 2 — the compose flow and live companion).
 
@@ -240,23 +245,21 @@ kawan/
 │   │   └── …            # auth, notifications, ui, share
 │   └── public/          # Live2D models, banner, icons, service worker
 ├── scripts/             # download_models.sh · download_voices.sh · helpers
-├── docs/screenshots/    # the images in this README
 └── .env.example         # annotated configuration
+docs/readme/             # the images in this README
 ```
-
-The diagram was made with [archify](https://github.com/tt-a1i/archify) and tinted with Kawan's design tokens.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Tech Stack
 
-- **Frontend:** React 18 · TypeScript · Vite · React Router v7 · PixiJS v6 + `pixi-live2d-display` · Recharts · Lucide · Biome
-- **Backend:** FastAPI · SQLAlchemy 2 (async) · APScheduler · Pydantic Settings · httpx · `uv`
-- **Database:** SQLite (dev) · PostgreSQL via Supabase pooler (prod)
-- **AI / Inference:** Chutes (OpenAI-compatible TEE inference) + Sign in with Chutes (OAuth2 PKCE) · deterministic stub backend
-- **Realtime / Notify:** WebSocket · Web Push (VAPID) · Telegram Bot API · Email (Resend)
-- **Avatars / Voice:** Live2D Cubism (Haru, Hiyori, LiveroiD) · Piper neural TTS (optional)
-- **Deploy:** Backend on Render · Frontend on Vercel
+- **Languages:** Python and TypeScript.
+- **Frontend:** React 18, Vite, React Router v7, PixiJS v6 with `pixi-live2d-display`, Recharts and Lucide, with Live2D Cubism avatars (Haru, Hiyori, LiveroiD).
+- **Backend:** FastAPI, SQLAlchemy 2 (async), APScheduler, Pydantic Settings and httpx, delivering over WebSocket and Web Push (VAPID).
+- **Data:** SQLite (dev) and PostgreSQL via the Supabase pooler (prod).
+- **AI and services:** Chutes (OpenAI-compatible TEE inference) with Sign in with Chutes (OAuth2 PKCE), a deterministic stub backend, optional Piper neural TTS, the Telegram Bot API and email through Resend.
+- **Infrastructure:** Backend on Render and frontend on Vercel.
+- **Tooling:** `uv`, Biome and pytest.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -270,70 +273,78 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
 ### Prerequisites
 
-- **Python 3.12+** and [`uv`](https://docs.astral.sh/uv/)
-- **[Bun](https://bun.sh/)** (the frontend lockfile is `bun.lock`; npm/pnpm also work)
-- A POSIX shell (the asset scripts are bash)
+- [Python](https://www.python.org/) 3.12+ — runs the FastAPI backend.
+- [uv](https://docs.astral.sh/uv/) — installs and runs the backend.
+- [Bun](https://bun.sh/) — installs and runs the frontend; the frontend lockfile is `bun.lock`, and npm or pnpm also work.
+- [Bash](https://www.gnu.org/software/bash/) — runs the asset scripts, which are bash.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Installation
 
-Run each block from the repository root.
+1. **Configure the environment.** Run each block from the repository root.
 
-**1. Configure the environment**
+   ```sh
+   cp kawan/.env.example kawan/.env  # in the kawan/ folder; sensible dev defaults are pre-filled
+   ```
 
-```bash
-cp kawan/.env.example kawan/.env  # in the kawan/ folder; sensible dev defaults are pre-filled
-```
+   The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
 
-The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
+   All settings use the `KAWAN_` prefix and load from `kawan/.env`. See [`.env.example`](kawan/.env.example) for the fully annotated list. The most important knobs:
 
-**2. Fetch the Live2D companion models** (gitignored; one-time after clone)
+   | Variable                                    | What it does                                                                      |
+   | ------------------------------------------- | --------------------------------------------------------------------------------- |
+   | `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
+   | `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
+   | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
+   | `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
+   | `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
+   | `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
+   | `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
+   | `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
+   | `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
 
-```bash
-./kawan/scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
-```
+   To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
 
-**3. Run the backend** (FastAPI on `:8000`)
+2. **Fetch the Live2D companion models.** Gitignored; one-time after clone.
 
-```bash
-cd kawan/backend
-uv sync
-uv run uvicorn app.main:app --reload
-```
+   ```sh
+   ./kawan/scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+   ```
 
-**4. Run the frontend** (Vite on `:5173`, proxies `/api` and `/ws` to the backend)
+3. **Run the backend.** FastAPI on `:8000`.
 
-```bash
-cd kawan/frontend
-bun install
-bun dev
-```
+   ```sh
+   cd kawan/backend
+   uv sync
+   uv run uvicorn app.main:app --reload
+   ```
 
-Open **http://localhost:5173** and choose **Continue as guest** to start.
+4. **Run the frontend.** Vite on `:5173`, proxies `/api` and `/ws` to the backend.
 
-> **Optional — voices:** run `./kawan/scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
+   ```sh
+   cd kawan/frontend
+   bun install
+   bun dev
+   ```
 
-**Configuration.** All settings use the `KAWAN_` prefix and load from `kawan/.env`. See [`.env.example`](kawan/.env.example) for the fully annotated list. The most important knobs:
+   Open **http://localhost:5173** and choose **Continue as guest** to start.
 
-| Variable                                    | What it does                                                                      |
-| ------------------------------------------- | --------------------------------------------------------------------------------- |
-| `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
-| `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
-| `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
-| `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
-| `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
-| `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
-| `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
-| `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
-| `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
+   > **Optional — voices:** run `./kawan/scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
 
-To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
+5. **Deployment.**
 
-**Deployment.**
+   - **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
+   - **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-- **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
-- **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
+6. **Run the checks.** Lint the repository, then run the backend tests.
+
+   ```sh
+   bun install
+   bun run lint
+   cd kawan/backend
+   uv run pytest
+   ```
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -369,10 +380,12 @@ See [LICENSE](LICENSE) for more information.
 
 ## Acknowledgments
 
-- [Chutes](https://chutes.ai) — Trusted Execution Environment inference and Sign in with Chutes
-- [Live2D Cubism](https://www.live2d.com/) & [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display) — the animated companions
-- [#LiveroiD](https://booth.pm/en/items/2685284) — the Cik Maid companion model, モデル制作：八城惺架 (@yashiro_seika)
-- [Piper](https://github.com/rhasspy/piper) — neural text-to-speech voices
+- [Chutes](https://chutes.ai) — Trusted Execution Environment inference and Sign in with Chutes.
+- [Live2D Cubism](https://www.live2d.com/) — the animated companions, with [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display).
+- [#LiveroiD](https://booth.pm/en/items/2685284) — the Cik Maid companion model, モデル制作：八城惺架 (@yashiro_seika).
+- [Piper](https://github.com/rhasspy/piper) — neural text-to-speech voices.
+- [archify](https://github.com/tt-a1i/archify) — architecture diagrams.
+- [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) — the hackathon by Nyala Labs, Chutes and Infinity8, where Kawan entered the Corporate Track; its entry is on [Devpost](https://devpost.com/software/kawan).
 - [Shields.io](https://shields.io)
 - [contrib.rocks](https://contrib.rocks)
 
