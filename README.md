@@ -5,7 +5,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/M1KUAPP/Kawan">
-    <img src="kawan/frontend/public/embed/kawan-banner.png" alt="Banner">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/readme/banner-dark.png">
+      <img src="docs/readme/banner-light.png" alt="Kawan banner">
+    </picture>
   </a>
 
   <h3>Kawan</h3>
@@ -15,9 +18,9 @@
     <br />
     <a href="https://kawan-frontend.vercel.app"><strong>Live Demo »</strong></a>
     &middot;
-    <a href="https://youtu.be/B3u5ByG_-jk?si=akg3RFeiuUoWNiXA">Watch the Demo</a>
+    <a href="https://youtu.be/B3u5ByG_-jk">Demo Video</a>
     &middot;
-    <a href="https://devpost.com/software/kawan">Devpost</a>
+    <a href="https://github.com/M1KUAPP/Kawan/issues/new?labels=bug">Report a Bug</a>
     <br />
   </p>
 
@@ -84,9 +87,9 @@ You commit to a single deliverable with a deadline. Kawan checks in on a schedul
 
 The catch that makes it work: **Kawan can never change the terms of your deal.** Your goal, deadline, and how you're verified are yours alone. The AI reads them, reasons about them, and nudges you — but it is structurally incapable of editing them. That guarantee is enforced in the schema, not just the prompt (see [The trust boundary](#architecture)).
 
-It's wrapped in a warm, expressive interface: pick one of three **Live2D companions**, each with a distinct personality, voice, and model line-up, who reacts to your progress in real time.
+Built by **Team CHJL** with 💖. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf) and the [design direction](docs/design.md#1-concept).
 
-Built by **Team CHJL** with 💖 for Chutes Hack Malaysia 2026. Kawan won 1st Place in the Corporate Track. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf).
+Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) (Corporate Track), where it placed 1st.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -373,6 +376,7 @@ See [LICENSE](LICENSE) for more information.
 - [Live2D Cubism](https://www.live2d.com/) & [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display) — the animated companions
 - [#LiveroiD](https://booth.pm/en/items/2685284) — the Cik Maid companion model, モデル制作：八城惺架 (@yashiro_seika)
 - [Piper](https://github.com/rhasspy/piper) — neural text-to-speech voices
+- [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) — the hackathon by Nyala Labs, Chutes and Infinity8, where Kawan entered the Corporate Track; its entry is on [Devpost](https://devpost.com/software/kawan).
 - [Shields.io](https://shields.io)
 - [contrib.rocks](https://contrib.rocks)
 
