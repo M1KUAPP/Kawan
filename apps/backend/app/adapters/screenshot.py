@@ -53,8 +53,8 @@ class ScreenshotAdapter:
     async def judge(self, commitment: "Commitment", bundle: EvidenceBundle, llm) -> Verdict:
         if not bundle.items:
             return Verdict("unclear", 0.4, ["no image received"],
-                           "There was no screenshot to judge.",
-                           "Upload a screenshot of the work and I'll look.")
+                            "There was no screenshot to judge.",
+                            "Upload a screenshot of the work and I'll look.")
         b64 = bundle.items[0]["b64"]
         content = [
             {"type": "text", "text":
@@ -69,4 +69,4 @@ class ScreenshotAdapter:
             schema=VERDICT_SCHEMA, schema_name="verdict", max_tokens=3072,
         )
         return Verdict(r["verdict"], r["confidence"], r["observations"], r["reasoning"],
-                       r.get("follow_up_request"))
+                        r.get("follow_up_request"))

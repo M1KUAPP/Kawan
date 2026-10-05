@@ -38,7 +38,7 @@ class GitHubAdapter:
     trust = "high"
 
     def __init__(self, chutes: "ChutesClient", *, http: httpx.AsyncClient | None = None,
-                 api_base: str = "https://api.github.com") -> None:
+                  api_base: str = "https://api.github.com") -> None:
         self._chutes = chutes
         self._http = http
         self._api = api_base.rstrip("/")
@@ -73,7 +73,7 @@ class GitHubAdapter:
                 await http.aclose()
 
         summary = (f"{len(items)} new non-trivial commit(s): "
-                   + "; ".join(f"'{_first_line(i['message'])}'" for i in items)) if items \
+                    + "; ".join(f"'{_first_line(i['message'])}'" for i in items)) if items \
             else "no new non-trivial commits in window"
         return EvidenceBundle(adapter="github", raw_ref={"shas": [i["sha"] for i in items]},
                               items=items, summary=summary)
@@ -102,10 +102,10 @@ class GitHubAdapter:
     async def judge(self, commitment: "Commitment", bundle: EvidenceBundle, llm) -> Verdict:
         if not bundle.items:  # deterministic pre-check — no LLM spend (spec §10.2)
             return Verdict("unclear", 0.5, ["no new non-trivial commits in window"],
-                           "Nothing fetched since the last check.",
-                           "Push something non-trivial and I'll look again.")
+                            "Nothing fetched since the last check.",
+                            "Push something non-trivial and I'll look again.")
         commit_lines = "\n".join(f"- {_first_line(i['message'])} ({i['total']} lines changed)"
-                                 for i in bundle.items)
+                                  for i in bundle.items)
         messages = [
             {"role": "system", "content": JUDGE_SYSTEM},
             {"role": "user", "content":
@@ -118,7 +118,7 @@ class GitHubAdapter:
             schema=VERDICT_SCHEMA, schema_name="verdict", max_tokens=1024,
         )
         return Verdict(r["verdict"], r["confidence"], r["observations"], r["reasoning"],
-                       r.get("follow_up_request"))
+                        r.get("follow_up_request"))
 
 
 # ── github-link paste path (4.2) ─────────────────────────────────────────────
@@ -146,7 +146,7 @@ async def fetch_repo_url(adapter: "GitHubAdapter", url: str, commitment: "Commit
                               summary="invalid or non-GitHub URL -- not a github.com repo URL")
     items = await adapter._fetch_commits_for_repo(repo)
     summary = (f"{len(items)} non-trivial commit(s): "
-               + "; ".join(f"'{_first_line(i['message'])}'" for i in items)) if items \
+                + "; ".join(f"'{_first_line(i['message'])}'" for i in items)) if items \
         else f"no non-trivial commits found in {repo}"
     return EvidenceBundle(adapter="github", raw_ref={"url": url, "shas": [i["sha"] for i in items]},
                           items=items, summary=summary)

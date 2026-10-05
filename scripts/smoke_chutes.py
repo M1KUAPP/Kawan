@@ -125,7 +125,7 @@ if "--invoke" in sys.argv:  # TR-68: a live call per distinct model THROUGH the 
     su = httpx.get(f"{settings.chutes_api_base_url}/users/me/subscription_usage", headers=HEADERS, timeout=30)
     print(f"\nsubscription_usage [{su.status_code}]: {su.text[:300]}")
     ping_schema = {"type": "object", "additionalProperties": False,
-                   "properties": {"ok": {"type": "boolean"}}, "required": ["ok"]}
+                    "properties": {"ok": {"type": "boolean"}}, "required": ["ok"]}
 
     class _CpkTokens:
         async def get_access_token(self, _uid):

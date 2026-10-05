@@ -76,7 +76,7 @@ PLAN_SCHEMA = {
         "say": {"type": "string"},
     },
     "required": ["roadmap", "front_load_reason", "suggested_evidence",
-                 "suggested_cadence", "suggested_stake", "say"],
+                  "suggested_cadence", "suggested_stake", "say"],
 }
 
 CHECKIN_SCHEMA = {

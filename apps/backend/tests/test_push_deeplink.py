@@ -18,13 +18,13 @@ def test_send_one_includes_url_in_payload():
 
     import app.push as push_module
     with patch.dict("sys.modules", {"pywebpush": MagicMock(webpush=fake_webpush,
-                                                             WebPushException=Exception)}):
+                                                              WebPushException=Exception)}):
         # Reload to pick up the mock
         from app.push import _send_one
         from app.config import settings
 
         with patch.object(settings, "vapid_private_key", "fake-key"), \
-             patch.object(settings, "vapid_subject", "mailto:test@test.com"):
+              patch.object(settings, "vapid_subject", "mailto:test@test.com"):
             try:
                 _send_one(
                     subscription={"endpoint": "https://push.example.com/sub1",
@@ -50,12 +50,12 @@ def test_send_one_default_url_is_home():
         calls.append(kwargs)
 
     with patch.dict("sys.modules", {"pywebpush": MagicMock(webpush=fake_webpush,
-                                                             WebPushException=Exception)}):
+                                                              WebPushException=Exception)}):
         from app.push import _send_one
         from app.config import settings
 
         with patch.object(settings, "vapid_private_key", "fake-key"), \
-             patch.object(settings, "vapid_subject", "mailto:test@test.com"):
+              patch.object(settings, "vapid_subject", "mailto:test@test.com"):
             try:
                 _send_one(
                     subscription={"endpoint": "https://push.example.com/sub1",

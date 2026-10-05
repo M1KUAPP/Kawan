@@ -33,11 +33,11 @@ class _SilentAdapter:
 async def test_two_silent_ticks_lapse(db, monkeypatch):
     monkeypatch.setitem(wiring.ADAPTERS, "github", _SilentAdapter())
     u = User(id=new_id(), username="t", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     c = Commitment(user_id=u.id, action="a", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1), status="active", evidence_type="github")
+                    deadline=now_utc() + timedelta(days=1), status="active", evidence_type="github")
     db.add(c)
     await db.commit()
 

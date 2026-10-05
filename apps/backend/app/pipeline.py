@@ -118,7 +118,7 @@ async def assemble_progress(db: AsyncSession, c: Commitment) -> dict:
         ],
         "latest_verdict": (
             {"verdict": latest_ev.verdict, "reasoning": latest_ev.reasoning,
-             "at": as_utc(latest_ev.created_at).isoformat()}
+              "at": as_utc(latest_ev.created_at).isoformat()}
             if latest_ev else None
         ),
         "due_at": due_at.isoformat(),
@@ -179,7 +179,7 @@ async def run_checkin(db: AsyncSession, c: Commitment, kind: str) -> Checkin:
         .order_by(Checkin.created_at.desc()).limit(1)
     )
     ck = Checkin(commitment_id=c.id, kind=kind, evidence_id=evidence_id,
-                 message=line["say"], escalation=c.escalation)
+                  message=line["say"], escalation=c.escalation)
     db.add(ck)
     await db.commit()
 
@@ -187,8 +187,8 @@ async def run_checkin(db: AsyncSession, c: Commitment, kind: str) -> Checkin:
         await _maybe_lapse(db, c, prior, had_new)
 
     payload = {"type": "checkin", "kind": kind, "say": line["say"],
-               "emotion": line.get("emotion"), "escalation": c.escalation, "evidence_id": evidence_id,
-               "commitment_url": notify._deep_link(c)}
+                "emotion": line.get("emotion"), "escalation": c.escalation, "evidence_id": evidence_id,
+                "commitment_url": notify._deep_link(c)}
     ck.delivered_via = await deliver(db, c.user_id, payload)
     await db.commit()
     if kind == "cadence":  # off-device reminder fan-out (ADR-0006); on_demand stays device-only
@@ -290,7 +290,7 @@ async def safe_judge(adapter, c: Commitment, bundle: EvidenceBundle) -> Verdict:
         return verdict
     except (ChutesError, httpx.HTTPError, asyncio.TimeoutError) as exc:
         logger.warning("evidence judge: primary failed after %.1fs for commitment %s: %r",
-                       time.perf_counter() - t0, c.id, exc)
+                        time.perf_counter() - t0, c.id, exc)
         # Secondary judge when the primary fails: vision for screenshots, text for file / GitHub
         # evidence. It must never raise -- any failure degrades to a neutral 'unclear' (spec §9.3).
         b64 = bundle.items[0].get("b64") if bundle.items and isinstance(bundle.items[0], dict) else None
@@ -307,13 +307,13 @@ async def safe_judge(adapter, c: Commitment, bundle: EvidenceBundle) -> Verdict:
                     fallback = await fallback_judge.judge_text(c, evidence_text)
         except Exception as fexc:  # noqa: BLE001 - the secondary judge must never raise either
             logger.warning("evidence judge: %s fallback raised after %.1fs for commitment %s: %r",
-                           kind, time.perf_counter() - t1, c.id, fexc)
+                            kind, time.perf_counter() - t1, c.id, fexc)
         logger.info("evidence judge: %s fallback %s in %.1fs for commitment %s",
                     kind, "ok" if fallback is not None else "empty", time.perf_counter() - t1, c.id)
         if fallback is not None:
             return fallback
         return Verdict("unclear", 0.0, ["evidence could not be judged right now"],
-                       "I couldn't get a clear read on that just now. Give it another try in a moment.", None)
+                        "I couldn't get a clear read on that just now. Give it another try in a moment.", None)
 
 
 async def judge_upload(db: AsyncSession, c: Commitment, raw_ref: dict, *, image_b64: str | None = None) -> Evidence:
@@ -385,7 +385,7 @@ async def _on_missed(db: AsyncSession, c: Commitment, evidence: Evidence | None)
     if stake_note == "stake_bounced":
         say += " (Couldn't reach your contact -- that one's on the house.)"
     await deliver(db, c.user_id, {"type": "reckoning", "say": say, "stake": stake_note,
-                                   "commitment_url": notify._deep_link(c)})
+                                    "commitment_url": notify._deep_link(c)})
 
 
 async def abandon(db: AsyncSession, c: Commitment) -> str:

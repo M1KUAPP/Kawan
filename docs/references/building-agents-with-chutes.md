@@ -51,14 +51,14 @@ To build a functional business or productivity agent, the speaker outlines an op
 
 ### The 8-Point Design Frame
 
-1. **Target Audience / Persona:** Define clearly who the agent serves (e.g., a 2-5 person student hackathon team).
-2. **Pain Identification:** Locate the specific "squishy problems" (e.g., deadline slippage, context switching, option paralysis).
-3. **Trigger Event:** Determine exactly what prompts the agent to initiate a task sequence (e.g., dropping a raw voice note or text brief).
-4. **Context Layer:** Frontload precise real-world details. For internal teams, this includes team member names, GitHub repositories, social accounts, and past domain specialties.
-5. **Tool Access / Skills:** Equip the body with actionable mechanics (e.g., documentation parsers, web browsers for testing, interactive Kanban dashboard managers).
-6. **Actionable Output:** Focus on generating operational tools rather than text walls (e.g., explicit MVP scopes, task breakdowns assigned to specific individuals, risk mitigation matrix lists).
-7. **Human-in-the-Loop (Approval):** Embed strict gatekeeping checkpoints where human team members must physically sign off before execution or sharing occurs.
-8. **Data Sensitivity:** Map out how critical or proprietary data is segmented and protected via secure inference nodes.
+1.  **Target Audience / Persona:** Define clearly who the agent serves (e.g., a 2-5 person student hackathon team).
+2.  **Pain Identification:** Locate the specific "squishy problems" (e.g., deadline slippage, context switching, option paralysis).
+3.  **Trigger Event:** Determine exactly what prompts the agent to initiate a task sequence (e.g., dropping a raw voice note or text brief).
+4.  **Context Layer:** Frontload precise real-world details. For internal teams, this includes team member names, GitHub repositories, social accounts, and past domain specialties.
+5.  **Tool Access / Skills:** Equip the body with actionable mechanics (e.g., documentation parsers, web browsers for testing, interactive Kanban dashboard managers).
+6.  **Actionable Output:** Focus on generating operational tools rather than text walls (e.g., explicit MVP scopes, task breakdowns assigned to specific individuals, risk mitigation matrix lists).
+7.  **Human-in-the-Loop (Approval):** Embed strict gatekeeping checkpoints where human team members must physically sign off before execution or sharing occurs.
+8.  **Data Sensitivity:** Map out how critical or proprietary data is segmented and protected via secure inference nodes.
 
 ---
 
@@ -69,10 +69,10 @@ Chutes implemented its own virtual, agentic marketing employee built on top of a
 - **Operational Integrations:** Granted read-only permission to the internal corporate Notion database as its single source of truth.
 - **Brand Vibe Customization:** Integrated Google’s Design MD system directly into Vain to self-enforce strict brand guidelines, color assets, and a consistent humanized writing voice (e.g., forbidding automated styling traits like markdown em-dashes).
 - **Automated Competitor Analysis Pipeline:** Developed a highly autonomous, multi-step pipeline sequence:
-  1. Independently crawls web to research competitor platforms.
-  2. Runs a structured delta-comparison against Chutes.
-  3. Composes a fully cited research brief.
-  4. Generates accompanying visual assets.
-  5. Stages the completed content directly into the internal blog CMS as a draft.
-  6. Dispatches a live web preview link directly to team members.
+  1.  Independently crawls web to research competitor platforms.
+  2.  Runs a structured delta-comparison against Chutes.
+  3.  Composes a fully cited research brief.
+  4.  Generates accompanying visual assets.
+  5.  Stages the completed content directly into the internal blog CMS as a draft.
+  6.  Dispatches a live web preview link directly to team members.
 - **Team Scaling:** Vain was eventually deployed into the Chutes company Discord, moving from a single-user companion to a cross-functional corporate team member.

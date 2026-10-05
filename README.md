@@ -140,39 +140,39 @@ Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.
 
 A commitment moves through a single, deterministic lifecycle — from drafting the deal to a verified (or honestly un-verified) outcome.
 
-1. **Compose — state the deal.** `I will [complete] [a deliverable] by [a deadline].` One goal, one deadline. No room to be vague.
+1.  **Compose — state the deal.** `I will [complete] [a deliverable] by [a deadline].` One goal, one deadline. No room to be vague.
 
-   <img src="docs/readme/steps/1-compose.png" alt="Compose your commitment" width="100%">
+    <img src="docs/readme/steps/1-compose.png" alt="Compose your commitment" width="100%">
 
-2. **Plan — set the terms.** Choose your evidence source (a GitHub repo to watch, or screenshot/file uploads), optionally name a **witness** who gets emailed if you miss, and a reminder email. _Only you can change these. Kawan reads them but never edits them._
+2.  **Plan — set the terms.** Choose your evidence source (a GitHub repo to watch, or screenshot/file uploads), optionally name a **witness** who gets emailed if you miss, and a reminder email. _Only you can change these. Kawan reads them but never edits them._
 
-   <img src="docs/readme/steps/2-plan.png" alt="Set your plan and stakes" width="100%">
+    <img src="docs/readme/steps/2-plan.png" alt="Set your plan and stakes" width="100%">
 
-3. **Companion — pick who holds you to it.** Three personalities, same backbone:
+3.  **Companion — pick who holds you to it.** Three personalities, same backbone:
 
-   |  Companion   |      Archetype      | Tone                                                            |
-   | :----------: | :-----------------: | --------------------------------------------------------------- |
-   |  **Kawan**   | Skeptical Concierge | Candid, warm, slightly dry. Believes you because you proved it. |
-   |   **Adik**   | Gentle Cheerleader  | Encouraging and kind. Celebrates every step.                    |
-   | **Cik Maid** | Playful Taskmaster  | Brisk, playful, expects results — with a wink.                  |
+    |  Companion   |      Archetype      | Tone                                                            |
+    | :----------: | :-----------------: | --------------------------------------------------------------- |
+    |  **Kawan**   | Skeptical Concierge | Candid, warm, slightly dry. Believes you because you proved it. |
+    |   **Adik**   | Gentle Cheerleader  | Encouraging and kind. Celebrates every step.                    |
+    | **Cik Maid** | Playful Taskmaster  | Brisk, playful, expects results — with a wink.                  |
 
-   <img src="docs/readme/steps/3-companion.png" alt="Choose your companion" width="100%">
+    <img src="docs/readme/steps/3-companion.png" alt="Choose your companion" width="100%">
 
-4. **Check in — answer to your companion.** Your companion enters the workspace as a live, animated avatar. It gathers context (why, obstacles, time), then checks in on schedule and waits for evidence.
+4.  **Check in — answer to your companion.** Your companion enters the workspace as a live, animated avatar. It gathers context (why, obstacles, time), then checks in on schedule and waits for evidence.
 
-   <img src="docs/readme/steps/4-checkin.png" alt="Live2D check-in in the workspace" width="100%">
+    <img src="docs/readme/steps/4-checkin.png" alt="Live2D check-in in the workspace" width="100%">
 
-5. **Workspace — context, plan & evidence in one place.** A focused room around the conversation: captured context, an advisory plan, recent activity, a live countdown to the next check-in, and the **Submit final evidence** action.
+5.  **Workspace — context, plan & evidence in one place.** A focused room around the conversation: captured context, an advisory plan, recent activity, a live countdown to the next check-in, and the **Submit final evidence** action.
 
-   <img src="docs/readme/steps/5-workspace.png" alt="The commitment workspace" width="100%">
+    <img src="docs/readme/steps/5-workspace.png" alt="The commitment workspace" width="100%">
 
-6. **Track — overview, progress & terms.** Every commitment has a detail page: verified count, check-ins, latest verdict and reasoning, the immutable terms, and a full timeline.
+6.  **Track — overview, progress & terms.** Every commitment has a detail page: verified count, check-ins, latest verdict and reasoning, the immutable terms, and a full timeline.
 
-   <img src="docs/readme/steps/6-commitment-detail.png" alt="Commitment detail page" width="100%">
+    <img src="docs/readme/steps/6-commitment-detail.png" alt="Commitment detail page" width="100%">
 
-7. **Finish — verified, and only then.** When the evidence passes, the commitment is closed as done. No participation trophies — a win counts because it was shown.
+7.  **Finish — verified, and only then.** When the evidence passes, the commitment is closed as done. No participation trophies — a win counts because it was shown.
 
-   <img src="docs/readme/steps/7-completion.png" alt="You did it — verified completion" width="100%">
+    <img src="docs/readme/steps/7-completion.png" alt="You did it — verified completion" width="100%">
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -215,10 +215,10 @@ That is why the UI can promise _"Only you can change these. Kawan reads them but
 
 **The check-in pipeline.** One code path (`app/pipeline.py`) runs for both a scheduled cadence tick and an on-demand check:
 
-1. **Fetch** new evidence through the adapter for the commitment's evidence type (`github` / `screenshot` / `file`).
-2. **Judge** it into a `Verdict` (`pass` / `fail` / `unclear`) — primary call on a Chutes TEE model, with a bounded timeout that **fails fast to a secondary judge** rather than hanging.
-3. **Persist** the evidence, check-in line, and escalation state.
-4. **Deliver** down the ladder: **WebSocket → Web Push → in-app timeline**.
+1.  **Fetch** new evidence through the adapter for the commitment's evidence type (`github` / `screenshot` / `file`).
+2.  **Judge** it into a `Verdict` (`pass` / `fail` / `unclear`) — primary call on a Chutes TEE model, with a bounded timeout that **fails fast to a secondary judge** rather than hanging.
+3.  **Persist** the evidence, check-in line, and escalation state.
+4.  **Deliver** down the ladder: **WebSocket → Web Push → in-app timeline**.
 
 A commitment's status machine (`draft → active → verifying → grace → completed / missed`, plus `lapsed` / `returned`) is the only thing that moves state — derived snapshots feed the AI as read-only prompt context and can never write back.
 
@@ -284,67 +284,67 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
 ### Installation
 
-1. **Configure the environment.** Run each block from the repository root.
+1.  **Configure the environment.** Run each block from the repository root.
 
-   ```sh
-   cp apps/backend/.env.example apps/backend/.env  # sensible dev defaults are pre-filled
-   ```
+    ```sh
+    cp apps/backend/.env.example apps/backend/.env  # sensible dev defaults are pre-filled
+    ```
 
-   The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
+    The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
 
-   All settings use the `KAWAN_` prefix and load from `apps/backend/.env`. See [`.env.example`](apps/backend/.env.example) for the fully annotated list. The most important knobs:
+    All settings use the `KAWAN_` prefix and load from `apps/backend/.env`. See [`.env.example`](apps/backend/.env.example) for the fully annotated list. The most important knobs:
 
-   | Variable                                    | What it does                                                                      |
-   | ------------------------------------------- | --------------------------------------------------------------------------------- |
-   | `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
-   | `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
-   | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
-   | `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
-   | `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
-   | `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
-   | `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
-   | `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
-   | `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
+    | Variable                                    | What it does                                                                      |
+    | ------------------------------------------- | --------------------------------------------------------------------------------- |
+    | `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
+    | `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
+    | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
+    | `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
+    | `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
+    | `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
+    | `KAWAN_RESEND_API_KEY`                      | Stake/reminder email — blank uses a log-only outbox so the miss path still runs   |
+    | `KAWAN_TELEGRAM_BOT_TOKEN`                  | Telegram check-in channel — blank makes every send a no-op                        |
+    | `KAWAN_PIPER_VOICES_DIR`                    | Directory of Piper voice models — blank returns 204 and the client uses WebSpeech |
 
-   To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
+    To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
 
-2. **Fetch the Live2D companion models.** Gitignored; one-time after clone.
+2.  **Fetch the Live2D companion models.** Gitignored; one-time after clone.
 
-   ```sh
-   ./scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
-   ```
+    ```sh
+    ./scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+    ```
 
-3. **Run the backend.** FastAPI on `:8000`.
+3.  **Run the backend.** FastAPI on `:8000`.
 
-   ```sh
-   cd apps/backend
-   uv sync
-   uv run uvicorn app.main:app --reload
-   ```
+    ```sh
+    cd apps/backend
+    uv sync
+    uv run uvicorn app.main:app --reload
+    ```
 
-4. **Run the frontend.** Vite on `:5173`, proxies `/api` and `/ws` to the backend.
+4.  **Run the frontend.** Vite on `:5173`, proxies `/api` and `/ws` to the backend.
 
-   ```sh
-   cd apps/frontend
-   bun install
-   bun dev
-   ```
+    ```sh
+    cd apps/frontend
+    bun install
+    bun dev
+    ```
 
-   Open **http://localhost:5173** and choose **Continue as guest** to start.
+    Open **http://localhost:5173** and choose **Continue as guest** to start.
 
-   > **Optional — voices:** run `./scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
+    > **Optional — voices:** run `./scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
 
-5. **Deployment.**
+5.  **Deployment.**
 
-   - **Backend → Render.** [`apps/backend/render.yaml`](apps/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`apps/backend/DEPLOY.md`](apps/backend/DEPLOY.md).
-   - **Frontend → Vercel.** [`apps/frontend/vercel.json`](apps/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
+    - **Backend → Render.** [`apps/backend/render.yaml`](apps/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`apps/backend/DEPLOY.md`](apps/backend/DEPLOY.md).
+    - **Frontend → Vercel.** [`apps/frontend/vercel.json`](apps/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-6. **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
+6.  **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
 
-   ```sh
-   bun install
-   bun run check
-   ```
+    ```sh
+    bun install
+    bun run check
+    ```
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 

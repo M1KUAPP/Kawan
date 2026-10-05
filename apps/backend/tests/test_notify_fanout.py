@@ -24,7 +24,7 @@ class _SilentAdapter:
 
 async def _user(db):
     u = User(id=new_id(), username="t", access_token="x", refresh_token="y",
-             token_expiry=now_utc() + timedelta(hours=1))
+              token_expiry=now_utc() + timedelta(hours=1))
     db.add(u)
     await db.flush()
     return u
@@ -32,7 +32,7 @@ async def _user(db):
 
 async def _commitment(db, user, *, status="active", **kw):
     c = Commitment(user_id=user.id, action="ship", deliverable="the landing page",
-                   deadline=now_utc() + timedelta(days=1), status=status, evidence_type="github", **kw)
+                    deadline=now_utc() + timedelta(days=1), status=status, evidence_type="github", **kw)
     db.add(c)
     await db.commit()
     return c

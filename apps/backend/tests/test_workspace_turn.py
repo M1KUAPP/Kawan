@@ -84,11 +84,11 @@ async def test_workspace_turn_404_unknown(client):
 async def test_workspace_turn_404_foreign(client, db):
     """Seed a commitment under a different user; the guest client must get 404."""
     other = User(id=new_id(), username="other", access_token="x", refresh_token="y",
-                 token_expiry=now_utc() + timedelta(hours=1))
+                  token_expiry=now_utc() + timedelta(hours=1))
     db.add(other)
     await db.flush()
     c = Commitment(user_id=other.id, action="ship", deliverable="d",
-                   deadline=now_utc() + timedelta(days=1))
+                    deadline=now_utc() + timedelta(days=1))
     db.add(c)
     await db.commit()
 

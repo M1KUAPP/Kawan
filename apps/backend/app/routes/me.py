@@ -58,8 +58,8 @@ async def me_achievements(user: User = Depends(current_user), db: AsyncSession =
     )).all()}
     return [
         {"code": code, "label": label, "description": description,
-         "earned": code in earned,
-         "awarded_at": as_utc(earned[code].awarded_at).isoformat() if code in earned else None}
+          "earned": code in earned,
+          "awarded_at": as_utc(earned[code].awarded_at).isoformat() if code in earned else None}
         for code, label, description in achievements.CATALOG
     ]
 

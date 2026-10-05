@@ -76,7 +76,7 @@ _SCHEMAS: dict[str, dict] = {
             "say": {"type": "string"},
         },
         "required": ["roadmap", "front_load_reason", "suggested_evidence",
-                     "suggested_cadence", "suggested_stake", "say"],
+                      "suggested_cadence", "suggested_stake", "say"],
     },
     "checkin": {
         "type": "object",
@@ -170,7 +170,7 @@ class SecondaryStructured:
                 await http.aclose()
 
     async def structured(self, *, user_id: str, model: str, messages: list[dict],
-                         schema: dict, schema_name: str, max_tokens: int = 2048) -> dict:
+                          schema: dict, schema_name: str, max_tokens: int = 2048) -> dict:
         _ = user_id, model, max_tokens, schema  # ignored: the secondary uses its own model + fixed schemas
         if schema_name not in _SCHEMAS:
             raise ChutesError(f"secondary: no schema for {schema_name!r}")

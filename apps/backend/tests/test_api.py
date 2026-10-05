@@ -45,7 +45,7 @@ async def test_past_deadline_rejected(client):
 
 async def test_intake_writes_only_soft_context(client, db):
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     r = await client.post(f"/api/commitments/{cid}/context/turn", json={"say": "because job hunt"})
     assert r.status_code == 200
 
@@ -61,7 +61,7 @@ async def test_intake_complete_forces_closing_line(client):
     from app.routes.commitments import _INTAKE_DONE_LINE
 
     cid = (await client.post("/api/commitments",
-                             json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
+                              json={"action": "ship", "deliverable": "d", "deadline": _future()})).json()["id"]
     last = {}
     for ans in ("because job hunt", "no spare time", "hard deadline", "senior dev"):
         last = (await client.post(f"/api/commitments/{cid}/context/turn", json={"say": ans})).json()

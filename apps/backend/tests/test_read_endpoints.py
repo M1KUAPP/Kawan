@@ -117,7 +117,7 @@ async def test_soft_context_not_owned(client, db):
     db.add(other_user)
     await db.commit()
     other_c = Commitment(user_id=other_user.id, action="a", deliverable="d",
-                         deadline=now_utc() + timedelta(days=1))
+                          deadline=now_utc() + timedelta(days=1))
     db.add(other_c)
     await db.commit()
 
@@ -233,7 +233,7 @@ async def test_checkin_status_not_owned(client, db):
     db.add(other_user)
     await db.commit()
     other_c = Commitment(user_id=other_user.id, action="a", deliverable="d",
-                         deadline=now_utc() + timedelta(days=1))
+                          deadline=now_utc() + timedelta(days=1))
     db.add(other_c)
     await db.commit()
 

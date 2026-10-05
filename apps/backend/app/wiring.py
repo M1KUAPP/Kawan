@@ -15,7 +15,7 @@ def _build() -> tuple[dict[str, EvidenceAdapter], LLMClient]:
     if settings.ai_backend == "stub":
         from app.stubs import StubFileAdapter, StubGitHubAdapter, StubLLMClient, StubScreenshotAdapter
         return ({"github": StubGitHubAdapter(), "screenshot": StubScreenshotAdapter(),
-                 "file": StubFileAdapter()}, StubLLMClient())
+                  "file": StubFileAdapter()}, StubLLMClient())
 
     # Real Chutes-backed Lane C (imported lazily so the stub path never imports it).
     from app.adapters.file import FileAdapter

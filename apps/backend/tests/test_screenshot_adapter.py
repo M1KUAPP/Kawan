@@ -41,7 +41,7 @@ async def test_judge_builds_image_message_and_maps_verdict():
     # the user message is multimodal: a text part + an image_url data URI
     parts = call["messages"][1]["content"]
     assert any(p.get("type") == "image_url" and "data:image/png;base64,aGVsbG8=" in p["image_url"]["url"]
-               for p in parts)
+                for p in parts)
 
 
 async def test_judge_unclear_without_image():
@@ -65,4 +65,4 @@ async def test_judge_detects_jpeg_mime():
     await adapter.judge(_Commitment(), bundle, None)
     parts = fake.calls[0]["messages"][1]["content"]
     assert any(p.get("type") == "image_url" and p["image_url"]["url"].startswith("data:image/jpeg;base64,")
-               for p in parts)
+                for p in parts)

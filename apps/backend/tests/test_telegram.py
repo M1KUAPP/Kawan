@@ -50,7 +50,7 @@ async def test_start_consumes_token_and_links(monkeypatch):
 
     async with SessionLocal() as db:
         u = User(id=new_id(), username="t", access_token="x", refresh_token="y",
-                 token_expiry=now_utc() + timedelta(hours=1))
+                  token_expiry=now_utc() + timedelta(hours=1))
         db.add(u)
         await db.flush()
         uid = u.id
