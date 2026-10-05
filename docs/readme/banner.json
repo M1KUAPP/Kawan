@@ -1,0 +1,9 @@
+{
+  "name": "Kawan",
+  "description": "A skeptical AI accountability companion that holds you to one commitment and accepts only verified evidence, never self-report, as progress.",
+  "logo": { "light": "logo.png" },
+  "screenshot": { "light": "banner-screenshot.png" },
+  "colors": { "paper": "#F3E9D9", "ink": "#3A2A1E", "accent": "#DD6236" },
+  "font": "../linkedin/build/fonts/Fredoka.ttf",
+  "out": "docs/readme"
+}
