@@ -105,14 +105,14 @@ Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.
     <td width="50%" valign="top" align="left">
       <img src="docs/readme/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
       <br />
-      <strong>Sign in</strong> · Sign in with Chutes, or continue as a guest without an account.
+      <strong>Sign In</strong> · Sign in with Chutes, or continue as a guest without an account.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="left">
       <img src="docs/readme/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
       <br />
-      <strong>Guided tour</strong> · An optional tour that teaches the commitment flow on real components.
+      <strong>Guided Tour</strong> · An optional tour that teaches the commitment flow on real components.
     </td>
     <td width="50%" valign="top" align="left">
       <img src="docs/readme/screenshots/home.png" alt="Home dashboard" width="100%">
@@ -142,11 +142,11 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
 
 1. **Compose — state the deal.** `I will [complete] [a deliverable] by [a deadline].` One goal, one deadline. No room to be vague.
 
-   ![Compose your commitment](docs/readme/steps/1-compose.png)
+   <img src="docs/readme/steps/1-compose.png" alt="Compose your commitment" width="100%">
 
 2. **Plan — set the terms.** Choose your evidence source (a GitHub repo to watch, or screenshot/file uploads), optionally name a **witness** who gets emailed if you miss, and a reminder email. _Only you can change these. Kawan reads them but never edits them._
 
-   ![Set your plan and stakes](docs/readme/steps/2-plan.png)
+   <img src="docs/readme/steps/2-plan.png" alt="Set your plan and stakes" width="100%">
 
 3. **Companion — pick who holds you to it.** Three personalities, same backbone:
 
@@ -156,40 +156,40 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
    |   **Adik**   | Gentle Cheerleader  | Encouraging and kind. Celebrates every step.                    |
    | **Cik Maid** | Playful Taskmaster  | Brisk, playful, expects results — with a wink.                  |
 
-   ![Choose your companion](docs/readme/steps/3-companion.png)
+   <img src="docs/readme/steps/3-companion.png" alt="Choose your companion" width="100%">
 
 4. **Check in — answer to your companion.** Your companion enters the workspace as a live, animated avatar. It gathers context (why, obstacles, time), then checks in on schedule and waits for evidence.
 
-   ![Live2D check-in in the workspace](docs/readme/steps/4-checkin.png)
+   <img src="docs/readme/steps/4-checkin.png" alt="Live2D check-in in the workspace" width="100%">
 
 5. **Workspace — context, plan & evidence in one place.** A focused room around the conversation: captured context, an advisory plan, recent activity, a live countdown to the next check-in, and the **Submit final evidence** action.
 
-   ![The commitment workspace](docs/readme/steps/5-workspace.png)
+   <img src="docs/readme/steps/5-workspace.png" alt="The commitment workspace" width="100%">
 
 6. **Track — overview, progress & terms.** Every commitment has a detail page: verified count, check-ins, latest verdict and reasoning, the immutable terms, and a full timeline.
 
-   ![Commitment detail page](docs/readme/steps/6-commitment-detail.png)
+   <img src="docs/readme/steps/6-commitment-detail.png" alt="Commitment detail page" width="100%">
 
 7. **Finish — verified, and only then.** When the evidence passes, the commitment is closed as done. No participation trophies — a win counts because it was shown.
 
-   ![You did it — verified completion](docs/readme/steps/7-completion.png)
+   <img src="docs/readme/steps/7-completion.png" alt="You did it — verified completion" width="100%">
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
 ### Features
 
-- 🎯 **One real commitment** — a single action + deliverable + deadline. Hard fields you set and only you can change.
-- 🔎 **Evidence over self-report** — verdicts come from a GitHub repo's commits, an uploaded file, or a screenshot judged by a vision model. There is no "mark as done" button you can lie to.
-- ⚖️ **Honest verdicts** — every check-in resolves to `pass` / `fail` / `unclear`. `unclear` never punishes; a flaky or slow model degrades to it instead of guessing.
-- 🎭 **Three Live2D companions** — Kawan, Adik, and Cik Maid, each a stateless preset of tone + animated model + voice + inference model. Switching the companion changes the messenger, never your commitment.
-- 🔐 **TEE inference via Chutes** — real check-in lines and evidence judgments run on Chutes' Trusted Execution Environment chutes, with per-persona model routing and an automatic secondary judge on failure. A deterministic offline **stub** backend runs the whole app with zero keys.
-- 🪜 **Reliable delivery** — notifications walk a ladder: live **WebSocket** → **Web Push** → persisted **in-app timeline**, so a check-in is never lost.
-- 📣 **Off-device reminders** — opt-in **email** (Resend), **Web Push** (VAPID), and a **Telegram** check-in channel.
-- 🤝 **Stakes & witnesses** — name someone who's emailed if you miss the deadline. That's the whole mechanism.
-- 📈 **Analytics & achievements** — a productivity meter, identity titles, and 15 behavioral achievements that reward _how_ you won (verified without a skip-day, finished early, came back after a miss…).
-- ⏰ **Scheduled & on-demand check-ins** — APScheduler drives the cadence; one code path serves both the cron tick and an instant "check now," and rebuilds its jobs from the DB after a restart.
-- 🪶 **Guided walkthrough** — an optional tour that teaches the commitment flow on real components, not a fake demo.
-- 🌗 **Polished UX** — light/dark themes, responsive shell, optional Piper neural TTS with a WebSpeech fallback.
+- **One real commitment.** A single action + deliverable + deadline. Hard fields you set and only you can change.
+- **Evidence over self-report.** Verdicts come from a GitHub repo's commits, an uploaded file, or a screenshot judged by a vision model. There is no "mark as done" button you can lie to.
+- **Honest verdicts.** Every check-in resolves to `pass` / `fail` / `unclear`. `unclear` never punishes; a flaky or slow model degrades to it instead of guessing.
+- **Three Live2D companions.** Kawan, Adik, and Cik Maid, each a stateless preset of tone + animated model + voice + inference model. Switching the companion changes the messenger, never your commitment.
+- **TEE inference via Chutes.** Real check-in lines and evidence judgments run on Chutes' Trusted Execution Environment chutes, with per-persona model routing and an automatic secondary judge on failure. A deterministic offline **stub** backend runs the whole app with zero keys.
+- **Reliable delivery.** Notifications walk a ladder: live **WebSocket** → **Web Push** → persisted **in-app timeline**, so a check-in is never lost.
+- **Off-device reminders.** Opt-in **email** (Resend), **Web Push** (VAPID), and a **Telegram** check-in channel.
+- **Stakes & witnesses.** Name someone who's emailed if you miss the deadline. That's the whole mechanism.
+- **Analytics & achievements.** A productivity meter, identity titles, and 15 behavioral achievements that reward _how_ you won (verified without a skip-day, finished early, came back after a miss…).
+- **Scheduled & on-demand check-ins.** APScheduler drives the cadence; one code path serves both the cron tick and an instant "check now," and rebuilds its jobs from the DB after a restart.
+- **Guided walkthrough.** An optional tour that teaches the commitment flow on real components, not a fake demo.
+- **Polished UX.** Light/dark themes, responsive shell, optional Piper neural TTS with a WebSpeech fallback.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
