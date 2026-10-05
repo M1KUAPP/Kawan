@@ -46,7 +46,7 @@ activation.
 ## Update — diversity restored by the transport fix
 
 The "disable thinking + json_object" option above (then rejected as fragile) was
-implemented at the transport layer in `c1d87f7` (merged via #72): `structured()` now
+implemented at the transport layer in `f8cebdc` (merged via #72): `structured()` now
 disables thinking (`chat_template_kwargs={"enable_thinking": False}`), uses
 `response_format: json_object` with a schema reminder, and parses via `_extract_json`.
 Re-validating the dropped models **through that real path** (2× each, live): **gemma-4
