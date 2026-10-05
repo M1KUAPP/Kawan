@@ -253,13 +253,13 @@ docs/readme/             # the images in this README
 
 ### Tech Stack
 
-- **Frontend:** React 18 · TypeScript · Vite · React Router v7 · PixiJS v6 + `pixi-live2d-display` · Recharts · Lucide · Biome
-- **Backend:** FastAPI · SQLAlchemy 2 (async) · APScheduler · Pydantic Settings · httpx · `uv`
-- **Database:** SQLite (dev) · PostgreSQL via Supabase pooler (prod)
-- **AI / Inference:** Chutes (OpenAI-compatible TEE inference) + Sign in with Chutes (OAuth2 PKCE) · deterministic stub backend
-- **Realtime / Notify:** WebSocket · Web Push (VAPID) · Telegram Bot API · Email (Resend)
-- **Avatars / Voice:** Live2D Cubism (Haru, Hiyori, LiveroiD) · Piper neural TTS (optional)
-- **Deploy:** Backend on Render · Frontend on Vercel
+- **Languages:** Python and TypeScript.
+- **Frontend:** React 18, Vite, React Router v7, PixiJS v6 with `pixi-live2d-display`, Recharts and Lucide, with Live2D Cubism avatars (Haru, Hiyori, LiveroiD).
+- **Backend:** FastAPI, SQLAlchemy 2 (async), APScheduler, Pydantic Settings and httpx, delivering over WebSocket and Web Push (VAPID).
+- **Data:** SQLite (dev) and PostgreSQL via the Supabase pooler (prod).
+- **AI and services:** Chutes (OpenAI-compatible TEE inference) with Sign in with Chutes (OAuth2 PKCE), a deterministic stub backend, optional Piper neural TTS, the Telegram Bot API and email through Resend.
+- **Infrastructure:** Backend on Render and frontend on Vercel.
+- **Tooling:** `uv`, Biome and pytest.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
