@@ -1,4 +1,4 @@
-// Card primitive — design.md §7: --surface, xl radius, hairline border, soft warm shadow
+// Card primitive — DESIGN.md §7: --surface, xl radius, hairline border, soft warm shadow
 import type { HTMLAttributes } from 'react'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {

@@ -1,4 +1,4 @@
-// Button primitive — design.md §7 button patterns
+// Button primitive — DESIGN.md §7 button patterns
 // primary: espresso pill (--ink fill, cream text)
 // secondary: outline pill (--line border, ink text)
 // accent: terracotta pill (single CTA per surface)

@@ -1,0 +1,25 @@
+.agents/
+.claude/
+
+# Repo-specific
+
+# Biome owns code and JSON; Prettier owns Markdown and YAML.
+*.js
+*.jsx
+*.mjs
+*.cjs
+*.ts
+*.tsx
+*.mts
+*.cts
+*.json
+*.jsonc
+*.css
+*.html
+
+# Vendored Live2D Cubism core and the service worker
+kawan/frontend/public/live2dcubismcore.min.js
+kawan/frontend/public/sw.js
+
+# Live2D models stored in Git LFS
+kawan/frontend/public/models/

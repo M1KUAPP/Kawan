@@ -1,4 +1,4 @@
-// Chip / badge primitive — design.md §5 rounded-square chips
+// Chip / badge primitive — DESIGN.md §5 rounded-square chips
 import type { HTMLAttributes } from 'react'
 
 interface ChipProps extends HTMLAttributes<HTMLSpanElement> {

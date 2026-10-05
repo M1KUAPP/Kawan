@@ -20,7 +20,7 @@ into activation / CI.
     uv --project backend run python scripts/smoke_chutes.py --json    # raw catalog dump
 
 Needs KAWAN_CHUTES_API_KEY (team cpk_) in kawan/.env. Read-only; bills nothing.
-Reference: docs/reference/chutes-llms.md (§ List live models).
+Reference: docs/references/chutes-llms.md (§ List live models).
 """
 
 import sys
