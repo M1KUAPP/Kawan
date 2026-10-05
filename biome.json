@@ -10,30 +10,14 @@
     "includes": ["**", "!apps/frontend/public", "!docs/readme"]
   },
   "formatter": {
-    "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2,
     "lineWidth": 120
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "preset": "recommended"
-    }
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
       "semicolons": "asNeeded",
       "trailingCommas": "none"
-    }
-  },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
     }
   }
 }
