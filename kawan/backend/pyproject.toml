@@ -1,7 +1,7 @@
 [project]
 name = "kawan-backend"
 version = "0.1.0"
-description = "Kawan backend — FastAPI single-process (trd.md §4)"
+description = "Kawan backend — FastAPI single-process (TRD.md §4)"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115",
