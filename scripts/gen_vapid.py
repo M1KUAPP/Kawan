@@ -2,10 +2,10 @@
 reads. Web Push stays dark until these are set; once set, delivery lights up for the
 Settings opt-in (NOT a scripted demo beat — in-app + email is the X-NOTIF baseline).
 
-    cd kawan
-    uv --project backend run python scripts/gen_vapid.py
+    # from the repository root
+    uv --project apps/backend run python scripts/gen_vapid.py
 
-Then paste the three values into Render (backend service env) AND kawan/.env (local dev)
+Then paste the three values into Render (backend service env) AND apps/backend/.env (local dev)
 and redeploy. The keypair is the universal VAPID format (same as npm
 `web-push generate-vapid-keys`): base64url raw private value + base64url uncompressed
 public point — exactly what app/push.py (pywebpush) and the service worker expect.
@@ -38,7 +38,7 @@ else:
     note = "  (verified loadable by py_vapid)"
 
 print(f"# VAPID keypair for Kawan Web Push{note}")
-print("# Set all three in Render (backend env) AND kawan/.env (local dev), then redeploy.\n")
+print("# Set all three in Render (backend env) AND apps/backend/.env (local dev), then redeploy.\n")
 print(f"KAWAN_VAPID_PUBLIC_KEY={public_key}")
 print(f"KAWAN_VAPID_PRIVATE_KEY={private_key}")
 print("# KAWAN_VAPID_SUBJECT may be any contact mailto: or https URL")

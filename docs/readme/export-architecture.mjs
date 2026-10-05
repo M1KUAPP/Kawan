@@ -8,7 +8,7 @@
  *   1. copies architecture.json to a temp folder, adding the `meta.output`
  *      field that archify's schema requires (the committed source omits it);
  *   2. runs `archify deliver` (showcase quality) and `archify check` on it;
- *   3. adds Kawan's design tokens (kawan/frontend/src/styles/tokens.css) to the
+ *   3. adds Kawan's design tokens (apps/frontend/src/styles/tokens.css) to the
  *      viewer as theme variables;
  *   4. opens the viewer in headless Chrome and runs its own "Download SVG"
  *      export, which resolves both the light and the dark variable sets;

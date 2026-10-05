@@ -5,11 +5,11 @@ The backend now handles the callback itself, so the registered app must list
 INSPECTS by default (read-only GET) and only mutates the shared app when run with
 `--apply` (PATCH adds the redirect_uri; existing ones are preserved).
 
-    cd kawan
-    uv --project backend run python scripts/register_siwc_app.py           # inspect
-    uv --project backend run python scripts/register_siwc_app.py --apply    # register
+    # from the repository root
+    uv --project apps/backend run python scripts/register_siwc_app.py           # inspect
+    uv --project apps/backend run python scripts/register_siwc_app.py --apply    # register
 
-Needs KAWAN_CHUTES_API_KEY (team cpk_) + KAWAN_SIWC_CLIENT_ID in kawan/.env.
+Needs KAWAN_CHUTES_API_KEY (team cpk_) + KAWAN_SIWC_CLIENT_ID in apps/backend/.env.
 Reference: api.chutes.ai/idp/apps — PATCH uses app_id (UUID), not the cid_ client_id.
 """
 
@@ -18,8 +18,8 @@ from pathlib import Path
 
 import httpx
 
-_KAWAN_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(_KAWAN_ROOT / "backend"))
+_BACKEND_ROOT = Path(__file__).resolve().parents[1] / "apps" / "backend"
+sys.path.insert(0, str(_BACKEND_ROOT))
 from app.config import settings  # noqa: E402
 
 API = settings.chutes_api_base_url
@@ -27,7 +27,7 @@ REDIRECT = settings.siwc_redirect_uri
 WANT_SCOPES = settings.siwc_scopes.split()
 
 if not settings.chutes_api_key:
-    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in kawan/.env first.")
+    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in apps/backend/.env first.")
 
 HEADERS = {"Authorization": f"Bearer {settings.chutes_api_key}"}
 

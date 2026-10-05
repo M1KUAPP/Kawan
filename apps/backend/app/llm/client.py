@@ -1,4 +1,4 @@
-# kawan/backend/app/llm/client.py
+# apps/backend/app/llm/client.py
 """ChutesLLMClient implements contracts.LLMClient (the four §9.2 calls) on top of
 ChutesClient. Persona (model + tone) is resolved per billing user via an injected
 resolver, keeping this class DB-free and unit-testable. It returns parsed,

@@ -4,13 +4,13 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-_KAWAN_ROOT = Path(__file__).resolve().parents[2]
+_BACKEND_ROOT = Path(__file__).resolve().parents[1]
 
 
 class Settings(BaseSettings):
-    """App configuration. Values come from environment / <kawan-root>/.env (see .env.example)."""
+    """App configuration. Values come from environment / apps/backend/.env (see .env.example)."""
 
-    model_config = SettingsConfigDict(env_file=_KAWAN_ROOT / ".env", env_prefix="KAWAN_")
+    model_config = SettingsConfigDict(env_file=_BACKEND_ROOT / ".env", env_prefix="KAWAN_")
 
     database_url: str = "sqlite+aiosqlite:///./kawan.db"
     frontend_origin: str = "http://localhost:5173"
@@ -50,7 +50,7 @@ class Settings(BaseSettings):
 
     # Voice (TTS) — Piper neural TTS (local/demo only; Render free tier returns 204, frontend falls back)
     # Set KAWAN_PIPER_VOICES_DIR to the directory containing <voice>.onnx + <voice>.onnx.json files.
-    # Default: kawan/backend/voices/ (gitignored). Run scripts/download_voices.sh to populate.
+    # Default: apps/backend/voices/ (gitignored). Run scripts/download_voices.sh to populate.
     piper_voices_dir: str = ""
 
     # Stake + win-back email (Resend HTTP API; falls back to a log-only outbox when unset)
