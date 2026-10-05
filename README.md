@@ -95,36 +95,36 @@ Built by **Team CHJL** with 💖 for Chutes Hack Malaysia 2026. Kawan won 1st Pl
 <table>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/landing.png" alt="Landing page" width="100%">
+      <img src="docs/readme/screenshots/landing.png" alt="Landing page" width="100%">
       <br />
       <strong>Landing</strong> · Kawan's pitch: one commitment, verified evidence, and no self-report.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
+      <img src="docs/readme/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
       <br />
       <strong>Sign in</strong> · Sign in with Chutes, or continue as a guest without an account.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
+      <img src="docs/readme/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
       <br />
       <strong>Guided tour</strong> · An optional tour that teaches the commitment flow on real components.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/home.png" alt="Home dashboard" width="100%">
+      <img src="docs/readme/screenshots/home.png" alt="Home dashboard" width="100%">
       <br />
       <strong>Home</strong> · The dashboard links your commitments, analytics, workspace and recent activity.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/commitments.png" alt="Commitments list" width="100%">
+      <img src="docs/readme/screenshots/commitments.png" alt="Commitments list" width="100%">
       <br />
       <strong>Commitments</strong> · Every commitment with its deliverable, status and deadline, active or finished.
     </td>
     <td width="50%" valign="top" align="left">
-      <img src="kawan/docs/screenshots/analytics.png" alt="Analytics & achievements" width="100%">
+      <img src="docs/readme/screenshots/analytics.png" alt="Analytics & achievements" width="100%">
       <br />
       <strong>Analytics</strong> · A productivity meter, identity titles and 15 achievements that reward how you won.
     </td>
@@ -139,11 +139,11 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
 
 1. **Compose — state the deal.** `I will [complete] [a deliverable] by [a deadline].` One goal, one deadline. No room to be vague.
 
-   ![Compose your commitment](kawan/docs/screenshots/flow-1-compose.png)
+   ![Compose your commitment](docs/readme/steps/1-compose.png)
 
 2. **Plan — set the terms.** Choose your evidence source (a GitHub repo to watch, or screenshot/file uploads), optionally name a **witness** who gets emailed if you miss, and a reminder email. _Only you can change these. Kawan reads them but never edits them._
 
-   ![Set your plan and stakes](kawan/docs/screenshots/flow-2-plan.png)
+   ![Set your plan and stakes](docs/readme/steps/2-plan.png)
 
 3. **Companion — pick who holds you to it.** Three personalities, same backbone:
 
@@ -153,23 +153,23 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
    |   **Adik**   | Gentle Cheerleader  | Encouraging and kind. Celebrates every step.                    |
    | **Cik Maid** | Playful Taskmaster  | Brisk, playful, expects results — with a wink.                  |
 
-   ![Choose your companion](kawan/docs/screenshots/flow-3-companion.png)
+   ![Choose your companion](docs/readme/steps/3-companion.png)
 
 4. **Check in — answer to your companion.** Your companion enters the workspace as a live, animated avatar. It gathers context (why, obstacles, time), then checks in on schedule and waits for evidence.
 
-   ![Live2D check-in in the workspace](kawan/docs/screenshots/flow-4-checkin.png)
+   ![Live2D check-in in the workspace](docs/readme/steps/4-checkin.png)
 
 5. **Workspace — context, plan & evidence in one place.** A focused room around the conversation: captured context, an advisory plan, recent activity, a live countdown to the next check-in, and the **Submit final evidence** action.
 
-   ![The commitment workspace](kawan/docs/screenshots/flow-5-workspace.png)
+   ![The commitment workspace](docs/readme/steps/5-workspace.png)
 
 6. **Track — overview, progress & terms.** Every commitment has a detail page: verified count, check-ins, latest verdict and reasoning, the immutable terms, and a full timeline.
 
-   ![Commitment detail page](kawan/docs/screenshots/flow-6-commitment-detail.png)
+   ![Commitment detail page](docs/readme/steps/6-commitment-detail.png)
 
 7. **Finish — verified, and only then.** When the evidence passes, the commitment is closed as done. No participation trophies — a win counts because it was shown.
 
-   ![You did it — verified completion](kawan/docs/screenshots/flow-7-completion.png)
+   ![You did it — verified completion](docs/readme/steps/7-completion.png)
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -193,8 +193,8 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
 ### Architecture
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="kawan/docs/readme/architecture-dark.svg">
-  <img src="kawan/docs/readme/architecture-light.svg" alt="Kawan's architecture. The React SPA calls the FastAPI backend over /api. An on-demand check from the API and APScheduler's cadence and deadline ticks run one check-in pipeline. The pipeline judges evidence and writes the check-in line on Chutes TEE models, falls back to a secondary judge on a timeout or error, writes verdicts and check-ins to SQLite or Postgres, and delivers each check-in over the WebSocket first, then Web Push and reminders. The API signs users in with Chutes over OAuth2 PKCE and writes the hard fields.">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/architecture-dark.svg">
+  <img src="docs/readme/architecture-light.svg" alt="Kawan's architecture. The React SPA calls the FastAPI backend over /api. An on-demand check from the API and APScheduler's cadence and deadline ticks run one check-in pipeline. The pipeline judges evidence and writes the check-in line on Chutes TEE models, falls back to a secondary judge on a timeout or error, writes verdicts and check-ins to SQLite or Postgres, and delivers each check-in over the WebSocket first, then Web Push and reminders. The API signs users in with Chutes over OAuth2 PKCE and writes the hard fields.">
 </picture>
 
 Kawan is a **single-process FastAPI backend** plus a **React SPA**. The frontend is organized in three zones: public pages (Zone 0), the SaaS shell (Zone 1 — home, commitments, analytics, settings), and the full-screen AI workspace (Zone 2 — the compose flow and live companion).
@@ -240,8 +240,8 @@ kawan/
 │   │   └── …            # auth, notifications, ui, share
 │   └── public/          # Live2D models, banner, icons, service worker
 ├── scripts/             # download_models.sh · download_voices.sh · helpers
-├── docs/screenshots/    # the images in this README
 └── .env.example         # annotated configuration
+docs/readme/             # the images in this README
 ```
 
 The diagram was made with [archify](https://github.com/tt-a1i/archify) and tinted with Kawan's design tokens.
