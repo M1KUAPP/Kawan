@@ -16,7 +16,7 @@ OUT = HERE.parent
 W, H = 1080, 1350
 
 LINKS = {
-    "repo": ("Repo", "github.com/kawan-chjl/dev", "https://github.com/kawan-chjl/dev"),
+    "repo": ("Repo", "github.com/M1KUAPP/Kawan", "https://github.com/M1KUAPP/Kawan"),
     "live": ("Live app", "kawan-frontend.vercel.app", "https://kawan-frontend.vercel.app"),
     "demo": ("Demo", "youtu.be/B3u5ByG_-jk", "https://youtu.be/B3u5ByG_-jk"),
 }

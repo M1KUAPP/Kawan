@@ -21,7 +21,7 @@ Together with Lim Yuh Kang, Jeremy Woon Zhe Ming and Chan Kuan Hou, we built �
 • 𝗥𝘂𝗻𝘀 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗰𝗼𝗻𝗳𝗶𝗱𝗲𝗻𝘁𝗶𝗮𝗹 𝗰𝗼𝗺𝗽𝘂𝘁𝗲: every call is TEE inference on Chutes (Intel TDX, zero prompt logging), billed to your own balance through Sign in with Chutes. We cannot read your goals. Not "we promise not to" — we can't.
 
 And now that it's over, the whole build is open source. 🔓
-➤ GitHub: [[github.com/kawan-chjl/dev]]
+➤ GitHub: [[github.com/M1KUAPP/Kawan]]
 ➤ Live app: [[kawan-frontend.vercel.app]]
 ➤ Demo video: [[youtu.be/B3u5ByG_-jk]]
 
