@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Downloads the three Live2D mascot models (kawan-spec.md §4.4) into apps/frontend/public/models/.
-# Raw model files are .gitignore'd — every dev runs this once after clone.
+# The models are tracked in Git LFS; this re-fetches them from their upstream sources.
 #
 # Sources (verified HTTP 200 as of 2026-06-23):
 #   Haru  — cdn.jsdelivr.net/gh/guansss/pixi-live2d-display@0.4.0/test/assets/haru/ (greeter t03)

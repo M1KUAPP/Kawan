@@ -308,10 +308,10 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
     To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
 
-2.  **Fetch the Live2D companion models.** Gitignored; one-time after clone.
+2.  **Fetch the Live2D companion models.** They are stored in Git LFS; pull them once after clone.
 
     ```sh
-    ./scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+    git lfs pull
     ```
 
 3.  **Run the backend.** FastAPI on `:8000`.
