@@ -642,8 +642,8 @@
 }
 
 /* .page-scroll — proofrank foldover mechanic.
-   Sits z-index:1 with an opaque bg on top of the fixed footer (z-index:0).
-   margin-bottom MUST equal footer height so scrolling to the bottom reveals it exactly. */
+    Sits z-index:1 with an opaque bg on top of the fixed footer (z-index:0).
+    margin-bottom MUST equal footer height so scrolling to the bottom reveals it exactly. */
 .page-scroll {
   position: relative;
   z-index: 1;
