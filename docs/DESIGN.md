@@ -103,12 +103,12 @@ Chutes (SIWC)**. Warm cream, editorial, generous; sets the brand tone before any
 (**Home · Commitments · Timeline · Settings**), bright cream, airy, quiet — the credible container,
 _not_ the star. Built as **four stacked layers** (z-order, top → bottom):
 
-1. **Nav sidebar** — top layer; an **overlay drawer** that renders _over_ content when open (not a
-   static push-column). On mobile: off-canvas drawer + bottom tab bar.
-2. **Topbar** — app header (logo, context title, account).
-3. **App content** — the scrolling content plane (rounded cards).
-4. **Footer** — bottom layer with a **fold-over / scroll-reveal** behavior: content lifts to expose it
-   at the end of scroll. _(Confirm exact fold behavior.)_
+1.  **Nav sidebar** — top layer; an **overlay drawer** that renders _over_ content when open (not a
+    static push-column). On mobile: off-canvas drawer + bottom tab bar.
+2.  **Topbar** — app header (logo, context title, account).
+3.  **App content** — the scrolling content plane (rounded cards).
+4.  **Footer** — bottom layer with a **fold-over / scroll-reveal** behavior: content lifts to expose it
+    at the end of scroll. _(Confirm exact fold behavior.)_
 
 **Zone 2 — AI workflow (the hero, character-present).** Commitment creation (Compose → Context → Plan),
 workspace chat, and check-ins — staged as a **light-novel / RPG dialogue** experience (Genshin, Wuthering
