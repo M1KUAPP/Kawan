@@ -21,13 +21,21 @@
     <br />
   </p>
 
-[![Python][Python.org]][Python-url]
-[![FastAPI][FastAPI.tiangolo.com]][FastAPI-url]
-[![React][React.js]][React-url]
-[![TypeScript][TypeScriptlang.org]][TypeScript-url]
-[![Vite][Vite.dev]][Vite-url]
-[![Live2D][Live2D.com]][Live2D-url]
-[![Chutes][Chutes.ai]][Chutes-url]
+[![Python][python-badge]][python-url]
+[![TypeScript][typescript-badge]][typescript-url]
+[![React][react-badge]][react-url]
+[![Vite][vite-badge]][vite-url]
+[![Live2D][live2d-badge]][live2d-url]
+[![FastAPI][fastapi-badge]][fastapi-url]
+[![SQLAlchemy][sqlalchemy-badge]][sqlalchemy-url]
+[![SQLite][sqlite-badge]][sqlite-url]
+[![PostgreSQL][postgresql-badge]][postgresql-url]
+[![Supabase][supabase-badge]][supabase-url]
+[![Chutes][chutes-badge]][chutes-url]
+[![Render][render-badge]][render-url]
+[![Vercel][vercel-badge]][vercel-url]
+[![uv][uv-badge]][uv-url]
+[![pytest][pytest-badge]][pytest-url]
 
 </div>
 
@@ -84,13 +92,44 @@ Built by **Team CHJL** with 💖 for Chutes Hack Malaysia 2026. Kawan won 1st Pl
 
 ### Screenshots
 
-|                            Landing                            |                                 Sign in                                  |
-| :-----------------------------------------------------------: | :----------------------------------------------------------------------: |
-|      ![Landing page](kawan/docs/screenshots/landing.png)      | ![Sign in with Chutes or as a guest](kawan/docs/screenshots/sign-in.png) |
-|                        **Guided tour**                        |                                 **Home**                                 |
-| ![Guided walkthrough](kawan/docs/screenshots/guided-tour.png) |            ![Home dashboard](kawan/docs/screenshots/home.png)            |
-|                        **Commitments**                        |                              **Analytics**                               |
-|  ![Commitments list](kawan/docs/screenshots/commitments.png)  |    ![Analytics & achievements](kawan/docs/screenshots/analytics.png)     |
+<table>
+  <tr>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/landing.png" alt="Landing page" width="100%">
+      <br />
+      <strong>Landing</strong> · Kawan's pitch: one commitment, verified evidence, and no self-report.
+    </td>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/sign-in.png" alt="Sign in with Chutes or as a guest" width="100%">
+      <br />
+      <strong>Sign in</strong> · Sign in with Chutes, or continue as a guest without an account.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/guided-tour.png" alt="Guided walkthrough" width="100%">
+      <br />
+      <strong>Guided tour</strong> · An optional tour that teaches the commitment flow on real components.
+    </td>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/home.png" alt="Home dashboard" width="100%">
+      <br />
+      <strong>Home</strong> · The dashboard links your commitments, analytics, workspace and recent activity.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/commitments.png" alt="Commitments list" width="100%">
+      <br />
+      <strong>Commitments</strong> · Every commitment with its deliverable, status and deadline, active or finished.
+    </td>
+    <td width="50%" valign="top" align="left">
+      <img src="kawan/docs/screenshots/analytics.png" alt="Analytics & achievements" width="100%">
+      <br />
+      <strong>Analytics</strong> · A productivity meter, identity titles and 15 achievements that reward how you won.
+    </td>
+  </tr>
+</table>
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
@@ -341,17 +380,33 @@ See [LICENSE](LICENSE) for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[Python.org]: https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white
-[Python-url]: https://www.python.org/
-[FastAPI.tiangolo.com]: https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white
-[FastAPI-url]: https://fastapi.tiangolo.com/
-[React.js]: https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://react.dev/
-[TypeScriptlang.org]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
-[TypeScript-url]: https://www.typescriptlang.org/
-[Vite.dev]: https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white
-[Vite-url]: https://vite.dev/
-[Live2D.com]: https://img.shields.io/badge/Live2D-PixiJS_v6-FF7043?style=for-the-badge
-[Live2D-url]: https://www.live2d.com/
-[Chutes.ai]: https://img.shields.io/badge/Inference-Chutes_TEE-2E7D5B?style=for-the-badge
-[Chutes-url]: https://chutes.ai
+[python-badge]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[python-url]: https://www.python.org/
+[typescript-badge]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[typescript-url]: https://www.typescriptlang.org/
+[react-badge]: https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black
+[react-url]: https://react.dev/
+[vite-badge]: https://img.shields.io/badge/Vite-9135FF?style=for-the-badge&logo=vite&logoColor=white
+[vite-url]: https://vite.dev/
+[live2d-badge]: https://img.shields.io/badge/Live2D-FF6E2D?style=for-the-badge
+[live2d-url]: https://www.live2d.com/
+[fastapi-badge]: https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white
+[fastapi-url]: https://fastapi.tiangolo.com/
+[sqlalchemy-badge]: https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white
+[sqlalchemy-url]: https://www.sqlalchemy.org/
+[sqlite-badge]: https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white
+[sqlite-url]: https://www.sqlite.org/
+[postgresql-badge]: https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white
+[postgresql-url]: https://www.postgresql.org/
+[supabase-badge]: https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white
+[supabase-url]: https://supabase.com/
+[chutes-badge]: https://img.shields.io/badge/Chutes-63D297?style=for-the-badge
+[chutes-url]: https://chutes.ai/
+[render-badge]: https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white
+[render-url]: https://render.com/
+[vercel-badge]: https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
+[vercel-url]: https://vercel.com/
+[uv-badge]: https://img.shields.io/badge/uv-DE5FE9?style=for-the-badge&logo=uv&logoColor=white
+[uv-url]: https://docs.astral.sh/uv/
+[pytest-badge]: https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white
+[pytest-url]: https://docs.pytest.org/
