@@ -6,19 +6,19 @@
 #   adik     → en_US-libritts-high   (lighter, higher pitch)
 #   cik_maid → en_GB-alba-medium     (brisker, playful British accent)
 #
-# Output dir: kawan/backend/voices/  (gitignored)
+# Output dir: apps/backend/voices/  (gitignored)
 # Override via: KAWAN_PIPER_VOICES_DIR=/path/to/dir ./download_voices.sh
 #
 # After downloading, install piper-tts:
-#   cd kawan/backend && uv add piper-tts
-# Then set KAWAN_PIPER_VOICES_DIR in kawan/.env (or leave blank to use the default).
+#   cd apps/backend && uv add piper-tts
+# Then set KAWAN_PIPER_VOICES_DIR in apps/backend/.env (or leave blank to use the default).
 #
 # Source: https://huggingface.co/rhasspy/piper-voices
 
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-VOICES_DIR="${KAWAN_PIPER_VOICES_DIR:-${REPO_ROOT}/kawan/backend/voices}"
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+VOICES_DIR="${KAWAN_PIPER_VOICES_DIR:-${REPO_ROOT}/apps/backend/voices}"
 HF_BASE="https://huggingface.co/rhasspy/piper-voices/resolve/main"
 
 mkdir -p "${VOICES_DIR}"
@@ -55,7 +55,7 @@ echo "All voices ready in ${VOICES_DIR}"
 echo ""
 echo "Next steps:"
 echo "  1. Install piper-tts (optional dep, local only):"
-echo "       cd kawan/backend && uv add piper-tts"
-echo "  2. Add to kawan/.env:"
+echo "       cd apps/backend && uv add piper-tts"
+echo "  2. Add to apps/backend/.env:"
 echo "       KAWAN_PIPER_VOICES_DIR=${VOICES_DIR}"
-echo "  3. Start the backend: cd kawan/backend && uv run uvicorn app.main:app --reload"
+echo "  3. Start the backend: cd apps/backend && uv run uvicorn app.main:app --reload"

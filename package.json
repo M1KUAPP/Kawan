@@ -1,14 +1,14 @@
 {
   "packageManager": "bun@1.4.2",
   "scripts": {
-    "build": "bun run --cwd kawan/frontend build",
-    "check": "bun run lint && bun run test && bun run --cwd kawan/frontend lint && bun run build",
+    "build": "bun run --cwd apps/frontend build",
+    "check": "bun run lint && bun run test && bun run --cwd apps/frontend lint && bun run build",
     "format": "biome check --write . && prettier --write .",
     "graph": "graphify update .",
     "lint": "biome check . && prettier --check .",
     "lint:fix": "biome check --write . && prettier --write .",
     "prepare": "husky",
-    "test": "cd kawan/backend && uv run pytest"
+    "test": "cd apps/backend && uv run pytest"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css}": "biome check --write --no-errors-on-unmatched",

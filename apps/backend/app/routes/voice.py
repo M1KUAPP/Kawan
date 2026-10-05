@@ -19,7 +19,7 @@ Per-persona voice table (backend is single source of truth — frontend sends on
 
 Voice model storage:
   Files: <KAWAN_PIPER_VOICES_DIR>/<voice_name>.onnx  +  <voice_name>.onnx.json
-  Default dir: kawan/backend/voices/  (gitignored)
+  Default dir: apps/backend/voices/  (gitignored)
   Override: set KAWAN_PIPER_VOICES_DIR in environment.
 """
 
@@ -72,7 +72,7 @@ def _voices_dir() -> Path:
     override = getattr(settings, 'piper_voices_dir', None)
     if override:
         return Path(override)
-    # Default: kawan/backend/voices/ (two levels up from app/)
+    # Default: apps/backend/voices/ (two levels up from app/)
     return Path(__file__).resolve().parents[2] / 'voices'
 
 

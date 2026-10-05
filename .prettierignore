@@ -18,8 +18,8 @@
 *.html
 
 # Vendored Live2D Cubism core and the service worker
-kawan/frontend/public/live2dcubismcore.min.js
-kawan/frontend/public/sw.js
+apps/frontend/public/live2dcubismcore.min.js
+apps/frontend/public/sw.js
 
 # Live2D models stored in Git LFS
-kawan/frontend/public/models/
+apps/frontend/public/models/

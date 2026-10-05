@@ -1,4 +1,4 @@
-# kawan/backend/tests/test_llm_client.py
+# apps/backend/tests/test_llm_client.py
 """ChutesLLMClient: maps the four calls to ChutesClient.structured with the right
 model/schema, and passes the billing user_id through. Fully offline (fake client)."""
 

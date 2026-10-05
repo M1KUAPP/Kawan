@@ -2,7 +2,7 @@ services:
   - type: web
     name: kawan-backend
     runtime: python
-    rootDir: kawan/backend
+    rootDir: apps/backend
     buildCommand: uv sync
     startCommand: uv run uvicorn app.main:app --host 0.0.0.0 --port $PORT
     numInstances: 1
