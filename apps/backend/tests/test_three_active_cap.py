@@ -30,9 +30,6 @@ async def _start(client, cid: str) -> None:
     assert r.status_code == 200
 
 
-# ── Cap at creation ───────────────────────────────────────────────────────────
-
-
 async def test_three_active_allowed_create(client, db):
     """Three started commitments coexist; fourth create is blocked."""
     id1 = await _create(client)
@@ -74,9 +71,6 @@ async def test_fourth_create_blocked_friendly_message(client):
     assert any(word in detail for word in ("complete", "end", "finish"))
 
 
-# ── Cap at start ─────────────────────────────────────────────────────────────
-
-
 async def test_fourth_start_blocked(client):
     """Starting a fourth draft is blocked when three are already active."""
     for _ in range(3):
@@ -115,9 +109,6 @@ async def test_fourth_start_blocked_db_seed(client, db):
     assert "3" in r.json()["detail"]
 
 
-# ── Completing one frees a slot ───────────────────────────────────────────────
-
-
 async def test_completing_one_frees_a_slot(client, db):
     """After abandoning one active commitment, a new create succeeds."""
     ids = []
@@ -145,9 +136,6 @@ async def test_completing_one_frees_a_slot(client, db):
     assert r.status_code == 201
 
 
-# ── Draft does NOT count against cap ─────────────────────────────────────────
-
-
 async def test_draft_does_not_count_against_cap(client):
     """Three active + one draft is still fine; only in-flight statuses count."""
     for _ in range(3):
@@ -167,9 +155,6 @@ async def test_draft_does_not_count_against_cap(client):
     assert r.status_code == 409
 
 
-# ── No "replace" behavior ─────────────────────────────────────────────────────
-
-
 async def test_create_does_not_replace_existing_active(client, db):
     """Creating a new commitment never removes or replaces an existing active one."""
     id1 = await _create(client)
@@ -187,9 +172,6 @@ async def test_create_does_not_replace_existing_active(client, db):
     c2 = await db.get(Commitment, id2)
     assert c2 is not None
     assert c2.status == "active"
-
-
-# ── GET /active backward compatibility ───────────────────────────────────────
 
 
 async def test_get_active_returns_most_recent_when_multiple(client, db):
@@ -217,9 +199,6 @@ async def test_get_active_404_when_none(client):
     """GET /active still returns 404 when no active commitment exists."""
     r = await client.get("/api/commitments/active")
     assert r.status_code == 404
-
-
-# ── Terminal + lapsed statuses do NOT block new creates ───────────────────────
 
 
 async def test_terminal_commitments_do_not_block_new_creates(client, db):
@@ -250,9 +229,6 @@ async def test_terminal_commitments_do_not_block_new_creates(client, db):
         json={"action": "4th", "deliverable": "d", "deadline": _future()},
     )
     assert r.status_code == 409
-
-
-# ── Demo walkthrough bypasses the cap ─────────────────────────────────────────
 
 
 async def test_demo_create_and_start_bypass_cap(client, db):

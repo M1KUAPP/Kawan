@@ -59,8 +59,6 @@ def _make_adapter(fake, handler=_repo_handler):
     return GitHubAdapter(fake, http=http), http
 
 
-# ── parse_github_repo_url ───────────────────────────────────────────────────
-
 def test_parse_valid_repo_url():
     from app.adapters.github import parse_github_repo_url
     assert parse_github_repo_url("https://github.com/owner/repo") == "owner/repo"
@@ -75,8 +73,6 @@ def test_parse_invalid_url_returns_none():
     assert parse_github_repo_url("https://github.com/owner") is None  # only owner, no repo
     assert parse_github_repo_url("") is None
 
-
-# ── fetch_repo_url ──────────────────────────────────────────────────────────
 
 async def test_fetch_repo_url_returns_commits():
     fake = _FakeChutes({})
@@ -125,8 +121,6 @@ async def test_fetch_repo_url_github_404_returns_empty_bundle():
     assert bundle.items == []
 
 
-# ── full round-trip: fetch_repo_url + judge ─────────────────────────────────
-
 async def test_github_link_judge_pass():
     fake = _FakeChutes(_PASS_RESULT)
     adapter, http = _make_adapter(fake)
@@ -157,8 +151,6 @@ async def test_github_link_no_commits_returns_unclear():
     assert fake.calls == []
 
 
-# ── cadence path (evidence_config.repo) is unchanged ────────────────────────
-
 async def test_existing_cadence_fetch_unaffected():
     """The original fetch(commitment, since) path still works."""
     fake = _FakeChutes({})
@@ -182,8 +174,6 @@ async def test_existing_cadence_fetch_unaffected():
     assert len(bundle.items) == 1
     assert bundle.items[0]["message"] == "cadence commit"
 
-
-# ── HTTP route tests ─────────────────────────────────────────────────────────
 
 async def test_github_link_route_malformed_url(client):
     rc = await client.post(

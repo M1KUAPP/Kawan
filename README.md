@@ -298,7 +298,7 @@ The app runs **fully offline out of the box** — the default AI backend is a de
     | ------------------------------------------- | --------------------------------------------------------------------------------- |
     | `KAWAN_AI_BACKEND`                          | `stub` (deterministic, offline — default) or `chutes` (real TEE inference)        |
     | `KAWAN_DATABASE_URL`                        | SQLite by default; a Supabase pooler URL in prod                                  |
-    | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference and app registration                  |
+    | `KAWAN_CHUTES_API_KEY`                      | Chutes token — enables guest-mode inference                                       |
     | `KAWAN_SIWC_*`                              | Sign in with Chutes (OAuth2 PKCE) client credentials                              |
     | `KAWAN_SESSION_SECRET` / `KAWAN_FERNET_KEY` | Cookie signing + token-at-rest encryption (must be set in prod)                   |
     | `KAWAN_VAPID_*`                             | Web Push keypair — blank disables push (delivery falls back to the timeline)      |
@@ -308,10 +308,10 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
     To use **real inference**, set `KAWAN_AI_BACKEND=chutes` and provide `KAWAN_CHUTES_API_KEY` (and the `KAWAN_SIWC_*` values for Sign in with Chutes).
 
-2.  **Fetch the Live2D companion models.** Gitignored; one-time after clone.
+2.  **Fetch the Live2D companion models.** They are stored in Git LFS; pull them once after clone.
 
     ```sh
-    ./scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+    git lfs pull
     ```
 
 3.  **Run the backend.** FastAPI on `:8000`.
@@ -339,7 +339,7 @@ The app runs **fully offline out of the box** — the default AI backend is a de
     - **Backend → Render.** [`apps/backend/render.yaml`](apps/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`apps/backend/DEPLOY.md`](apps/backend/DEPLOY.md).
     - **Frontend → Vercel.** [`apps/frontend/vercel.json`](apps/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-6.  **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
+6.  **Run the checks.** From the repository root, lint the repository, run the backend tests, then build the frontend.
 
     ```sh
     bun install

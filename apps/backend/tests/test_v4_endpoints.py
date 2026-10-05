@@ -20,9 +20,6 @@ async def _create_commitment(client) -> str:
     return r.json()['id']
 
 
-# ── DELETE /api/commitments/{id} ────────────────────────────────────────────
-
-
 async def test_delete_commitment_returns_204(client):
     cid = await _create_commitment(client)
     r = await client.delete(f'/api/commitments/{cid}')
@@ -91,9 +88,6 @@ async def test_delete_commitment_not_owned_by_other(client, db):
     assert still_there is not None
 
 
-# ── DELETE /api/me/history ──────────────────────────────────────────────────
-
-
 async def test_clear_history_returns_204(client):
     r = await client.delete('/api/me/history')
     assert r.status_code == 204
@@ -120,9 +114,6 @@ async def test_clear_history_no_commitments_ok(client):
     # No commitments exist yet — should still return 204 gracefully
     r = await client.delete('/api/me/history')
     assert r.status_code == 204
-
-
-# ── GET /api/me/history ─────────────────────────────────────────────────────
 
 
 async def test_get_history_empty(client):
@@ -190,9 +181,6 @@ async def test_get_history_cross_user_isolation(client, db):
     assert r.status_code == 200
     ids = [row['id'] for row in r.json()]
     assert b_audit.id not in ids
-
-
-# ── DELETE /api/me/data ─────────────────────────────────────────────────────
 
 
 async def test_delete_my_data_returns_204(client):
@@ -269,9 +257,6 @@ async def test_delete_my_data_cross_user_isolation(client, db):
     await db.rollback()
     still_there = await db.get(Commitment, b_commitment.id)
     assert still_there is not None
-
-
-# ── GET /api/commitments (paginated list, multi-active override) ─────────────
 
 
 async def test_list_commitments_empty(client):

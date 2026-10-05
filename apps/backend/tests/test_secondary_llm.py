@@ -57,8 +57,6 @@ def _provider_response(payload: dict) -> httpx.Response:
     return httpx.Response(200, json={"candidates": [{"content": {"parts": [{"text": json.dumps(payload)}]}}]})
 
 
-# ── per-schema request/response mapping ──────────────────────────────────────────
-
 @pytest.mark.parametrize("schema_name", ["intake", "plan", "checkin", "workspace"])
 async def test_structured_returns_schema_valid_dict_per_route(schema_name):
     def handler(request: httpx.Request) -> httpx.Response:
@@ -81,8 +79,6 @@ async def test_structured_returns_schema_valid_dict_per_route(schema_name):
     for key in REQUIRED_KEYS[schema_name]:
         assert key in out
 
-
-# ── outbound request shape ────────────────────────────────────────────────────────
 
 async def test_structured_sends_expected_request_shape():
     seen = {}
@@ -120,8 +116,6 @@ async def test_structured_sends_expected_request_shape():
     assert "model" in roles  # assistant -> model translation
     assert contents[0]["role"] == "user"  # guaranteed leading user turn
 
-
-# ── failure -> ChutesError guards ─────────────────────────────────────────────────
 
 async def test_structured_raises_chutes_error_when_key_unset(monkeypatch):
     monkeypatch.setattr(settings, "gemini_api_key", "")
@@ -169,8 +163,6 @@ async def test_structured_raises_chutes_error_on_malformed_body():
     finally:
         await http.aclose()
 
-
-# ── schema-parity vs prompts.py (guards drift) ─────────────────────────────────────
 
 def _required_and_props(schema: dict) -> tuple[set, set]:
     return set(schema.get("required", [])), set(schema.get("properties", {}).keys())

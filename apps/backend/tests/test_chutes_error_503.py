@@ -21,8 +21,6 @@ async def _create_commitment(client) -> str:
     return r.json()['id']
 
 
-# ── context_turn ─────────────────────────────────────────────────────────────
-
 async def test_context_turn_chutes_error_returns_503(client, monkeypatch):
     cid = await _create_commitment(client)
 
@@ -40,8 +38,6 @@ async def test_context_turn_chutes_error_returns_503(client, monkeypatch):
     assert body['emotion'] == 'neutral'
 
 
-# ── workspace_turn ───────────────────────────────────────────────────────────
-
 async def test_workspace_turn_chutes_error_returns_503(client, monkeypatch):
     cid = await _create_commitment(client)
 
@@ -58,8 +54,6 @@ async def test_workspace_turn_chutes_error_returns_503(client, monkeypatch):
     assert body['emotion'] == 'neutral'
 
 
-# ── plan ─────────────────────────────────────────────────────────────────────
-
 async def test_plan_chutes_error_returns_503(client, monkeypatch):
     cid = await _create_commitment(client)
 
@@ -74,8 +68,6 @@ async def test_plan_chutes_error_returns_503(client, monkeypatch):
     assert 'say' in body
     assert body['roadmap'] == []
 
-
-# ── check ─────────────────────────────────────────────────────────────────────
 
 async def test_check_chutes_error_returns_503(client, monkeypatch):
     cid = await _create_commitment(client)

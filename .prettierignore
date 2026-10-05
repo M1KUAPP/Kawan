@@ -16,10 +16,3 @@
 *.jsonc
 *.css
 *.html
-
-# Vendored Live2D Cubism core and the service worker
-apps/frontend/public/live2dcubismcore.min.js
-apps/frontend/public/sw.js
-
-# Live2D models stored in Git LFS
-apps/frontend/public/models/
