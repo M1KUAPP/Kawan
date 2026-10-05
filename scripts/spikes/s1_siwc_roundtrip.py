@@ -16,8 +16,8 @@ from pathlib import Path
 
 import httpx
 
-_KAWAN_ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(_KAWAN_ROOT / "backend"))
+_BACKEND_ROOT = Path(__file__).resolve().parents[2] / "apps" / "backend"
+sys.path.insert(0, str(_BACKEND_ROOT))
 from app.config import settings  # noqa: E402
 
 VERIFIER = secrets.token_urlsafe(64)[:100]
@@ -26,7 +26,7 @@ STATE = secrets.token_urlsafe(16)
 
 env = dict(
     line.split("=", 1)
-    for line in open(_KAWAN_ROOT / ".env").read().splitlines()
+    for line in open(_BACKEND_ROOT / ".env").read().splitlines()
     if "=" in line and not line.startswith("#")
 )
 CLIENT_ID = env["KAWAN_SIWC_CLIENT_ID"]

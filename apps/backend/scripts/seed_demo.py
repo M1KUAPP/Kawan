@@ -4,7 +4,7 @@ Provisions a clean, demo-flattering dataset on a DEDICATED demo account
 (id='demo_showcase') and can RESET it idempotently.  The shared guest user
 is NEVER touched — a hard guard enforces this.
 
-Run from kawan/backend/:
+Run from apps/backend/:
     uv run python scripts/seed_demo.py            # seed (first time)
     uv run python scripts/seed_demo.py --reset    # wipe + reseed
     uv run python scripts/seed_demo.py --status   # print what is in the DB

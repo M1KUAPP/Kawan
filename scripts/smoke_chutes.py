@@ -15,11 +15,11 @@ It also lists the live TEE catalog with capabilities so you can pick a text anch
 + a vision anchor if a swap is ever needed. Exits non-zero on any failure — wire it
 into activation / CI.
 
-    cd kawan
-    uv --project backend run python scripts/smoke_chutes.py          # validate + list
-    uv --project backend run python scripts/smoke_chutes.py --json    # raw catalog dump
+    # from the repository root
+    uv --project apps/backend run python scripts/smoke_chutes.py          # validate + list
+    uv --project apps/backend run python scripts/smoke_chutes.py --json    # raw catalog dump
 
-Needs KAWAN_CHUTES_API_KEY (team cpk_) in kawan/.env. Read-only; bills nothing.
+Needs KAWAN_CHUTES_API_KEY (team cpk_) in apps/backend/.env. Read-only; bills nothing.
 Reference: docs/references/chutes-llms.md (§ List live models).
 """
 
@@ -28,14 +28,14 @@ from pathlib import Path
 
 import httpx
 
-_KAWAN_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(_KAWAN_ROOT / "backend"))
+_BACKEND_ROOT = Path(__file__).resolve().parents[1] / "apps" / "backend"
+sys.path.insert(0, str(_BACKEND_ROOT))
 from app.config import settings  # noqa: E402
 from app.personas import PERSONAS  # noqa: E402
 from app.prompts import GITHUB_JUDGE_MODELS, JUDGE_MODELS  # noqa: E402
 
 if not settings.chutes_api_key:
-    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in kawan/.env first.")
+    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in apps/backend/.env first.")
 
 MODELS_URL = f"{settings.chutes_inference_base_url}/models"
 HEADERS = {"Authorization": f"Bearer {settings.chutes_api_key}"}
