@@ -1,4 +1,4 @@
-# kawan/backend/app/chutes.py
+# apps/backend/app/chutes.py
 """ChutesClient — the single Chutes inference integration point (spec §9, TR-29).
 
 OpenAI-compatible structured output over httpx: per-user Bearer token (never

@@ -2,10 +2,10 @@
 on the LIVE Chutes backend (billed to the team cpk_) and dumps a markdown transcript +
 the tone rubric for Tuna to design-review. Re-run after any prompt edit or model swap.
 
-    cd kawan
-    uv --project backend run python scripts/persona_qa.py > persona-qa.md
+    # from the repository root
+    uv --project apps/backend run python scripts/persona_qa.py > persona-qa.md
 
-Requires KAWAN_CHUTES_API_KEY (cpk_) in kawan/.env. This makes real (billed) inference
+Requires KAWAN_CHUTES_API_KEY (cpk_) in apps/backend/.env. This makes real (billed) inference
 calls — run it for the tone-tuning pass, not in CI.
 """
 
@@ -14,8 +14,8 @@ import sys
 from types import SimpleNamespace
 from pathlib import Path
 
-_KAWAN_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(_KAWAN_ROOT / "backend"))
+_BACKEND_ROOT = Path(__file__).resolve().parents[1] / "apps" / "backend"
+sys.path.insert(0, str(_BACKEND_ROOT))
 
 from app.chutes import ChutesClient  # noqa: E402
 from app.config import settings  # noqa: E402
@@ -24,7 +24,7 @@ from app.personas import PERSONAS  # noqa: E402
 from app.util import now_utc  # noqa: E402
 
 if not settings.chutes_api_key:
-    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in kawan/.env first.")
+    sys.exit("Set KAWAN_CHUTES_API_KEY (cpk_) in apps/backend/.env first.")
 
 GUEST = "guest"
 

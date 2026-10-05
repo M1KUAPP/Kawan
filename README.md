@@ -87,7 +87,7 @@ You commit to a single deliverable with a deadline. Kawan checks in on a schedul
 
 The catch that makes it work: **Kawan can never change the terms of your deal.** Your goal, deadline, and how you're verified are yours alone. The AI reads them, reasons about them, and nudges you — but it is structurally incapable of editing them. That guarantee is enforced in the schema, not just the prompt (see [The trust boundary](#architecture)).
 
-Built by **Team CHJL** with 💖. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf) and the [design direction](docs/DESIGN.md#1-concept).
+Built by **Team CHJL** with 💖. Read the [Pitch Deck](docs/kawan-pitch-deck.pdf) and the [design direction](docs/DESIGN.md#1-concept).
 
 Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) (Corporate Track), where it placed 1st.
 
@@ -225,7 +225,7 @@ A commitment's status machine (`draft → active → verifying → grace → com
 **Project structure.**
 
 ```text
-kawan/
+apps/
 ├── backend/             # FastAPI single-process service
 │   ├── app/
 │   │   ├── main.py      # app + lifespan (scheduler, telegram poller)
@@ -236,17 +236,19 @@ kawan/
 │   │   ├── routes/      # auth · commitments · push · telegram · voice · ws
 │   │   └── …            # scheduler, chutes client, notify, state machine
 │   ├── render.yaml      # Render deploy
-│   └── DEPLOY.md        # DB / pooler notes
-├── frontend/            # React + Vite SPA
-│   ├── src/
-│   │   ├── shell/       # Zone 1 — SaaS shell + pages
-│   │   ├── zone2/       # Zone 2 — workspace, Live2D, new-commitment flow
-│   │   ├── timeline/    # analytics, achievements, productivity meter
-│   │   └── …            # auth, notifications, ui, share
-│   └── public/          # Live2D models, banner, icons, service worker
-├── scripts/             # download_models.sh · download_voices.sh · helpers
-└── .env.example         # annotated configuration
-docs/readme/             # the images in this README
+│   ├── DEPLOY.md        # DB / pooler notes
+│   └── .env.example     # annotated backend configuration
+└── frontend/            # React + Vite SPA
+    ├── src/
+    │   ├── shell/       # Zone 1 — SaaS shell + pages
+    │   ├── zone2/       # Zone 2 — workspace, Live2D, new-commitment flow
+    │   ├── timeline/    # analytics, achievements, productivity meter
+    │   └── …            # auth, notifications, ui, share
+    ├── public/          # Live2D models (Git LFS), banner, icons, service worker
+    └── .env.example     # optional VITE_* overrides
+scripts/                 # download_models.sh · download_voices.sh · helpers
+docs/                    # PRD, TRD, design, ADRs and the pitch deck
+└── readme/              # the images in this README
 ```
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
@@ -285,12 +287,12 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 1. **Configure the environment.** Run each block from the repository root.
 
    ```sh
-   cp kawan/.env.example kawan/.env  # in the kawan/ folder; sensible dev defaults are pre-filled
+   cp apps/backend/.env.example apps/backend/.env  # sensible dev defaults are pre-filled
    ```
 
    The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
 
-   All settings use the `KAWAN_` prefix and load from `kawan/.env`. See [`.env.example`](kawan/.env.example) for the fully annotated list. The most important knobs:
+   All settings use the `KAWAN_` prefix and load from `apps/backend/.env`. See [`.env.example`](apps/backend/.env.example) for the fully annotated list. The most important knobs:
 
    | Variable                                    | What it does                                                                      |
    | ------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -309,13 +311,13 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 2. **Fetch the Live2D companion models.** Gitignored; one-time after clone.
 
    ```sh
-   ./kawan/scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
+   ./scripts/download_models.sh  # Haru + Hiyori auto-download; LiveroiD is a manual BOOTH step
    ```
 
 3. **Run the backend.** FastAPI on `:8000`.
 
    ```sh
-   cd kawan/backend
+   cd apps/backend
    uv sync
    uv run uvicorn app.main:app --reload
    ```
@@ -323,19 +325,19 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 4. **Run the frontend.** Vite on `:5173`, proxies `/api` and `/ws` to the backend.
 
    ```sh
-   cd kawan/frontend
+   cd apps/frontend
    bun install
    bun dev
    ```
 
    Open **http://localhost:5173** and choose **Continue as guest** to start.
 
-   > **Optional — voices:** run `./kawan/scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
+   > **Optional — voices:** run `./scripts/download_voices.sh` to fetch the three Piper persona voices. Without them, the frontend falls back to the browser's WebSpeech voice.
 
 5. **Deployment.**
 
-   - **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
-   - **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
+   - **Backend → Render.** [`apps/backend/render.yaml`](apps/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`apps/backend/DEPLOY.md`](apps/backend/DEPLOY.md).
+   - **Frontend → Vercel.** [`apps/frontend/vercel.json`](apps/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
 6. **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
 

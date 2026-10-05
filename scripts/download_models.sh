@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Downloads the three Live2D mascot models (kawan-spec.md §4.4) into frontend/public/models/.
+# Downloads the three Live2D mascot models (kawan-spec.md §4.4) into apps/frontend/public/models/.
 # Raw model files are .gitignore'd — every dev runs this once after clone.
 #
 # Sources (verified HTTP 200 as of 2026-06-23):
@@ -8,7 +8,7 @@
 #   LiveroiD — BOOTH (manual step, cannot be scripted)
 set -euo pipefail
 cd "$(dirname "$0")/.."
-DEST=frontend/public/models
+DEST=apps/frontend/public/models
 mkdir -p "$DEST"
 
 # fetch_file <dest_path> <url>
@@ -109,7 +109,7 @@ if [ ! -d "$DEST/liveroid" ] || [ -z "$(ls -A "$DEST/liveroid" 2>/dev/null)" ]; 
   1. Log in at https://booth.pm (free pixiv account)
   2. Open https://booth.pm/en/items/2685284 → add the 0-JPY item → checkout
   3. Download LiveroiD_A_1.2.zip from your BOOTH Library
-  4. Unzip so that both LiveroiD_A-Y01/ and LiveroiD_A-Y02/ appear under frontend/public/models/liveroid/
+  4. Unzip so that both LiveroiD_A-Y01/ and LiveroiD_A-Y02/ appear under apps/frontend/public/models/liveroid/
   Credit required: #LiveroiD + "モデル制作：八城惺架 (@yashiro_seika)" (already in README).
 EOF
 else
