@@ -240,7 +240,7 @@ try {
   for (const theme of ['light', 'dark']) {
     const pinned = svg.replace(/<svg\b/, `<svg data-theme="${theme}"`)
     const out = path.join(README_DIR, `architecture-${theme}.svg`)
-    fs.writeFileSync(out, pinned)
+    fs.writeFileSync(out, pinned.replace(/[ \t]+$/gm, '').replace(/\n*$/, '\n'))
     console.log(`wrote ${path.relative(process.cwd(), out)} (${Math.round(pinned.length / 1024)} KB)`)
   }
 } finally {
