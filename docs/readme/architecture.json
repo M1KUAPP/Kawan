@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Kawan architecture",
+    "quality_profile": "showcase",
+    "viewBox": [1390, 920]
+  },
+  "components": [
+    { "id": "user", "type": "external", "label": "User", "sublabel": "browser", "pos": [40, 250], "size": [120, 72] },
+    { "id": "ui", "type": "frontend", "label": "Shell + Workspace", "sublabel": "React 18 · Zones 0-2", "pos": [240, 250], "size": [170, 72] },
+    { "id": "live2d", "type": "frontend", "label": "Live2D avatar", "sublabel": "PixiJS v6", "pos": [240, 60], "size": [170, 64] },
+    { "id": "sw", "type": "frontend", "label": "Service Worker", "sublabel": "Web Push", "pos": [240, 760], "size": [170, 72] },
+    { "id": "api", "type": "backend", "label": "REST /api/*", "sublabel": "FastAPI routes", "pos": [530, 250], "size": [170, 72] },
+    { "id": "pipe", "type": "backend", "label": "Check-in pipeline", "sublabel": "+ final verifier", "pos": [870, 250], "size": [190, 72] },
+    { "id": "sched", "type": "backend", "label": "APScheduler", "sublabel": "cadence ticks", "pos": [1180, 250], "size": [170, 72] },
+    { "id": "db", "type": "database", "label": "SQLite / Postgres", "sublabel": "hard fields · soft context", "pos": [530, 440], "size": [170, 72] },
+    { "id": "ws", "type": "backend", "label": "WebSocket /ws", "sublabel": "per-user hub", "pos": [530, 600], "size": [170, 72] },
+    { "id": "chutes", "type": "cloud", "label": "Chutes TEE", "sublabel": "inference + Sign in with Chutes", "pos": [570, 60], "size": [440, 64] },
+    { "id": "fallback", "type": "cloud", "label": "Secondary judge", "sublabel": "Gemini API", "pos": [1180, 60], "size": [170, 64] },
+    { "id": "notify", "type": "cloud", "label": "Email · Web Push · Telegram", "sublabel": "Resend · VAPID · Bot API", "pos": [870, 760], "size": [190, 72] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "React SPA (Vite)", "wraps": ["ui", "live2d", "sw"] },
+    { "kind": "region", "label": "FastAPI (single process)", "wraps": ["api", "pipe", "sched", "db", "ws"] }
+  ],
+  "connections": [
+    { "id": "user-uses-app", "from": "user", "to": "ui", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "ui-fetch-api", "from": "ui", "to": "api", "label": "fetch /api/*", "variant": "emphasis" },
+    { "id": "api-runs-check", "from": "api", "to": "pipe", "label": "check now · upload", "variant": "emphasis" },
+    { "id": "sched-ticks", "from": "sched", "to": "pipe", "label": "cadence · deadline", "labelDy": 24 },
+    { "id": "ui-drives-avatar", "from": "ui", "to": "live2d", "label": "emotion cues" },
+    { "id": "api-hard-fields", "from": "api", "to": "db", "label": "hard fields (GUI)", "labelAt": [563.2, 384] },
+    { "id": "api-siwc", "from": "api", "to": "chutes", "label": "OAuth2 PKCE", "variant": "security" },
+    { "id": "pipe-judge", "from": "pipe", "to": "chutes", "label": "judge · check-in line" },
+    { "id": "pipe-fallback", "from": "pipe", "to": "fallback", "label": "on timeout / error", "variant": "dashed" },
+    { "id": "pipe-persist", "from": "pipe", "to": "db", "label": "verdicts · check-ins", "via": [[769, 286], [769, 476]], "labelAt": [712, 384] },
+    { "id": "pipe-ws-tier", "from": "pipe", "to": "ws", "label": "1 · WebSocket", "labelDx": 42, "labelDy": 16 },
+    { "id": "ws-live-checkins", "from": "ws", "to": "ui", "label": "live check-ins", "variant": "dashed" },
+    { "id": "pipe-push-tier", "from": "pipe", "to": "notify", "label": "2 · Web Push · reminders", "labelAt": [896.4, 544] },
+    { "id": "push-to-sw", "from": "notify", "to": "sw", "label": "Web Push" }
+  ]
+}
