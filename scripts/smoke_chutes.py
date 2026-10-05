@@ -1,4 +1,4 @@
-"""C5 activation gate: validate every configured Chutes model id against the LIVE
+"""Activation gate: validate every configured Chutes model id against the LIVE
 catalog before flipping KAWAN_AI_BACKEND=chutes.
 
 The persona/judge model ids in app/personas.py + app/prompts.py are only as good as

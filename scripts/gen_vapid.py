@@ -1,4 +1,4 @@
-"""D3 ops: generate a VAPID keypair for Web Push and print the env vars the backend
+"""Generate a VAPID keypair for Web Push and print the env vars the backend
 reads. Web Push stays dark until these are set; once set, delivery lights up for the
 Settings opt-in (NOT a scripted demo beat — in-app + email is the X-NOTIF baseline).
 

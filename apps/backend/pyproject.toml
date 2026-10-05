@@ -24,12 +24,7 @@ dependencies = [
 dev = [
     "pytest>=8",
     "pytest-asyncio>=0.24",
-    "ruff>=0.8",
 ]
-
-[tool.ruff]
-line-length = 120
-target-version = "py312"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

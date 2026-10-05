@@ -78,8 +78,6 @@ async def test_siwc_login_redirects_to_idp(client):
     assert "client_id=" in loc and "code_challenge=" in loc and "state=" in loc
 
 
-# ── X1: PATCH /api/me { persona } persists and echoes the /me shape ────────────
-
 async def test_patch_me_persists_persona(client, db):
     r = await client.patch("/api/me", json={"persona": "adik"})
     assert r.status_code == 200
@@ -99,8 +97,6 @@ async def test_patch_me_rejects_unknown_persona(client):
     r = await client.patch("/api/me", json={"persona": "bogus"})
     assert r.status_code == 422
 
-
-# ── A7: GET /api/me/stats returns verified_wins count ───────────────────────────
 
 async def test_me_stats_zero_with_no_completions(client):
     r = await client.get("/api/me/stats")

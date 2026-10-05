@@ -15,9 +15,6 @@ def _past() -> str:
     return (now_utc() - timedelta(hours=1)).isoformat()
 
 
-# ── PATCH deadline validation ──────────────────────────────────────────────────
-
-
 async def test_patch_past_deadline_rejected(client):
     r = await client.post(
         "/api/commitments",
@@ -38,9 +35,6 @@ async def test_patch_future_deadline_accepted(client):
     new_deadline = (now_utc() + timedelta(days=2)).isoformat()
     r = await client.patch(f"/api/commitments/{cid}", json={"deadline": new_deadline})
     assert r.status_code == 200
-
-
-# ── apply_final_verdict source-status guard ────────────────────────────────────
 
 
 async def _seed(db, status="verifying", **kw) -> Commitment:
@@ -88,9 +82,6 @@ async def test_apply_final_verdict_from_missed_is_noop(db):
     result = await state.apply_final_verdict(db, c, "pass")
     assert result == "missed"
     assert c.status == "missed"
-
-
-# ── abandon terminal-state guard ───────────────────────────────────────────────
 
 
 async def test_abandon_from_completed_is_noop(db):

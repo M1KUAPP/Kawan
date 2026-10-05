@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
-# download_voices.sh — fetch the three Piper persona voice models from Hugging Face.
-#
-# Voices chosen (backend single source of truth; see app/routes/voice.py):
-#   kawan    → en_US-lessac-medium   (warm, measured)
-#   adik     → en_US-libritts-high   (lighter, higher pitch)
-#   cik_maid → en_GB-alba-medium     (brisker, playful British accent)
-#
-# Output dir: apps/backend/voices/  (gitignored)
-# Override via: KAWAN_PIPER_VOICES_DIR=/path/to/dir ./download_voices.sh
-#
-# After downloading, install piper-tts:
-#   cd apps/backend && uv add piper-tts
-# Then set KAWAN_PIPER_VOICES_DIR in apps/backend/.env (or leave blank to use the default).
-#
-# Source: https://huggingface.co/rhasspy/piper-voices
+# Fetch the Piper persona voices (mapping in apps/backend/app/routes/voice.py) from
+# https://huggingface.co/rhasspy/piper-voices into $KAWAN_PIPER_VOICES_DIR (default apps/backend/voices/).
 
 set -euo pipefail
 
@@ -43,11 +30,8 @@ fetch_voice() {
 echo "Piper voice download → ${VOICES_DIR}"
 echo ""
 
-# en_US/lessac/medium/
 fetch_voice "en_US-lessac-medium"  "en/en_US/lessac/medium"
-# en_US/libritts/high/
 fetch_voice "en_US-libritts-high"  "en/en_US/libritts/high"
-# en_GB/alba/medium/
 fetch_voice "en_GB-alba-medium"    "en/en_GB/alba/medium"
 
 echo ""

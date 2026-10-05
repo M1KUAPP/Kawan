@@ -7,8 +7,6 @@ import json
 from unittest.mock import MagicMock, patch
 
 
-# ── _send_one payload shape ──────────────────────────────────────────────────
-
 def test_send_one_includes_url_in_payload():
     """_send_one must include 'url' in the JSON data alongside 'headline'."""
     calls = []
@@ -70,8 +68,6 @@ def test_send_one_default_url_is_home():
         assert data.get("url") == "/home"
 
 
-# ── push_to_user passes url through ──────────────────────────────────────────
-
 async def test_push_to_user_url_parameter_accepted(db):
     """push_to_user accepts an optional url kwarg without error (when no VAPID key)."""
     from app.push import push_to_user
@@ -79,8 +75,6 @@ async def test_push_to_user_url_parameter_accepted(db):
     result = await push_to_user(db, "user1", "headline text", url="/workspace/xyz")
     assert result is False
 
-
-# ── deliver() passes commitment url ──────────────────────────────────────────
 
 async def test_deliver_passes_url_to_push(db):
     """pipeline.deliver() extracts commitment_url from payload and passes to push."""

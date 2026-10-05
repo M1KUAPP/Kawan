@@ -1,4 +1,4 @@
-"""C4: persona tone QA harness. Runs all three personas through a fixed scenario set
+"""Persona tone QA harness. Runs all three personas through a fixed scenario set
 on the LIVE Chutes backend (billed to the team cpk_) and dumps a markdown transcript +
 the tone rubric for Tuna to design-review. Re-run after any prompt edit or model swap.
 
