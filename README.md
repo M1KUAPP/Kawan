@@ -339,7 +339,7 @@ The app runs **fully offline out of the box** — the default AI backend is a de
     - **Backend → Render.** [`apps/backend/render.yaml`](apps/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`apps/backend/DEPLOY.md`](apps/backend/DEPLOY.md).
     - **Frontend → Vercel.** [`apps/frontend/vercel.json`](apps/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-6.  **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
+6.  **Run the checks.** From the repository root, lint the repository, run the backend tests, then build the frontend.
 
     ```sh
     bun install

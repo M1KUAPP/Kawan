@@ -2,8 +2,7 @@
   "packageManager": "bun@1.4.2",
   "scripts": {
     "build": "bun run --cwd apps/frontend build",
-    "check": "bun run lint && bun run test && bun run --cwd apps/frontend lint && bun run build",
-    "format": "biome check --write . && prettier --write .",
+    "check": "bun run lint && bun run test && bun run build",
     "graph": "graphify update . && EC_VERSION=v4.0.2 editorconfig-checker -fix graphify-out/graph.json",
     "lint": "EC_VERSION=v4.0.2 editorconfig-checker && biome check . && prettier --check .",
     "lint:fix": "biome check --write . && prettier --write .",
