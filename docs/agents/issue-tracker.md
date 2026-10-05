@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and PRDs for this repo live as GitHub issues in `kawan-chjl/dev`. Use the `gh` CLI for all operations.
+Issues and PRDs for this repo live as GitHub issues in `M1KUAPP/Kawan`. Use the `gh` CLI for all operations.
 
 Tracking is optional per teammate: `docs/task-list.md` is the canonical task assignment, and issues are a convenience for work that benefits from a ticket. The `lane:A`–`lane:D` (work area) and `spike` labels and the five phase-gate milestones are orthogonal to the triage labels in `triage-labels.md`.
 

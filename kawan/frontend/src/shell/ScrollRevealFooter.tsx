@@ -16,7 +16,7 @@ export function ScrollRevealFooter() {
         </div>
         {/* Row 2: Link row */}
         <div className="shell-footer-row shell-footer-row-links">
-          <a href="https://github.com/kawan-chjl/dev" target="_blank" rel="noreferrer" className="shell-footer-link">
+          <a href="https://github.com/M1KUAPP/Kawan" target="_blank" rel="noreferrer" className="shell-footer-link">
             GitHub
           </a>
           <Link to="/privacy" className="shell-footer-link">

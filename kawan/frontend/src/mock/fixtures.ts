@@ -17,7 +17,7 @@ export const mockActiveCommitment: Commitment = {
   deadline: '2026-06-30T23:59:00+08:00',
   cadence: 'daily',
   evidence_type: 'github',
-  evidence_config: { repo: 'kawan-chjl/dev', branch: 'main' },
+  evidence_config: { repo: 'M1KUAPP/Kawan', branch: 'main' },
   stake_enabled: false,
   stake_contact_name: null,
   stake_contact_email: null,
