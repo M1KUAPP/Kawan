@@ -92,54 +92,26 @@ graphify-out/*
 
 # Repo-specific
 
-# Repo-wide ignores. apps/frontend/.gitignore adds the Vite defaults.
-
-# Artifacts
 .codex
-
-# OS / editor noise (can surface anywhere, e.g. docs/)
-Thumbs.db
 .idea/
-
-# Logs
 *.log
-
-# Node / frontend
-*.local
-.vite/
-
-# Python / backend
 .venv/
-venv/
 __pycache__/
-*.py[cod]
-*.egg-info/
 .pytest_cache/
 .ruff_cache/
-
-# SQLite
 *.db
-*.sqlite3
-
-# Build output
 dist/
-
-# Piper TTS voice models (.onnx + .onnx.json): large binaries, never committed.
-# Run scripts/download_voices.sh to populate locally.
-apps/backend/voices/
-
-# Live2D model files are tracked via Git LFS (apps/frontend/.gitattributes).
-# The PO stages and commits the model trees after running `git lfs install`.
-
-# Personal tool config
 .rtk/
 
-# Internal planning docs (kept local, excluded from the published repo)
+# Piper voices, fetched by scripts/download_voices.sh
+apps/backend/voices/
+
+# Local-only planning docs
 docs/design-system.md
 docs/kawan-spec.md
 docs/task-list.md
 docs/superpowers/
 
-# Generated LinkedIn carousel intermediates (rebuild with docs/linkedin/build/build.py)
+# Rebuilt by docs/linkedin/build/build.py
 docs/linkedin/build/carousel.html
 docs/linkedin/build/preview/
