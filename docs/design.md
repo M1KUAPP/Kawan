@@ -13,6 +13,9 @@ Kawan is a **skeptical-but-fair accountability companion**. The brand mark is an
 witnessing, _"I see you."_ The product should feel like a **candid friend with taste**: warm, hand-made,
 human, and a little editorial — never corporate-clinical, never cold-surveillance.
 
+It's wrapped in a warm, expressive interface: pick one of three **Live2D companions**, each with a
+distinct personality, voice, and model line-up, who reacts to your progress in real time.
+
 Two moods, one palette:
 
 - **Credible** — the structure borrows from premium editorial SaaS (rounded cards, pill buttons, lots of air).
