@@ -11,7 +11,7 @@
   <h3>Kawan</h3>
 
   <p>
-    A skeptical accountability companion. Not a cheerleader.
+    A skeptical AI accountability companion that holds you to one commitment and accepts only verified evidence, never self-report, as progress.
     <br />
     <a href="https://kawan-frontend.vercel.app"><strong>Live Demo »</strong></a>
     &middot;
@@ -68,7 +68,7 @@
 
 > _"It doesn't believe you. Yet."_
 
-One commitment, verified evidence, no self-report. Earn the trust.
+A skeptical accountability companion. Not a cheerleader. One commitment, verified evidence, no self-report. Earn the trust.
 
 Most habit apps take you at your word. Tap a checkbox, keep the streak, lie to yourself for free. **Kawan** _(Malay for "friend")_ is the opposite: a companion that holds you to **one commitment**, asks for **real evidence**, and only believes you once you've shown it.
 
