@@ -14,7 +14,7 @@ That's the gap we took to 𝗖𝗵𝘂𝘁𝗲𝘀 𝗛𝗮𝗰𝗸 𝗠𝗮𝗹
 Kawan (Malay for "friend") is a Live2D-animated accountability companion that refuses to take your word for anything. Built with kymil4, Jeremy Woon Zhe Ming and Chan Kuan Hou.
 
 And the entire build is now open source. 🔓
-➤ [[github.com/kawan-chjl/dev]]
+➤ [[github.com/M1KUAPP/Kawan]]
 
 What you're getting:
 

@@ -105,7 +105,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ### Issue tracker
 
-Issues live in the `kawan-chjl/dev` GitHub repo via the `gh` CLI. Tracking is optional per teammate — `docs/task-list.md` stays the canonical task assignment; `lane:A`–`lane:D` and the five phase-gate milestones exist if you choose to file issues. See `docs/agents/issue-tracker.md`.
+Issues live in the `M1KUAPP/Kawan` GitHub repo via the `gh` CLI. Tracking is optional per teammate — `docs/task-list.md` stays the canonical task assignment; `lane:A`–`lane:D` and the five phase-gate milestones exist if you choose to file issues. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
