@@ -49,11 +49,11 @@ mobile — the pitch deck's own slides could not be used as-is.
 ## Known issues in source screenshots
 
 - `REAME` (typo for README) is baked into the demo data on every populated
-  screenshot in `kawan/docs/screenshots/` — including the ones in the public
+  screenshot in `docs/readme/screenshots/` and `docs/readme/steps/` — including the ones in the public
   README. No source file contains the string; it was typed when the screenshots
   were recorded. Fixing it needs fresh captures.
-- `flow-5-workspace.png` and `flow-7-completion.png` carry blur/dim overlays and
+- `steps/5-workspace.png` and `steps/7-completion.png` carry blur/dim overlays and
   are not usable as clean product shots.
 
-The carousel avoids both — it uses only `flow-3-companion`, `flow-4-checkin`
-(cropped above the chips) and `flow-1-compose` (empty form).
+The carousel avoids both — it uses only `steps/3-companion`, `steps/4-checkin`
+(cropped above the chips) and `steps/1-compose` (empty form).
