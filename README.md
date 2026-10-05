@@ -87,7 +87,7 @@ You commit to a single deliverable with a deadline. Kawan checks in on a schedul
 
 The catch that makes it work: **Kawan can never change the terms of your deal.** Your goal, deadline, and how you're verified are yours alone. The AI reads them, reasons about them, and nudges you — but it is structurally incapable of editing them. That guarantee is enforced in the schema, not just the prompt (see [The trust boundary](#architecture)).
 
-Built by **Team CHJL** with 💖. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf) and the [design direction](docs/design.md#1-concept).
+Built by **Team CHJL** with 💖. Read the [Pitch Deck](kawan/docs/kawan-pitch-deck.pdf) and the [design direction](docs/DESIGN.md#1-concept).
 
 Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) (Corporate Track), where it placed 1st.
 
@@ -337,13 +337,11 @@ The app runs **fully offline out of the box** — the default AI backend is a de
    - **Backend → Render.** [`backend/render.yaml`](kawan/backend/render.yaml) defines the web service (`uv sync` → `uvicorn`). Secrets and the cross-origin cookie settings (`KAWAN_COOKIE_SAMESITE=none`, `KAWAN_COOKIE_SECURE=true`) are set in the Render dashboard. Database notes (Supabase session vs. transaction pooler) live in [`backend/DEPLOY.md`](kawan/backend/DEPLOY.md).
    - **Frontend → Vercel.** [`frontend/vercel.json`](kawan/frontend/vercel.json) rewrites `/api/*` to the Render backend and serves the SPA. In production the WebSocket connects directly to Render, which is why prod runs `SameSite=None; Secure` cookies.
 
-6. **Run the checks.** Lint the repository, then run the backend tests.
+6. **Run the checks.** From the repository root, lint the repository, run the backend tests, then lint and build the frontend.
 
    ```sh
    bun install
-   bun run lint
-   cd kawan/backend
-   uv run pytest
+   bun run check
    ```
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
