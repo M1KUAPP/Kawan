@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!apps/frontend/public", "!apps/frontend/spike-live2d.html", "!docs/readme"]
+    "includes": ["**", "!apps/frontend/public", "!docs/readme"]
   },
   "formatter": {
     "enabled": true,
