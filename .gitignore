@@ -1,20 +1,119 @@
+# https://github.com/github/gitignore
+
+# OS
+
+# General
+.DS_Store
+.localized
+__MACOSX/
+.AppleDouble
+.LSOverride
+Icon[
+]
+
+# Resource forks
+._*
+
+# Files and directories that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.com.apple.timemachine.supported
+.PKInstallSandboxManager
+.PKInstallSandboxManager-SystemSoftware
+.hotfiles.btree
+.vol
+.file
+.disk_label*
+lost+found
+.HFS+ Private Directory Data[
+]
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Mac OS 6 to 9
+Desktop DB
+Desktop DF
+TheFindByContentFolder
+TheVolumeSettingsFolder
+.FBCIndex
+.FBCSemaphoreFile
+.FBCLockFolder
+
+# Quota system
+.quota.group
+.quota.user
+.quota.ops.group
+.quota.ops.user
+
+# TimeMachine
+Backups.backupdb
+.MobileBackups
+.MobileBackups.trash
+MobileBackups.trash
+tmbootpicker.efi
+
+# IDE
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Custom
+
+# Development
+node_modules/
+.worktrees/
+
+# Environment
+.env*
+!.env.example
+
+# Graphify
+graphify-out/*
+!graphify-out/graph.json
+
+# Repo-specific
+
 # Repo-root ignores. App-specific patterns live in kawan/.gitignore.
 
 # Artifacts
-node_modules/
 .codex
 
 # OS / editor noise (can surface anywhere, e.g. docs/)
-.DS_Store
 Thumbs.db
 .idea/
 
 # Logs
 *.log
 
-# Env files — never commit secrets at any level
-.env
-.env.*
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Build output
+dist/
+
+# Personal tool config
+.rtk/
 
 # Internal planning docs (kept local, excluded from the published repo)
 docs/design-system.md

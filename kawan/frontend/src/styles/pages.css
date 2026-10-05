@@ -1124,7 +1124,7 @@
 }
 
 .timeline-dot-checkin {
-  background: var(--accent); /* terracotta iris-dot — design.md §5 */
+  background: var(--accent); /* terracotta iris-dot — DESIGN.md §5 */
 }
 
 .timeline-dot-evidence {
@@ -1248,7 +1248,7 @@
   margin: 0;
 }
 
-/* pass = filled terracotta iris (design.md §5) — NEVER red */
+/* pass = filled terracotta iris (DESIGN.md §5) — NEVER red */
 .momentum-dot {
   width: 14px;
   height: 14px;

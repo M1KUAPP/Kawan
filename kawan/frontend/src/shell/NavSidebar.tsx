@@ -1,6 +1,6 @@
 // NavSidebar — overlay drawer that opens over content (not push-column).
 // On mobile: triggered from Topbar menu button; on desktop: same overlay.
-// design.md §6 Zone 1, layer 1.
+// DESIGN.md §6 Zone 1, layer 1.
 
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
