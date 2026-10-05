@@ -200,6 +200,8 @@ A commitment moves through a single, deterministic lifecycle — from drafting t
   <img src="docs/readme/architecture-light.svg" alt="Kawan's architecture. The React SPA calls the FastAPI backend over /api. An on-demand check from the API and APScheduler's cadence and deadline ticks run one check-in pipeline. The pipeline judges evidence and writes the check-in line on Chutes TEE models, falls back to a secondary judge on a timeout or error, writes verdicts and check-ins to SQLite or Postgres, and delivers each check-in over the WebSocket first, then Web Push and reminders. The API signs users in with Chutes over OAuth2 PKCE and writes the hard fields.">
 </picture>
 
+The diagram is drawn with [archify](https://github.com/tt-a1i/archify) from [`architecture.json`](docs/readme/architecture.json).
+
 Kawan is a **single-process FastAPI backend** plus a **React SPA**. The frontend is organized in three zones: public pages (Zone 0), the SaaS shell (Zone 1 — home, commitments, analytics, settings), and the full-screen AI workspace (Zone 2 — the compose flow and live companion).
 
 **The trust boundary.** The core idea is a hard separation between what **you** own and what the **AI** can touch — enforced in the data model, not just convention:
@@ -246,8 +248,6 @@ kawan/
 └── .env.example         # annotated configuration
 docs/readme/             # the images in this README
 ```
-
-The diagram was made with [archify](https://github.com/tt-a1i/archify) and tinted with Kawan's design tokens.
 
 <p align="right"><a href="#readme-top">&uarr;</a></p>
 
