@@ -236,16 +236,15 @@ apps/
 │   │   ├── routes/      # auth · commitments · push · telegram · voice · ws
 │   │   └── …            # scheduler, chutes client, notify, state machine
 │   ├── render.yaml      # Render deploy
-│   ├── DEPLOY.md        # DB / pooler notes
-│   └── .env.example     # annotated backend configuration
+│   ├── DEPLOY.md        # pooler, secrets and Vercel env notes
+│   └── .env.example     # backend settings with dev defaults
 └── frontend/            # React + Vite SPA
     ├── src/
     │   ├── shell/       # Zone 1 — SaaS shell + pages
     │   ├── zone2/       # Zone 2 — workspace, Live2D, new-commitment flow
     │   ├── timeline/    # analytics, achievements, productivity meter
     │   └── …            # auth, notifications, ui, share
-    ├── public/          # Live2D models (Git LFS), banner, icons, service worker
-    └── .env.example     # optional VITE_* overrides
+    └── public/          # Live2D models (Git LFS), banner, icons, service worker
 scripts/                 # download_voices.sh · helpers
 docs/                    # PRD, TRD, design, ADRs and the pitch deck
 └── readme/              # the images in this README
@@ -292,7 +291,7 @@ The app runs **fully offline out of the box** — the default AI backend is a de
 
     The dev defaults use local SQLite, the Vite proxy, and `KAWAN_AI_BACKEND=stub`. No secrets required.
 
-    All settings use the `KAWAN_` prefix and load from `apps/backend/.env`. See [`.env.example`](apps/backend/.env.example) for the fully annotated list. The most important knobs:
+    All settings use the `KAWAN_` prefix and load from `apps/backend/.env`. See [`.env.example`](apps/backend/.env.example) for the full list. The most important knobs:
 
     | Variable                                    | What it does                                                                      |
     | ------------------------------------------- | --------------------------------------------------------------------------------- |
