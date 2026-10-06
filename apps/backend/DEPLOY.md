@@ -1,4 +1,4 @@
-# Kawan backend — deployment notes
+# Kawan deployment notes
 
 ## Supabase connection: session pooler vs transaction pooler
 
@@ -18,3 +18,11 @@ For the session pooler (5432) those args are harmless but also not required.
 
 Grab the pooler connection string from: Supabase project → Settings → Database → Connection pooling.
 Set it in Render as the `KAWAN_DATABASE_URL` secret.
+
+## Secrets
+
+Set `KAWAN_SESSION_SECRET` and `KAWAN_FERNET_KEY` explicitly in Render. Keep the Fernet key stable: changing it makes stored SIWC tokens unreadable.
+
+## Vercel frontend env
+
+Vercel cannot proxy WebSocket upgrades, so set `VITE_WS_URL=wss://<render-app>.onrender.com/ws` in Vercel. Leave it unset in dev, where the Vite proxy serves `/ws`. Never set `VITE_USE_MOCK_AUTH=true` in prod.
