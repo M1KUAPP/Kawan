@@ -151,12 +151,6 @@ export function StageMode({
     await speakLine(stageRef.current, devText, devPersona)
   }
 
-  async function handleDevSpikeWav() {
-    const res = await fetch('/spike/test.wav')
-    const arrayBuffer = await res.arrayBuffer()
-    stageRef.current?.speak(arrayBuffer)
-  }
-
   const latestMsg = messages.length > 0 ? messages[messages.length - 1] : null
   const isRefusal = latestKawan?.responseType === 'refusal'
   const hasProposal =
@@ -233,7 +227,7 @@ export function StageMode({
         )}
       </div>
 
-      {/* DEV-only: extended harness with persona, emotion, text, and original spike */}
+      {/* DEV-only harness: persona, emotion, text, speak/stop and expression buttons */}
       {import.meta.env.DEV && (
         <div className="stage-dev-controls" role="toolbar" aria-label="Dev controls">
           <select
@@ -271,9 +265,6 @@ export function StageMode({
             aria-label="Speak via Piper/WebSpeech"
           >
             <Play size={12} aria-hidden="true" /> Speak
-          </button>
-          <button type="button" className="stage-dev-btn" onClick={handleDevSpikeWav} aria-label="Play spike WAV">
-            <Play size={12} aria-hidden="true" /> WAV
           </button>
           <button
             type="button"
