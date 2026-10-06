@@ -246,7 +246,7 @@ apps/
     │   └── …            # auth, notifications, ui, share
     ├── public/          # Live2D models (Git LFS), banner, icons, service worker
     └── .env.example     # optional VITE_* overrides
-scripts/                 # download_models.sh · download_voices.sh · helpers
+scripts/                 # download_voices.sh · helpers
 docs/                    # PRD, TRD, design, ADRs and the pitch deck
 └── readme/              # the images in this README
 ```
