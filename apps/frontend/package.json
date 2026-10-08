@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.81",
     "lucide-react": "^1.21.0",
+    "motion": "^14.0.0",
     "pixi-live2d-display": "^0.4.0",
     "pixi.js": "6",
     "react": "^18.3.1",
@@ -18,10 +20,12 @@
     "recharts": "^3.9.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.12.3",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "vite": "^8.0.12"
   }
