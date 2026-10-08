@@ -2,14 +2,13 @@
 // Phase 5: DemoTourProvider wraps everything so the tour context is available app-wide.
 // DemoStepBar renders at app level so it persists across all routes during the tour.
 
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { DemoStepBar } from './demo/DemoStepBar'
 import { DemoTourProvider, useDemoTour } from './demo/DemoTour'
 import { Spotlight } from './demo/Spotlight'
 import { isWelcomeDismissed } from './demo/welcomeFlag'
 import { AuthCallback } from './pages/AuthCallback'
-import { Landing } from './pages/Landing'
 import { NotFound } from './pages/NotFound'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
@@ -29,6 +28,9 @@ import { ShellLayout } from './shell/ShellLayout'
 import { HelpButton } from './ui/HelpButton'
 import { NewCommitment } from './zone2/NewCommitment'
 import { WorkspaceLayout } from './zone2/WorkspaceLayout'
+
+// The landing carries Motion, the Paper shaders and its scoped Tailwind CSS; load them only on /.
+const Landing = lazy(() => import('./pages/Landing').then((m) => ({ default: m.Landing })))
 
 // TourNavigator: watches the current route and advances the tour step automatically
 // when the user lands on a key route during the walkthrough.
@@ -99,7 +101,14 @@ function AppRoutes() {
 
       <Routes>
         {/* Zone 0 — public, no shell chrome */}
-        <Route path="/" element={<Landing />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div className="landing-root" />}>
+              <Landing />
+            </Suspense>
+          }
+        />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/welcome" element={isWelcomeDismissed() ? <Navigate to="/home" replace /> : <Welcome />} />

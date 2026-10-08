@@ -1,0 +1,150 @@
+/* Landing (Zone 0). Tailwind 4 is scoped to the landing so it can't restyle the app:
+  no preflight (base.css owns the reset), utilities generated only from the landing sources,
+  left unlayered so they beat base.css element rules, and theme names that never shadow
+  Kawan's own tokens in tokens.css (which stay the source of truth for colour, type and shape). */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" source(none);
+
+@source "./";
+@source "../Landing.tsx";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+  --ease-*: initial;
+  --font-*: initial;
+  /* Fixed colours for the dark stages (Trust, Companions, CTA), which stay dark in both themes. */
+  --color-cream: #f4ece1;
+  --color-stage: #2e2722;
+  --color-stage-raised: #3a2f28;
+  --color-ember: #ad4621;
+  --color-glow: #f0875a;
+  --color-pupil: #1f1611;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-press: var(--accent-press);
+  --color-accent-tint: var(--accent-tint);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-sage-tint: var(--sage-tint);
+  --color-clay: var(--clay);
+  --color-danger: var(--danger);
+  --color-evening: var(--evening);
+  --font-fredoka: var(--font-display);
+  --font-fraunces: var(--font-voice);
+  --radius-k-sm: var(--radius-sm);
+  --radius-k-md: var(--radius-md);
+  --radius-k-lg: var(--radius-lg);
+  --radius-k-card: var(--radius-card);
+  --radius-k-xl: var(--radius-xl);
+  --shadow-k-sm: var(--shadow-sm);
+  --shadow-k-md: var(--shadow-md);
+  --shadow-k-lg: var(--shadow-lg);
+  --shadow-k-pill: var(--shadow-pill);
+  --ease-k-out: var(--ease-out);
+}
+
+/* ── Textures (DESIGN.md §5: grid paper and halftone, sparingly) ── */
+
+.kl-grid-paper {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--ink) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--ink) 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+}
+
+.kl-halftone {
+  background-image: radial-gradient(color-mix(in oklab, var(--ink) 16%, transparent) 1.1px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+
+.kl-halftone-cream {
+  background-image: radial-gradient(rgb(244 236 225 / 0.16) 1.1px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+
+.kl-fade-bottom {
+  mask-image: linear-gradient(180deg, #000 62%, transparent);
+}
+
+.kl-fade-mask {
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 45%, #000 30%, transparent 78%);
+}
+
+/* ── The eye ── */
+
+/* Iris striations over the shader, like the fibres of a real iris. */
+.kl-iris-fibers {
+  background:
+    radial-gradient(circle, transparent 38%, color-mix(in oklab, var(--color-pupil) 30%, transparent) 76%),
+    repeating-conic-gradient(
+      from 4deg,
+      color-mix(in oklab, var(--color-pupil) 15%, transparent) 0deg 1.4deg,
+      transparent 1.4deg 6deg
+    );
+  mix-blend-mode: multiply;
+}
+
+/* CSS iris for when no shader runs (no WebGL2, Save-Data, or the small CTA eye). */
+.kl-iris-fallback {
+  background: radial-gradient(
+    circle at 46% 42%,
+    color-mix(in oklab, var(--accent) 70%, #fff) 0%,
+    var(--accent) 36%,
+    var(--accent-press) 70%,
+    color-mix(in oklab, var(--accent-press) 70%, #000) 100%
+  );
+}
+
+/* ── Verdict stamps ── */
+
+.kl-stamp {
+  border: 3px solid currentcolor;
+  outline: 1.5px solid currentcolor;
+  outline-offset: 3px;
+  mask-image: radial-gradient(circle at 30% 40%, #000 60%, rgb(0 0 0 / 0.82) 61%);
+}
+
+/* ── Scan beam ── */
+
+.kl-scan-beam {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in oklab, var(--accent) 22%, transparent) 70%,
+    color-mix(in oklab, var(--accent) 60%, transparent) 96%,
+    transparent
+  );
+}
+
+/* ── VN dialogue caret ── */
+
+@keyframes kl-caret {
+  50% {
+    transform: translateY(3px);
+    opacity: 0.45;
+  }
+}
+
+.kl-caret {
+  animation: kl-caret 1.4s var(--ease-smooth) infinite;
+}
+
+[data-still="true"] .kl-caret {
+  animation: none;
+}
