@@ -9,6 +9,11 @@
     "ignoreUnknown": true,
     "includes": ["**", "!apps/frontend/public", "!docs/readme"]
   },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "formatter": {
     "indentStyle": "space",
     "lineWidth": 120
