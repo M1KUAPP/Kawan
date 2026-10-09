@@ -16,9 +16,9 @@
   <p>
     A skeptical AI accountability companion that holds you to one commitment and accepts only verified evidence, never self-report, as progress.
     <br />
-    <a href="https://kawan-frontend.vercel.app"><strong>Live Demo »</strong></a>
+    <a href="https://youtu.be/B3u5ByG_-jk"><strong>Watch the Demo »</strong></a>
     &middot;
-    <a href="https://youtu.be/B3u5ByG_-jk">Demo Video</a>
+    <a href="#screenshots">Screenshots</a>
     &middot;
     <a href="https://github.com/M1KUAPP/Kawan/issues/new?labels=bug">Report a Bug</a>
     <br />
