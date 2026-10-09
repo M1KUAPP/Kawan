@@ -337,7 +337,7 @@ P8 = page("dark", f"""
 </div>
 <div class="spacer"></div>
 <div class="foot" style="color:#8A7461">
-  Built by <b style="color:#C4B2A2">Team CHJL</b><br>
+  Built by<br>
   <span style="font-size:22px">Hee Zi Jie &middot; kymil4 &middot; Jeremy Woon Zhe Ming &middot; Chan Kuan Hou</span>
 </div>
 """)

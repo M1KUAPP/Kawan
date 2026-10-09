@@ -87,7 +87,7 @@ You commit to a single deliverable with a deadline. Kawan checks in on a schedul
 
 The catch that makes it work: **Kawan can never change the terms of your deal.** Your goal, deadline, and how you're verified are yours alone. The AI reads them, reasons about them, and nudges you — but it is structurally incapable of editing them. That guarantee is enforced in the schema, not just the prompt (see [The trust boundary](#architecture)).
 
-Built by **Team CHJL** with 💖. Read the [Pitch Deck](/docs/kawan-pitch-deck.pdf) and the [design direction](/docs/DESIGN.md#1-concept).
+Built with 💖. Read the [Pitch Deck](/docs/kawan-pitch-deck.pdf) and the [design direction](/docs/DESIGN.md#1-concept).
 
 Built for [Chutes Hack Malaysia 2026](https://chutes-hack-malaysia-2026.devpost.com/) (Corporate Track), where it placed 1st.
 
